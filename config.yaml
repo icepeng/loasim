@@ -1,0 +1,24 @@
+---
+weapon_att:
+  weapon: 50362
+  food: 0
+  bracelet: 0
+stat_main:
+  base: 156350
+crit: 632
+special: 1776
+swift: 53
+engraving:
+  원한: 3
+  바리케이드: 3
+  돌격대장: 3
+  예리한 둔기: 3
+  아드레날린: 3
+  진화의 유산: 1
+setitem:
+  환각: 6
+card: 남겨진 바람의 절벽 (12)
+
+enemy:
+  armor: 6000
+  reduction: 0.23
