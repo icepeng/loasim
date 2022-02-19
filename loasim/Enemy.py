@@ -3,5 +3,6 @@ class Enemy:
         self.armor = armor
         self.reduction = reduction
 
-    def get_reduction_rate(self) -> float:
-        return (1 - self.armor / (self.armor + 6500)) * (1 - self.reduction / 100)
+    def get_reduction_rate(self, armor_ignore) -> float:
+        armor = self.armor * (100 - armor_ignore) / 100
+        return (1 - armor / (armor + 6500)) * (1 - self.reduction / 100)

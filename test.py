@@ -4,7 +4,7 @@ from loasim.Enemy import Enemy
 from loasim.Skill import Skill
 
 base_stat = Stat(weapon_att=50362, stat_main=156350, crit=632, special=1776, swift=53)
-spd = base_stat.get_spd()
+spd = base_stat.get_spd() + 10  # 갈망 +10
 
 base_mdf = base_stat.get_mdf()
 weapon_mdf = CharacterModifier(pdamage=23.45)  # 무기 품질
@@ -42,8 +42,8 @@ sync_mdf = static_mdf.add_indep(RaidCaptain3_Sync + Legacy1 + HyperSync + SyncGe
 nosync_mdf = static_mdf.add_indep(RaidCaptain3)
 
 RaidMissileGem = CharacterModifier(pdamage_indep=21)  # 7레벨 멸화
-RaidMissleTripod = CharacterModifier(pdamage_indep=62) + CharacterModifier(pdamage_indep=87)  # 오르간 미사일 4, 약점 포착 4
-RaidMissile = Skill("레이드 미사일", base=3066, coefficient=19.10, mdf=nosync_mdf + RaidMissileGem + RaidMissleTripod)
+RaidMissileTripod = CharacterModifier(pdamage_indep=62) + CharacterModifier(pdamage_indep=87)  # 오르간 미사일 4, 약점 포착 4
+RaidMissile = Skill("레이드 미사일", base=3066, coefficient=19.10, mdf=nosync_mdf + RaidMissileGem + RaidMissileTripod)
 
 BabyDroneTripod = CharacterModifier(crit=38) + CharacterModifier(pdamage_indep=95)  # 급소 공격 4, 일제 공격 5
 BabyDrone = Skill("베이비 드론", base=3200, coefficient=19.71, mdf=nosync_mdf + BabyDroneTripod)

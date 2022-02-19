@@ -23,7 +23,7 @@ class Skill:
         mdf = self.mdf + mdf
         base_dmg = self.base + (mdf.att * (1 + mdf.patt / 100)) * self.coefficient
         mdf_multiplier = (1 + mdf.pdamage_indep / 100) * (1 + mdf.pdamage / 100)
-        enemy_reduction_rate = enemy.get_reduction_rate()
+        enemy_reduction_rate = enemy.get_reduction_rate(mdf.armor_ignore)
         nocrit_dmg = base_dmg * mdf_multiplier * enemy_reduction_rate
         crit_dmg = nocrit_dmg * mdf.crit_damage / 100
 
