@@ -1,7 +1,9 @@
-class Enemy:
-    def __init__(self, armor: float, reduction: float) -> None:
-        self.armor = armor
-        self.reduction = reduction
+from pydantic import BaseModel
+
+
+class Enemy(BaseModel):
+    armor: float
+    reduction: float
 
     def get_reduction_rate(self, armor_ignore) -> float:
         armor = self.armor * (100 - armor_ignore) / 100

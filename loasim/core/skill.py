@@ -1,6 +1,6 @@
 from typing import List, Dict
 from loasim.core.stat import Stat
-from loasim.Enemy import Enemy
+from loasim.core.enemy import Enemy
 
 from pydantic import BaseModel
 
