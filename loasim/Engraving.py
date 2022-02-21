@@ -2,6 +2,7 @@ from typing import Any, Callable, List, Tuple
 from loasim.CharacterModifier import CharacterModifier
 from pydantic import BaseModel
 
+
 class Engraving(BaseModel):
     name: str
     mdf_list: List[Callable[[Any], CharacterModifier]]

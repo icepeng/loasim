@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 from loasim.core.stat import Stat
 from loasim.core.enemy import Enemy
 
@@ -67,11 +67,6 @@ class Skill(BaseModel):
         return damage * self.multiplier
 
 
-class SkillBuildConfiguration(BaseModel):
-    tripod: Dict[str, int]
-    gem: int
-
-
 class SkillSpecification(BaseModel):
     name: str
     base: float
@@ -86,11 +81,14 @@ class SkillSpecification(BaseModel):
             if tripod.name == name:
                 return tripod
 
-    def build_skill(self, config: SkillBuildConfiguration) -> Skill:
+    def build_skill(self, gem: int, tripod: Dict[str, int], additional_stat: Optional[Stat] = None) -> Skill:
         stat = Stat()
-        stat = stat + Stat(pdamage_indep=gem_dict.get(config.gem))
-        for name, level in config.tripod.items():
+        stat = stat + Stat(pdamage_indep=gem_dict.get(gem))
+        for name, level in tripod.items():
             stat = stat + self.get_tripod(name).get_modifier(level)
+
+        if additional_stat is not None:
+            stat = stat + additional_stat
 
         return Skill(
             name=self.name,

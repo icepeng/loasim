@@ -1,4 +1,4 @@
-from loasim.core.skill import Skill, SkillSpecification, SkillBuildConfiguration
+from loasim.core.skill import Skill, SkillSpecification
 import pytest
 
 from loasim.core.enemy import Enemy
@@ -9,10 +9,8 @@ from loasim.core.enemy import Enemy
 ])
 def test_skill_build(skill_gem, skill_tripod, test_skill_specification):
     skill = test_skill_specification.build_skill(
-        SkillBuildConfiguration(
-            gem=skill_gem,
-            tripod=skill_tripod
-        )
+        gem=skill_gem,
+        tripod=skill_tripod
     )
 
     skill.get_damage(Enemy(armor=6000, reduction=23))
