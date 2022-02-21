@@ -1,6 +1,6 @@
 import pytest
 
-from loasim.core.skill import Skill, SkillSpecification, Tripod
+from loasim.core.skill import SkillSpecification, Tripod
 from loasim.core.stat import Stat
 
 

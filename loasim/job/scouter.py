@@ -1,4 +1,4 @@
-from loasim.core import Skill, SkillSpecification, Stat, Tripod
+from loasim.core import SkillSpecification, Stat, Tripod
 
 RaidMissile = SkillSpecification(
     name="명령 : 레이드 미사일",

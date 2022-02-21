@@ -78,16 +78,3 @@ class Stat(BaseModel):
             patt=self.patt - arg.patt,
             att=self.att - arg.att,
         )
-
-    def log(self) -> str:
-        txt = "crit rate : %.1f, crit damage : %.1f\n" % (self.crit, self.crit_damage)
-        txt += "pdamage : %.1f, pdamage_indep : %.1f\n" % (
-            self.pdamage,
-            self.pdamage_indep,
-        )
-        txt += "att : %.1f, patt : %.1f\n" % (self.att, self.patt)
-        txt += "armor ignore : %.1f\n" % (self.armor_ignore)
-        return txt
-
-    def __repr__(self) -> str:
-        return self.log()

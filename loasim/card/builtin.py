@@ -1,7 +1,3 @@
-from typing import List, Optional
-
-from pydantic import BaseModel
-
 from loasim.card.base import Card, CardRepository
 from loasim.core.stat import Stat
 

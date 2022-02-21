@@ -1,5 +1,5 @@
 from loasim.core import Stat
-from loasim.setitem.base import SetItem, SetItemRepository, SetItemState
+from loasim.setitem.base import SetItem, SetItemRepository
 
 lostark_setitem_repository = SetItemRepository()
 

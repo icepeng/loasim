@@ -76,10 +76,12 @@ class SkillSpecification(BaseModel):
     back: bool = False
     tripods: List[Tripod] = []
 
-    def get_tripod(self, name):
+    def get_tripod(self, name) -> Optional[Tripod]:
         for tripod in self.tripods:
             if tripod.name == name:
                 return tripod
+
+        return None
 
     def build_skill(
         self,

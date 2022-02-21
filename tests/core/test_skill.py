@@ -1,7 +1,6 @@
 import pytest
 
 from loasim.core.enemy import Enemy
-from loasim.core.skill import Skill, SkillSpecification
 
 
 @pytest.mark.parametrize(
