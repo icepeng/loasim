@@ -5,6 +5,7 @@ from loasim.core.enemy import Enemy
 from pydantic import BaseModel
 
 gem_dict = {
+    0: 0,
     1: 3,
     2: 6,
     3: 9,
@@ -81,11 +82,12 @@ class SkillSpecification(BaseModel):
             if tripod.name == name:
                 return tripod
 
-    def build_skill(self, gem: int, tripod: Dict[str, int], additional_stat: Optional[Stat] = None) -> Skill:
+    def build_skill(self, gem: int = 0, tripod: Optional[Dict[str, int]] = None, additional_stat: Optional[Stat] = None) -> Skill:
         stat = Stat()
         stat = stat + Stat(pdamage_indep=gem_dict.get(gem))
-        for name, level in tripod.items():
-            stat = stat + self.get_tripod(name).get_modifier(level)
+        if tripod is not None:
+            for name, level in tripod.items():
+                stat = stat + self.get_tripod(name).get_modifier(level)
 
         if additional_stat is not None:
             stat = stat + additional_stat

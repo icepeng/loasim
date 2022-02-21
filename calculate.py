@@ -1,9 +1,9 @@
 from collections import defaultdict
 from typing import List
-from loasim.Skill import SkillWrapper
+from loasim.core import Skill
 
 
-def calculate(dealcycle: List[SkillWrapper], cycle_time, enemy):
+def calculate(dealcycle: List[Skill], cycle_time, enemy):
     total_damage = 0
     damage_dict = defaultdict(float)
     for sk in dealcycle:

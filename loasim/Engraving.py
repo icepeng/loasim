@@ -1,114 +1,104 @@
 from typing import Any, Callable, List, Tuple
-from loasim.CharacterModifier import CharacterModifier
+from loasim.core import Stat
 from pydantic import BaseModel
 
 
 class Engraving(BaseModel):
     name: str
-    mdf_list: List[Callable[[Any], CharacterModifier]]
+    mdf_list: List[Callable[[Any], Stat]]
     is_static: bool
 
-    def __init__(
-        self,
-        name: str,
-        mdf_list: List[Callable[[Any], CharacterModifier]],
-        is_static: bool,
-    ) -> None:
-        self.name = name
-        self.mdf_list = mdf_list
-        self.is_static = is_static
-
-    def get_modifier(self, level, **kwargs) -> CharacterModifier:
+    def get_modifier(self, level, **kwargs) -> Stat:
         return self.mdf_list[level - 1](**kwargs)
 
 
 engraving_list = [
     Engraving(
-        "원한",
-        [
-            lambda: CharacterModifier(pdamage_indep=4),
-            lambda: CharacterModifier(pdamage_indep=10),
-            lambda: CharacterModifier(pdamage_indep=20),
+        name="원한",
+        mdf_list=[
+            lambda: Stat(pdamage_indep=4),
+            lambda: Stat(pdamage_indep=10),
+            lambda: Stat(pdamage_indep=20),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "예리한 둔기",
-        [
-            lambda: CharacterModifier(pdamage_indep=-2, crit_damage=10),
-            lambda: CharacterModifier(pdamage_indep=-2, crit_damage=25),
-            lambda: CharacterModifier(pdamage_indep=-2, crit_damage=50),
+        name="예리한 둔기",
+        mdf_list=[
+            lambda: Stat(pdamage_indep=-2, crit_damage=10),
+            lambda: Stat(pdamage_indep=-2, crit_damage=25),
+            lambda: Stat(pdamage_indep=-2, crit_damage=50),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "저주받은 인형",
-        [
-            lambda: CharacterModifier(patt=3),
-            lambda: CharacterModifier(patt=8),
-            lambda: CharacterModifier(patt=16),
+        name="저주받은 인형",
+        mdf_list=[
+            lambda: Stat(patt=3),
+            lambda: Stat(patt=8),
+            lambda: Stat(patt=16),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "정밀 단도",
-        [
-            lambda: CharacterModifier(crit=4, crit_damage=-12),
-            lambda: CharacterModifier(crit=10, crit_damage=-12),
-            lambda: CharacterModifier(crit=20, crit_damage=-12),
+        name="정밀 단도",
+        mdf_list=[
+            lambda: Stat(crit=4, crit_damage=-12),
+            lambda: Stat(crit=10, crit_damage=-12),
+            lambda: Stat(crit=20, crit_damage=-12),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "바리케이드",
-        [
-            lambda: CharacterModifier(pdamage_indep=3),
-            lambda: CharacterModifier(pdamage_indep=8),
-            lambda: CharacterModifier(pdamage_indep=16),
+        name="바리케이드",
+        mdf_list=[
+            lambda: Stat(pdamage_indep=3),
+            lambda: Stat(pdamage_indep=8),
+            lambda: Stat(pdamage_indep=16),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "안정된 상태",
-        [
-            lambda: CharacterModifier(pdamage_indep=3),
-            lambda: CharacterModifier(pdamage_indep=8),
-            lambda: CharacterModifier(pdamage_indep=16),
+        name="안정된 상태",
+        mdf_list=[
+            lambda: Stat(pdamage_indep=3),
+            lambda: Stat(pdamage_indep=8),
+            lambda: Stat(pdamage_indep=16),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "아드레날린",
-        [
-            lambda: CharacterModifier(patt=1.8, crit=5),
-            lambda: CharacterModifier(patt=3.6, crit=10),
-            lambda: CharacterModifier(patt=6, crit=15),
+        name="아드레날린",
+        mdf_list=[
+            lambda: Stat(patt=1.8, crit=5),
+            lambda: Stat(patt=3.6, crit=10),
+            lambda: Stat(patt=6, crit=15),
         ],
-        True,
+        is_static=True,
     ),
     Engraving(
-        "돌격대장",
-        [
-            lambda **kwargs: CharacterModifier(pdamage_indep=min(kwargs.get("spd"), 40) * 0.1),
-            lambda **kwargs: CharacterModifier(pdamage_indep=min(kwargs.get("spd"), 40) * 0.22),
-            lambda **kwargs: CharacterModifier(pdamage_indep=min(kwargs.get("spd"), 40) * 0.45),
+        name="돌격대장",
+        mdf_list=[
+            lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.1),
+            lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.22),
+            lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.45),
         ],
-        False,
+        is_static=False,
     ),
     Engraving(
-        "진화의 유산",
-        [
-            lambda **kwargs: CharacterModifier(
+        name="진화의 유산",
+        mdf_list=[
+            lambda **kwargs: Stat(
                 pdamage_indep=kwargs.get("legacy_stack") * 2
             ),
-            lambda **kwargs: CharacterModifier(
+            lambda **kwargs: Stat(
                 pdamage_indep=kwargs.get("legacy_stack") * 4
             ),
-            lambda **kwargs: CharacterModifier(
+            lambda **kwargs: Stat(
                 pdamage_indep=kwargs.get("legacy_stack") * 6
             ),
         ],
-        False,
+        is_static=False,
     ),
 ]
 
@@ -120,7 +110,7 @@ class EngravingManager:
         self.equipped_list = equipped_list
 
     def get_static_modifier(self):
-        mdf = CharacterModifier()
+        mdf = Stat()
         for name, level in self.equipped_list:
             engraving = engraving_dict.get(name)
             if engraving is None:
@@ -130,7 +120,7 @@ class EngravingManager:
         return mdf
 
     def get_dynamic_modifier(self, **kwargs):
-        mdf = CharacterModifier()
+        mdf = Stat()
         for name, level in self.equipped_list:
             engraving = engraving_dict.get(name)
             if engraving is None:
