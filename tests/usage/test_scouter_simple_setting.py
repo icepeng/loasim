@@ -3,7 +3,7 @@ from loguru import logger
 from loasim.calculate import calculate
 from loasim.card import lostark_default_card_repository
 from loasim.core import Enemy, InternalStat, Stat
-from loasim.engraving import EngravingManager
+from loasim.Engraving import EngravingManager
 from loasim.job import scouter
 from loasim.setitem import SetItemState, lostark_setitem_repository
 

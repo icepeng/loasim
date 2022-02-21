@@ -96,6 +96,15 @@ engraving_list = [
         ],
         is_static=False,
     ),
+    Engraving(
+        name="회귀",
+        mdf_list=[
+            lambda: Stat(crit=6, crit_damage=20),
+            lambda: Stat(crit=9, crit_damage=30),
+            lambda: Stat(crit=12, crit_damage=40),
+        ],
+        is_static=True,
+    ),
 ]
 
 engraving_dict = {engraving.name: engraving for engraving in engraving_list}
