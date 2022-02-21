@@ -78,6 +78,19 @@ class CharacterModifier:
             att=self.att + arg.att,
         )
 
+    def __sub__(self, arg: CharacterModifier) -> CharacterModifier:
+        return CharacterModifier(
+            crit=self.crit - arg.crit,
+            crit_damage=self.crit_damage - arg.crit_damage,
+            pdamage=self.pdamage - arg.pdamage,
+            pdamage_indep=(100 + self.pdamage_indep) / (100 + arg.pdamage_indep) * 100
+            - 100,
+            armor_ignore=100
+            - 100 * (100 - self.armor_ignore) / (100 - arg.armor_ignore),
+            patt=self.patt - arg.patt,
+            att=self.att - arg.att,
+        )
+
     def log(self) -> str:
         txt = "crit rate : %.1f, crit damage : %.1f\n" % (self.crit, self.crit_damage)
         txt += "pdamage : %.1f, pdamage_indep : %.1f\n" % (
