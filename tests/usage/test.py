@@ -1,4 +1,4 @@
-from calculate import calculate
+from loasim.calculate import calculate
 from loguru import logger
 
 from loasim.core import Stat, InternalStat, Enemy
