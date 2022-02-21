@@ -10,7 +10,7 @@ from loasim.engraving import EngravingManager
 from loasim.job import scouter
 
 
-base_internal_stat = InternalStat(weapon_att=50362, InternalStat_main=156350, crit=632, special=1776, swift=53)
+base_internal_stat = InternalStat(weapon_att=50362, stat_main=156350, crit=632, special=1776, swift=53)
 spd = base_internal_stat.get_spd() + 10  # 갈망 +10
 
 base_stat = base_internal_stat.get_stat()
