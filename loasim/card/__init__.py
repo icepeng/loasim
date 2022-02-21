@@ -1,1 +1,1 @@
-from loasim.card.repository import lostark_default_card_repository
+from loasim.card.builtin import lostark_default_card_repository
