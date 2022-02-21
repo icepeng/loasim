@@ -1,6 +1,9 @@
 from __future__ import annotations
+
 from math import sqrt
+
 from pydantic import BaseModel, Extra
+
 
 class InternalStat(BaseModel):
     class Config:
@@ -34,7 +37,6 @@ class Stat(BaseModel):
     armor_ignore: float = 0
     patt: float = 0
     att: float = 0
-
 
     def __add__(self, arg: Stat) -> Stat:
         return Stat(

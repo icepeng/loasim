@@ -1,6 +1,8 @@
 from typing import Any, Callable, List, Tuple
-from loasim.core import Stat
+
 from pydantic import BaseModel
+
+from loasim.core import Stat
 
 
 class Engraving(BaseModel):
@@ -88,15 +90,9 @@ engraving_list = [
     Engraving(
         name="진화의 유산",
         mdf_list=[
-            lambda **kwargs: Stat(
-                pdamage_indep=kwargs.get("legacy_stack") * 2
-            ),
-            lambda **kwargs: Stat(
-                pdamage_indep=kwargs.get("legacy_stack") * 4
-            ),
-            lambda **kwargs: Stat(
-                pdamage_indep=kwargs.get("legacy_stack") * 6
-            ),
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("legacy_stack") * 2),
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("legacy_stack") * 4),
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("legacy_stack") * 6),
         ],
         is_static=False,
     ),

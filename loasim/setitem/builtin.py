@@ -1,6 +1,5 @@
-from loasim.setitem.base import SetItemRepository, SetItem, SetItemState
 from loasim.core import Stat
-
+from loasim.setitem.base import SetItem, SetItemRepository, SetItemState
 
 lostark_setitem_repository = SetItemRepository()
 
@@ -33,10 +32,8 @@ lostark_setitem_repository.add(
         [
             (Stat(pdamage_indep=10), Stat(pdamage_indep=10)),
             (
-                Stat(pdamage_indep=25)
-                - Stat(pdamage_indep=10),
-                Stat(pdamage_indep=28)
-                - Stat(pdamage_indep=10),
+                Stat(pdamage_indep=25) - Stat(pdamage_indep=10),
+                Stat(pdamage_indep=28) - Stat(pdamage_indep=10),
             ),
             (Stat(pdamage_indep=15), Stat(pdamage_indep=18)),
         ],

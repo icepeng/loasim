@@ -1,5 +1,6 @@
 import pytest
-from loasim.core.skill import Tripod, Skill, SkillSpecification
+
+from loasim.core.skill import Skill, SkillSpecification, Tripod
 from loasim.core.stat import Stat
 
 
@@ -13,16 +14,11 @@ def test_skill_specification():
             Tripod(
                 name="오르간 미사일",
                 stat_list=[
-                    Stat(pdamage_indep=-30)
-                    + Stat(pdamage_indep=100),
-                    Stat(pdamage_indep=-27)
-                    + Stat(pdamage_indep=100),
-                    Stat(pdamage_indep=-23)
-                    + Stat(pdamage_indep=100),
-                    Stat(pdamage_indep=-19)
-                    + Stat(pdamage_indep=100),
-                    Stat(pdamage_indep=-15)
-                    + Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=-30) + Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=-27) + Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=-23) + Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=-19) + Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=-15) + Stat(pdamage_indep=100),
                 ],
             ),
             Tripod(

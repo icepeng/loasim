@@ -1,8 +1,9 @@
-from typing import List, Dict, Optional
-from loasim.core.stat import Stat
-from loasim.core.enemy import Enemy
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel
+
+from loasim.core.enemy import Enemy
+from loasim.core.stat import Stat
 
 gem_dict = {
     0: 0,
@@ -32,10 +33,10 @@ class Skill(BaseModel):
     base: float
     coefficient: float
     multiplier: float
-    head: bool 
+    head: bool
     back: bool
     stat: Stat
-    
+
     def modify_stat(self, stat):
         self.stat = self.stat + stat
         return self
@@ -52,9 +53,7 @@ class Skill(BaseModel):
         if self.back and backhead == "back":
             stat += Stat(pdamage_indep=5, crit=10)
 
-        base_dmg = (
-            self.base + (stat.att * (1 + stat.patt / 100)) * self.coefficient
-        )
+        base_dmg = self.base + (stat.att * (1 + stat.patt / 100)) * self.coefficient
         stat_multiplier = (1 + stat.pdamage_indep / 100) * (1 + stat.pdamage / 100)
         enemy_reduction_rate = enemy.get_reduction_rate(stat.armor_ignore)
         nocrit_dmg = base_dmg * stat_multiplier * enemy_reduction_rate
@@ -82,7 +81,12 @@ class SkillSpecification(BaseModel):
             if tripod.name == name:
                 return tripod
 
-    def build_skill(self, gem: int = 0, tripod: Optional[Dict[str, int]] = None, additional_stat: Optional[Stat] = None) -> Skill:
+    def build_skill(
+        self,
+        gem: int = 0,
+        tripod: Optional[Dict[str, int]] = None,
+        additional_stat: Optional[Stat] = None,
+    ) -> Skill:
         stat = Stat()
         stat = stat + Stat(pdamage_indep=gem_dict.get(gem))
         if tripod is not None:
@@ -99,5 +103,5 @@ class SkillSpecification(BaseModel):
             multiplier=self.multiplier,
             head=self.head,
             back=self.back,
-            stat=stat
+            stat=stat,
         )

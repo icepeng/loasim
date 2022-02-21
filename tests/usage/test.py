@@ -1,16 +1,15 @@
-from loasim.calculate import calculate
 from loguru import logger
 
-from loasim.core import Stat, InternalStat, Enemy
-
-from loasim.setitem import lostark_setitem_repository, SetItemState
+from loasim.calculate import calculate
 from loasim.card import lostark_default_card_repository
-
+from loasim.core import Enemy, InternalStat, Stat
 from loasim.engraving import EngravingManager
 from loasim.job import scouter
+from loasim.setitem import SetItemState, lostark_setitem_repository
 
-
-base_internal_stat = InternalStat(weapon_att=50362, stat_main=156350, crit=632, special=1776, swift=53)
+base_internal_stat = InternalStat(
+    weapon_att=50362, stat_main=156350, crit=632, special=1776, swift=53
+)
 spd = base_internal_stat.get_spd() + 10  # 갈망 +10
 
 base_stat = base_internal_stat.get_stat()
@@ -19,11 +18,13 @@ weapon_stat = Stat(pdamage=23.45)  # 무기 품질
 logger.info(base_stat)
 logger.info(weapon_stat)
 
-setitem_state = [SetItemState(
-    name='환각',
-    level_1=6,
-    level_2=6,
-)]
+setitem_state = [
+    SetItemState(
+        name="환각",
+        level_1=6,
+        level_2=6,
+    )
+]
 
 engraving_manager = EngravingManager(
     ("원한", 3), ("예리한 둔기", 3), ("바리케이드", 3), ("돌격대장", 3), ("아드레날린", 3), ("진화의 유산", 1)
@@ -65,12 +66,14 @@ BabyDrone = scouter.BabyDrone.build_skill(
         "급소 공격": 4,
         "일제 공격": 5,
     },
-    additional_stat=nosync_stat
+    additional_stat=nosync_stat,
 )
 
 CometStrike = scouter.CometStrike.build_skill(gem=9, additional_stat=sync_stat)
 SlugShot = scouter.SlugShot.build_skill(gem=9, additional_stat=sync_stat)
-LaserBlade = scouter.LaserBlade.build_skill(gem=9, additional_stat=sync_stat + Stat(pdamage_indep=20))  # Q-E 연계 20%
+LaserBlade = scouter.LaserBlade.build_skill(
+    gem=9, additional_stat=sync_stat + Stat(pdamage_indep=20)
+)  # Q-E 연계 20%
 AccelionBeam = scouter.AccelionBeam.build_skill(gem=9, additional_stat=sync_stat)
 BurstBlow = scouter.BurstBlow.build_skill(gem=9, additional_stat=sync_stat)
 CrimsonBreaker = scouter.CrimsonBreaker.build_skill(gem=9, additional_stat=sync_stat)
