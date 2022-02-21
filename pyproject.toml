@@ -58,13 +58,7 @@ repository = "https://github.com/oleneyl/loasim"
 [tool.poetry.dependencies]
 python = "^3.9"
 pydantic = {extras = ["dotenv"], version = "^1.8.2"}
-dependency-injector = "^4.36.2"
 loguru = "^0.5.3"
-SQLAlchemy = {extras = ["mypy"], version = "^1.4.25"}
-PyMySQL = "^1.0.2"
-fastapi = "^0.70.0"
-uvicorn = "^0.15.0"
-pymongo = "^3.12.1"
 poethepoet = "^0.10.0"
 
 [tool.poetry.dev-dependencies]

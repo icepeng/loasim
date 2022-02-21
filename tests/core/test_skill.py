@@ -1,7 +1,7 @@
 from loasim.core.skill import Skill, SkillSpecification, SkillBuildConfiguration
 import pytest
 
-from loasim.Enemy import Enemy
+from loasim.core.enemy import Enemy
 
 @pytest.mark.parametrize('skill_gem, skill_tripod', [
     (7, {"오르간 미사일": 4}),

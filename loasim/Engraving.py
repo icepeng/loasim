@@ -1,8 +1,12 @@
 from typing import Any, Callable, List, Tuple
 from loasim.CharacterModifier import CharacterModifier
+from pydantic import BaseModel
 
+class Engraving(BaseModel):
+    name: str
+    mdf_list: List[Callable[[Any], CharacterModifier]]
+    is_static: bool
 
-class Engraving:
     def __init__(
         self,
         name: str,
