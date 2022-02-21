@@ -29,13 +29,16 @@ setitem_state = [
 engraving_manager = EngravingManager(
     ("원한", 3), ("예리한 둔기", 3), ("바리케이드", 3), ("돌격대장", 3), ("아드레날린", 3), ("진화의 유산", 1)
 )
+card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
+if card is None:
+    raise
 
 basis_stat = (
     base_stat
     + weapon_stat
     + lostark_setitem_repository.get_stat(setitem_state)
     + engraving_manager.get_static_modifier()
-    + lostark_default_card_repository.get("남겨진 바람의 절벽 (12)").stat
+    + card.stat
 )
 
 logger.info(basis_stat)

@@ -1,12 +1,12 @@
 from collections import defaultdict
-from typing import List
+from typing import List, Dict
 
 from loasim.core import Skill
 
 
 def calculate(dealcycle: List[Skill], cycle_time, enemy):
-    total_damage = 0
-    damage_dict = defaultdict(float)
+    total_damage = 0.0
+    damage_dict: Dict = defaultdict(float)
     for sk in dealcycle:
         damage = sk.get_damage(enemy)
         total_damage += damage

@@ -7,7 +7,7 @@ from pydantic import BaseModel, Extra
 
 class InternalStat(BaseModel):
     class Config:
-        extra: Extra.forbid
+        extra = Extra.forbid
 
     weapon_att: float = 0
     stat_main: float = 0
@@ -28,7 +28,7 @@ class InternalStat(BaseModel):
 
 class Stat(BaseModel):
     class Config:
-        extra: Extra.forbid
+        extra = Extra.forbid
 
     crit: float = 0
     crit_damage: float = 0

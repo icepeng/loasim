@@ -76,7 +76,7 @@ class SkillSpecification(BaseModel):
     back: bool = False
     tripods: List[Tripod] = []
 
-    def get_tripod(self, name) -> Optional[Tripod]:
+    def get_tripod(self, name: str) -> Optional[Tripod]:
         for tripod in self.tripods:
             if tripod.name == name:
                 return tripod
@@ -93,7 +93,10 @@ class SkillSpecification(BaseModel):
         stat = stat + Stat(pdamage_indep=gem_dict.get(gem))
         if tripod is not None:
             for name, level in tripod.items():
-                stat = stat + self.get_tripod(name).get_modifier(level)
+                given_tripod = self.get_tripod(name)
+                if given_tripod is None:
+                    raise TypeError('Given tripod not available in this spec.')
+                stat = stat + given_tripod.get_modifier(level)
 
         if additional_stat is not None:
             stat = stat + additional_stat
