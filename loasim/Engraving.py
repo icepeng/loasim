@@ -79,6 +79,15 @@ engraving_list = [
         is_static=True,
     ),
     Engraving(
+        name="타격의 대가",
+        mdf_list=[
+            lambda: Stat(pdamage_indep=3),
+            lambda: Stat(pdamage_indep=8),
+            lambda: Stat(pdamage_indep=16),
+        ],
+        is_static=True,
+    ),
+    Engraving(
         name="돌격대장",
         mdf_list=[
             lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.1),

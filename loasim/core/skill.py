@@ -62,7 +62,7 @@ class Skill(BaseModel):
         crit = min(stat.crit, 100) / 100
         damage = (1 - crit) * nocrit_dmg + crit * crit_dmg
         # print(self.name, nocrit_dmg, crit_dmg)
-        # print(stat.log())
+        # print(stat)
 
         return damage * self.multiplier
 
