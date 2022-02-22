@@ -5,10 +5,9 @@ from pydantic import BaseModel
 from loasim.core import Stat
 
 
-class SetItem:
-    def __init__(self, name: str, stat_list: List[Tuple[Stat, Stat]]) -> None:
-        self.name = name
-        self.stat_list = stat_list
+class SetItem(BaseModel):
+    name: str
+    stat_list: List[Tuple[Stat, Stat]]
 
     def get_modifier(self, level1_set, level2_set):
         stat = Stat()

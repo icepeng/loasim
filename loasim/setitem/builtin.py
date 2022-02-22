@@ -6,8 +6,8 @@ lostark_setitem_repository = SetItemRepository()
 
 lostark_setitem_repository.add(
     SetItem(
-        "환각",
-        [
+        name="환각",
+        stat_list=[
             (Stat(), Stat()),  #  2환각 미지원
             (Stat(crit=15), Stat(crit=18)),
             (Stat(pdamage_indep=25, crit=5), Stat(pdamage_indep=29, crit=7)),
@@ -17,8 +17,8 @@ lostark_setitem_repository.add(
 
 lostark_setitem_repository.add(
     SetItem(
-        "악몽",
-        [
+        name="악몽",
+        stat_list=[
             (Stat(pdamage_indep=12), Stat(pdamage_indep=15)),
             (Stat(pdamage=15), Stat(pdamage=18)),
             (Stat(pdamage_indep=15), Stat(pdamage_indep=18)),
@@ -28,8 +28,8 @@ lostark_setitem_repository.add(
 
 lostark_setitem_repository.add(
     SetItem(
-        "지배",
-        [
+        name="지배",
+        stat_list=[
             (Stat(pdamage_indep=10), Stat(pdamage_indep=10)),
             (
                 Stat(pdamage_indep=25) - Stat(pdamage_indep=10),
@@ -42,8 +42,8 @@ lostark_setitem_repository.add(
 
 lostark_setitem_repository.add(
     SetItem(
-        "구원",
-        [
+        name="구원",
+        stat_list=[
             (Stat(pdamage=14), Stat(pdamage=18)),
             (Stat(pdamage=14), Stat(pdamage=18)),
             (
