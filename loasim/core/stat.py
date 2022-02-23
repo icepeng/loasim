@@ -26,14 +26,26 @@ class InternalStat(BaseModel):
         return self.swift * 0.01717
 
 
+def add_pdamage_indep(a, b):
+    return a + b + (a * b) * 0.01
+
+
+def sub_pdamage_indep(a, b):
+    return (100 + a) / (100 + b) * 100 - 100
+
+
 class Stat(BaseModel):
     class Config:
         extra = Extra.forbid
 
     crit: float = 0
     crit_damage: float = 0
+    crit_damage_head: float = 0
+    crit_damage_back: float = 0
     pdamage: float = 0
     pdamage_indep: float = 0
+    pdamage_indep_head: float = 0
+    pdamage_indep_back: float = 0
     armor_ignore: float = 0
     patt: float = 0
     att: float = 0
@@ -42,10 +54,16 @@ class Stat(BaseModel):
         return Stat(
             crit=self.crit + arg.crit,
             crit_damage=self.crit_damage + arg.crit_damage,
+            crit_damage_head=self.crit_damage_head + arg.crit_damage_head,
+            crit_damage_back=self.crit_damage_back + arg.crit_damage_back,
             pdamage=self.pdamage + arg.pdamage,
-            pdamage_indep=self.pdamage_indep
-            + arg.pdamage_indep
-            + (self.pdamage_indep * arg.pdamage_indep) * 0.01,
+            pdamage_indep=add_pdamage_indep(self.pdamage_indep, arg.pdamage_indep),
+            pdamage_indep_head=add_pdamage_indep(
+                self.pdamage_indep_head, arg.pdamage_indep_head
+            ),
+            pdamage_indep_back=add_pdamage_indep(
+                self.pdamage_indep_back, arg.pdamage_indep_back
+            ),
             armor_ignore=100
             - 0.01 * ((100 - self.armor_ignore) * (100 - arg.armor_ignore)),
             patt=self.patt + arg.patt,
@@ -56,10 +74,16 @@ class Stat(BaseModel):
         return Stat(
             crit=self.crit + arg.crit,
             crit_damage=self.crit_damage + arg.crit_damage,
+            crit_damage_head=self.crit_damage_head + arg.crit_damage_head,
+            crit_damage_back=self.crit_damage_back + arg.crit_damage_back,
             pdamage=self.pdamage + arg.pdamage,
-            pdamage_indep=self.pdamage_indep
-            + arg.pdamage_indep
-            + (self.pdamage_indep * arg.pdamage_indep) * 0.01,
+            pdamage_indep=add_pdamage_indep(self.pdamage_indep, arg.pdamage_indep),
+            pdamage_indep_head=add_pdamage_indep(
+                self.pdamage_indep_head, arg.pdamage_indep_head
+            ),
+            pdamage_indep_back=add_pdamage_indep(
+                self.pdamage_indep_back, arg.pdamage_indep_back
+            ),
             armor_ignore=100
             - 0.01 * ((100 - self.armor_ignore) * (100 - arg.armor_ignore)),
             patt=self.patt + arg.patt + (self.patt * arg.patt) * 0.01,
@@ -70,9 +94,16 @@ class Stat(BaseModel):
         return Stat(
             crit=self.crit - arg.crit,
             crit_damage=self.crit_damage - arg.crit_damage,
+            crit_damage_head=self.crit_damage_head - arg.crit_damage_head,
+            crit_damage_back=self.crit_damage_back - arg.crit_damage_back,
             pdamage=self.pdamage - arg.pdamage,
-            pdamage_indep=(100 + self.pdamage_indep) / (100 + arg.pdamage_indep) * 100
-            - 100,
+            pdamage_indep=sub_pdamage_indep(self.pdamage_indep, arg.pdamage_indep),
+            pdamage_indep_head=sub_pdamage_indep(
+                self.pdamage_indep_head, arg.pdamage_indep_head
+            ),
+            pdamage_indep_back=sub_pdamage_indep(
+                self.pdamage_indep_back, arg.pdamage_indep_back
+            ),
             armor_ignore=100
             - 100 * (100 - self.armor_ignore) / (100 - arg.armor_ignore),
             patt=self.patt - arg.patt,

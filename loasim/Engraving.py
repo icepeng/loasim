@@ -14,6 +14,29 @@ class Engraving(BaseModel):
         return self.mdf_list[level - 1](**kwargs)
 
 
+def get_blade_buff(engraving_grade, burst_grade):
+    buff_table = {
+        1: {
+            0: 0,
+            1: 8,
+            2: 10,
+            3: 12,
+        },
+        2: {
+            0: 0,
+            1: 16,
+            2: 20,
+            3: 24,
+        },
+        3: {
+            0: 0,
+            1: 25,
+            2: 30,
+            3: 36,
+        }
+    }
+    return buff_table.get(engraving_grade).get(burst_grade)
+
 engraving_list = [
     Engraving(
         name="원한",
@@ -88,11 +111,29 @@ engraving_list = [
         is_static=True,
     ),
     Engraving(
+        name="기습의 대가",
+        mdf_list=[
+            lambda: Stat(pdamage_indep_back=5),
+            lambda: Stat(pdamage_indep_back=12),
+            lambda: Stat(pdamage_indep_back=25),
+        ],
+        is_static=True,
+    ),
+    Engraving(
         name="돌격대장",
         mdf_list=[
             lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.1),
             lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.22),
             lambda **kwargs: Stat(pdamage_indep=min(kwargs.get("spd"), 40) * 0.45),
+        ],
+        is_static=False,
+    ),
+    Engraving(
+        name="슈퍼 차지",
+        mdf_list=[
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("charge") * 4),
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("charge") * 10),
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("charge") * 20),
         ],
         is_static=False,
     ),
@@ -113,6 +154,15 @@ engraving_list = [
             lambda: Stat(crit=12, crit_damage=40),
         ],
         is_static=True,
+    ),
+    Engraving(
+        name="잔재된 기운",
+        mdf_list=[
+            lambda **kwargs: Stat(patt=get_blade_buff(1, kwargs.get("burst_grade"))),
+            lambda **kwargs: Stat(patt=get_blade_buff(2, kwargs.get("burst_grade"))),
+            lambda **kwargs: Stat(patt=get_blade_buff(3, kwargs.get("burst_grade"))),
+        ],
+        is_static=False,
     ),
 ]
 

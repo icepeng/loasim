@@ -4,6 +4,7 @@ OneStroke = SkillSpecification(
     name="필법 : 한획긋기",
     base=5978,
     coefficient=19.13,
+    back=True,
     tripods=[
         Tripod(
             name="급소 타격",
@@ -90,6 +91,7 @@ Tiger = SkillSpecification(
     name="묵법 : 범가르기",
     base=5169,
     coefficient=16.54,
+    back=True,
     tripods=[
         Tripod(
             name="궤뚫는 일격",

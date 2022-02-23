@@ -100,11 +100,11 @@ InkRise = artist.InkRise.build_skill(
 )
 
 dealcycle = [
-    OneStroke,
-    Cranes,
-    Tiger,
-    Moon,
-    InkRise,
+    (OneStroke, None),
+    (Cranes, None),
+    (Tiger, None),
+    (Moon, None),
+    (InkRise, None),
 ]
 cycle_time = 12.127
 

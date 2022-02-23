@@ -49,9 +49,13 @@ class Skill(BaseModel):
     ) -> float:
         stat = self.stat + stat
         if self.head and backhead == "head":
-            stat += Stat(pdamage_indep=20)
+            stat += Stat(pdamage_indep=20) + Stat(
+                pdamage_indep=stat.pdamage_indep_head, crit_damage=stat.crit_damage_head
+            )
         if self.back and backhead == "back":
-            stat += Stat(pdamage_indep=5, crit=10)
+            stat += Stat(pdamage_indep=5, crit=10) + Stat(
+                pdamage_indep=stat.pdamage_indep_back, crit_damage=stat.crit_damage_back
+            )
 
         base_dmg = self.base + (stat.att * (1 + stat.patt / 100)) * self.coefficient
         stat_multiplier = (1 + stat.pdamage_indep / 100) * (1 + stat.pdamage / 100)
@@ -95,7 +99,7 @@ class SkillSpecification(BaseModel):
             for name, level in tripod.items():
                 given_tripod = self.get_tripod(name)
                 if given_tripod is None:
-                    raise TypeError('Given tripod not available in this spec.')
+                    raise TypeError(f"Given tripod not available in this spec. {name}")
                 stat = stat + given_tripod.get_modifier(level)
 
         if additional_stat is not None:
