@@ -1,25 +1,30 @@
 from loasim.core import SkillSpecification, Stat, Tripod
 
-SpinCutter = SkillSpecification(  # 10렙 TODO: 횟수 조절은 어떻게?
+SpinCutter = SkillSpecification(  # TODO: 횟수 조절은 어떻게?
     name="스핀 커터",
-    base=641,
-    coefficient=3.450,
+    damage_table={
+        10: (641, 3.450),
+    },
     back=True,
     tripods=[],
 )
 
-DarkAccel = SkillSpecification(  # 10렙
+DarkAccel = SkillSpecification(
     name="다크 악셀",
-    base=1535,
-    coefficient=8.926,
+    damage_table={
+        10: (1535, 8.926),
+    },
     back=True,
     tripods=[],
 )
 
-SoulAbsorber = SkillSpecification(  # 11렙
+SoulAbsorber = SkillSpecification(
     name="소울 앱소버",
-    base=3178,
-    coefficient=18.731,
+    damage_table={
+        10: (3176, 17.217),
+        11: (3178, 18.731),
+        12: (3179, 19.663),
+    },
     back=True,
     tripods=[
         Tripod(
@@ -65,10 +70,11 @@ SoulAbsorber = SkillSpecification(  # 11렙
     ],
 )
 
-EarthSlash = SkillSpecification(  # 10렙
+EarthSlash = SkillSpecification(
     name="어스 슬래쉬",
-    base=1899,
-    coefficient=10.317,
+    damage_table={
+        10: (1899, 10.317),
+    },
     head=True,
     back=True,
     tripods=[
@@ -85,10 +91,11 @@ EarthSlash = SkillSpecification(  # 10렙
     ],
 )
 
-EarthSlashPush = SkillSpecification(  # 10렙
+EarthSlashPush = SkillSpecification(
     name="어스 슬래쉬(밀어내기)",
-    base=1899,
-    coefficient=10.317,
+    damage_table={
+        10: (1899, 10.317),
+    },
     head=True,
     back=True,
     tripods=[
@@ -115,10 +122,11 @@ EarthSlashPush = SkillSpecification(  # 10렙
     ],
 )
 
-EarthSlashPush = SkillSpecification(  # 10렙
+EarthSlashPush = SkillSpecification(
     name="어스 슬래쉬(대지 폭발)",
-    base=1899,
-    coefficient=10.317,
+    damage_table={
+        10: (1899, 10.317),
+    },
     head=True,
     back=True,
     tripods=[
@@ -145,10 +153,13 @@ EarthSlashPush = SkillSpecification(  # 10렙
     ],
 )
 
-MoonlightSonic = SkillSpecification(  # 11렙
+MoonlightSonic = SkillSpecification(
     name="문라이트 소닉",
-    base=3648,
-    coefficient=21.485,
+    damage_table={
+        10: (3647, 19.751),
+        11: (3648, 21.485),
+        12: (3650, 22.556),
+    },
     tripods=[
         Tripod(
             name="암흑 공격",
@@ -193,17 +204,21 @@ MoonlightSonic = SkillSpecification(  # 11렙
     ],
 )
 
-Maelstorm = SkillSpecification(  # 7렙
+Maelstorm = SkillSpecification(
     name="마엘스톰",
-    base=1023,
-    coefficient=6.0648,
+    damage_table={
+        7: (1023, 6.0648),
+    },
     tripods=[],
 )
 
-BlitzRush = SkillSpecification(  # 11렙
+BlitzRush = SkillSpecification(
     name="블리츠 러시",
-    base=4213,
-    coefficient=24.904,
+    damage_table={
+        10: (4211, 22.895),
+        11: (4213, 24.904),
+        12: (4214, 26.144),
+    },
     back=True,
     tripods=[
         Tripod(
@@ -249,10 +264,13 @@ BlitzRush = SkillSpecification(  # 11렙
     ],
 )
 
-VoidStrike = SkillSpecification(  # 11렙
+VoidStrike = SkillSpecification(
     name="보이드 스트라이크",
-    base=3563,
-    coefficient=21.003,
+    damage_table={
+        10: (3561, 19.306),
+        11: (3563, 21.003),
+        12: (3564, 22.048),
+    },
     back=True,
     tripods=[
         Tripod(
@@ -268,10 +286,13 @@ VoidStrike = SkillSpecification(  # 11렙
     ],
 )
 
-VoidStrikeExplosion = SkillSpecification(  # 11렙
+VoidStrikeExplosion = SkillSpecification(
     name="보이드 스트라이크(블랙 익스플로젼)",
-    base=3563,
-    coefficient=21.003,
+    damage_table={
+        10: (3561, 19.306),
+        11: (3563, 21.003),
+        12: (3564, 22.048),
+    },
     tripods=[
         Tripod(
             name="암흑 공격",
@@ -298,8 +319,9 @@ VoidStrikeExplosion = SkillSpecification(  # 11렙
 
 BladeBurst = SkillSpecification(
     name="블레이드 버스트",
-    base=7244,
-    coefficient=42.873,
+    damage_table={
+        11: (7244, 42.873),
+    },
     back=True,
     tripods=[],
 )

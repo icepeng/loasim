@@ -31,8 +31,6 @@ engraving_manager = EngravingManager(
 )
 
 card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
-if card is None:
-    raise
 
 spin_cutter_synergy = Stat(pdamage_indep=3, pdamage_indep_back=sub_pdamage_indep(12, 3))
 blade_arts_3 = Stat(patt=30)
@@ -50,6 +48,7 @@ basis_stat = (
 logger.info(basis_stat)
 
 SpinCutter = blade.SpinCutter.build_skill(
+    level=10,
     additional_stat=basis_stat.add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=False,
@@ -59,6 +58,7 @@ SpinCutter = blade.SpinCutter.build_skill(
 )
 
 SoulAbsorber = blade.SoulAbsorber.build_skill(
+    level=11,
     gem=7,
     tripod={
         "암흑 공격": 5,
@@ -73,6 +73,7 @@ SoulAbsorber = blade.SoulAbsorber.build_skill(
 )
 
 VoidStrike = blade.VoidStrike.build_skill(
+    level=11,
     gem=7,
     tripod={
         "암흑 공격": 4,
@@ -85,6 +86,7 @@ VoidStrike = blade.VoidStrike.build_skill(
     ),
 )
 VoidStrikeExplosion = blade.VoidStrikeExplosion.build_skill(
+    level=11,
     gem=7,
     tripod={
         "암흑 공격": 4,
@@ -99,6 +101,7 @@ VoidStrikeExplosion = blade.VoidStrikeExplosion.build_skill(
 )
 
 BlitzRush = blade.BlitzRush.build_skill(
+    level=11,
     gem=7,
     tripod={
         "급소 타격": 4,
@@ -114,6 +117,7 @@ BlitzRush = blade.BlitzRush.build_skill(
 )
 
 MoonlightSonic = blade.MoonlightSonic.build_skill(
+    level=11,
     gem=7,
     tripod={
         "암흑 공격": 5,
@@ -129,6 +133,7 @@ MoonlightSonic = blade.MoonlightSonic.build_skill(
 )
 
 BladeBurst = blade.BladeBurst.build_skill(
+    level=11,
     gem=7,
     additional_stat=basis_stat.add_indep(
         engraving_manager.get_dynamic_modifier(

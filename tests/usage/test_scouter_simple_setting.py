@@ -30,8 +30,6 @@ engraving_manager = EngravingManager(
     ("원한", 3), ("예리한 둔기", 3), ("바리케이드", 3), ("돌격대장", 3), ("아드레날린", 3), ("진화의 유산", 1)
 )
 card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
-if card is None:
-    raise
 
 basis_stat = (
     base_stat
@@ -55,6 +53,7 @@ nosync_stat = basis_stat + engraving_manager.get_dynamic_modifier(
 logger.info(nosync_stat)
 
 RaidMissile = scouter.RaidMissile.build_skill(
+    level=12,
     gem=7,
     tripod={
         "오르간 미사일": 4,
@@ -64,6 +63,7 @@ RaidMissile = scouter.RaidMissile.build_skill(
 )
 
 BabyDrone = scouter.BabyDrone.build_skill(
+    level=12,
     gem=0,
     tripod={
         "급소 공격": 4,
@@ -72,14 +72,20 @@ BabyDrone = scouter.BabyDrone.build_skill(
     additional_stat=nosync_stat,
 )
 
-CometStrike = scouter.CometStrike.build_skill(gem=9, additional_stat=sync_stat)
-SlugShot = scouter.SlugShot.build_skill(gem=9, additional_stat=sync_stat)
+CometStrike = scouter.CometStrike.build_skill(
+    level=12, gem=9, additional_stat=sync_stat
+)
+SlugShot = scouter.SlugShot.build_skill(level=12, gem=9, additional_stat=sync_stat)
 LaserBlade = scouter.LaserBlade.build_skill(
-    gem=9, additional_stat=sync_stat + Stat(pdamage_indep=20)
-)  # Q-E 연계 20%
-AccelionBeam = scouter.AccelionBeam.build_skill(gem=9, additional_stat=sync_stat)
-BurstBlow = scouter.BurstBlow.build_skill(gem=9, additional_stat=sync_stat)
-CrimsonBreaker = scouter.CrimsonBreaker.build_skill(gem=9, additional_stat=sync_stat)
+    level=12, gem=9, additional_stat=sync_stat + Stat(pdamage_indep=20)  # Q-E 연계 20%
+)
+AccelionBeam = scouter.AccelionBeam.build_skill(
+    level=12, gem=9, additional_stat=sync_stat
+)
+BurstBlow = scouter.BurstBlow.build_skill(level=12, gem=9, additional_stat=sync_stat)
+CrimsonBreaker = scouter.CrimsonBreaker.build_skill(
+    level=12, gem=9, additional_stat=sync_stat
+)
 
 dealcycle = [  # 레미-베드-QESQRWAQEWQRWSQEWAQRW 23s
     (RaidMissile, None),

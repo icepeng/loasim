@@ -36,8 +36,6 @@ engraving_manager = EngravingManager(
 )
 
 card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
-if card is None:
-    raise
 
 atomic_arrow_synergy = Stat(pdamage_indep=6)
 
@@ -53,6 +51,7 @@ basis_stat = (
 logger.info(basis_stat)
 
 Snipe = hawkeye.Snipe.build_skill(
+    level=12,
     gem=7,
     tripod={
         "약점 포착": 5,
@@ -62,6 +61,7 @@ Snipe = hawkeye.Snipe.build_skill(
 )
 
 SharpShooter = hawkeye.SharpShooter.build_skill(
+    level=12,
     gem=7,
     tripod={
         "급소 타격": 5,
@@ -72,6 +72,7 @@ SharpShooter = hawkeye.SharpShooter.build_skill(
 )
 
 ChargingShot = hawkeye.ChargingShot.build_skill(
+    level=12,
     gem=5,
     tripod={
         "더블 샷": 4,
@@ -81,6 +82,7 @@ ChargingShot = hawkeye.ChargingShot.build_skill(
 )
 
 ArrowWave = hawkeye.ArrowWave.build_skill(
+    level=12,
     gem=7,
     tripod={
         "강화된 화살": 4,
@@ -91,19 +93,23 @@ ArrowWave = hawkeye.ArrowWave.build_skill(
 )
 
 AtomicArrow = hawkeye.AtomicArrow.build_skill(
+    level=12,
     gem=5,
     additional_stat=basis_stat,
 )
 AtomicArrowExplode = hawkeye.AtomicArrowExplode.build_skill(
+    level=12,
     gem=5,
     additional_stat=basis_stat,
 )
 AtomicArrowElectric = hawkeye.AtomicArrowElectric.build_skill(
+    level=12,
     gem=5,
     additional_stat=basis_stat,
 )
 
 ArrowShower = hawkeye.ArrowShower.build_skill(
+    level=10,
     gem=5,
     tripod={
         "지속력 강화": 4,

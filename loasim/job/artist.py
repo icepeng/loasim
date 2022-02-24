@@ -2,8 +2,9 @@ from loasim.core import SkillSpecification, Stat, Tripod
 
 OneStroke = SkillSpecification(
     name="필법 : 한획긋기",
-    base=5978,
-    coefficient=19.13,
+    damage_table={
+        11: (5978, 19.13),
+    },
     back=True,
     tripods=[
         Tripod(
@@ -51,8 +52,9 @@ OneStroke = SkillSpecification(
 
 Cranes = SkillSpecification(
     name="묵법 : 두루미나래",
-    base=5988,
-    coefficient=19.16,
+    damage_table={
+        11: (5988, 19.16),
+    },
     tripods=[
         Tripod(
             name="치명적인 일격",
@@ -89,8 +91,9 @@ Cranes = SkillSpecification(
 
 Tiger = SkillSpecification(
     name="묵법 : 범가르기",
-    base=5169,
-    coefficient=16.54,
+    damage_table={
+        11: (5169, 16.54),
+    },
     back=True,
     tripods=[
         Tripod(
@@ -148,8 +151,9 @@ Tiger = SkillSpecification(
 
 Moon = SkillSpecification(
     name="묵법 : 달그리기",
-    base=5070,
-    coefficient=16.25,
+    damage_table={
+        11: (5070, 16.25),
+    },
     tripods=[
         Tripod(
             name="별 그리기",
@@ -196,8 +200,9 @@ Moon = SkillSpecification(
 
 InkRise = SkillSpecification(
     name="묵법 : 먹오름",
-    base=478,
-    coefficient=1.55,
+    damage_table={
+        11: (478, 1.55),
+    },
     multiplier=8,
     tripods=[
         Tripod(

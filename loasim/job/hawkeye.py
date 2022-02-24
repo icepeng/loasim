@@ -2,8 +2,9 @@ from loasim.core import SkillSpecification, Stat, Tripod
 
 Snipe = SkillSpecification(
     name="스나이프",
-    base=5037,
-    coefficient=31.22,
+    damage_table={
+        12: (5037, 31.22),
+    },
     tripods=[
         Tripod(
             name="약점 포착",
@@ -30,8 +31,9 @@ Snipe = SkillSpecification(
 
 SharpShooter = SkillSpecification(
     name="샤프 슈터",
-    base=888,
-    coefficient=5.53,
+    damage_table={
+        12: (888, 5.53),
+    },
     multiplier=5,
     tripods=[
         Tripod(
@@ -69,8 +71,9 @@ SharpShooter = SkillSpecification(
 
 ChargingShot = SkillSpecification(
     name="차징 샷",
-    base=3386,
-    coefficient=20.98,
+    damage_table={
+        12: (3386, 20.98),
+    },
     tripods=[
         Tripod(
             name="더블 샷",
@@ -107,8 +110,9 @@ ChargingShot = SkillSpecification(
 
 ArrowWave = SkillSpecification(
     name="애로우 해일",
-    base=378,
-    coefficient=2.33,
+    damage_table={
+        12: (378, 2.33),
+    },
     multiplier=4,
     tripods=[
         Tripod(
@@ -156,26 +160,34 @@ ArrowWave = SkillSpecification(
 
 AtomicArrow = SkillSpecification(
     name="아토믹 애로우",
-    base=142,
-    coefficient=0.89,
+    damage_table={
+        12: (142, 0.89),
+    },
     tripods=[],
 )
 
 AtomicArrowExplode = SkillSpecification(
     name="아토믹 애로우(폭발)",
-    base=1053,
-    coefficient=6.53,
+    damage_table={
+        12: (1053, 6.53),
+    },
     tripods=[],
 )
 
 AtomicArrowElectric = SkillSpecification(
-    name="아토믹 애로우(전격)", base=166, coefficient=1.59, multiplier=3, tripods=[]
+    name="아토믹 애로우(전격)",
+    damage_table={
+        12: (166, 1.59),
+    },
+    multiplier=3,
+    tripods=[],
 )
 
 ArrowShower = SkillSpecification(
     name="애로우 샤워",
-    base=413,
-    coefficient=2.24,
+    damage_table={
+        10: (413, 2.244),
+    },
     multiplier=5,
     tripods=[
         Tripod(

@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from pydantic import BaseModel
 
@@ -73,8 +73,7 @@ class Skill(BaseModel):
 
 class SkillSpecification(BaseModel):
     name: str
-    base: float
-    coefficient: float
+    damage_table: Dict[int, Tuple[float, float]]  # base, coefficient
     multiplier: float = 1
     head: bool = False
     back: bool = False
@@ -89,6 +88,7 @@ class SkillSpecification(BaseModel):
 
     def build_skill(
         self,
+        level: int,
         gem: int = 0,
         tripod: Optional[Dict[str, int]] = None,
         additional_stat: Optional[Stat] = None,
@@ -96,19 +96,19 @@ class SkillSpecification(BaseModel):
         stat = Stat()
         stat = stat + Stat(pdamage_indep=gem_dict.get(gem))
         if tripod is not None:
-            for name, level in tripod.items():
+            for name, tripod_level in tripod.items():
                 given_tripod = self.get_tripod(name)
                 if given_tripod is None:
                     raise TypeError(f"Given tripod not available in this spec. {name}")
-                stat = stat + given_tripod.get_modifier(level)
+                stat = stat + given_tripod.get_modifier(tripod_level)
 
         if additional_stat is not None:
             stat = stat + additional_stat
 
         return Skill(
             name=self.name,
-            base=self.base,
-            coefficient=self.coefficient,
+            base=self.damage_table[level][0],
+            coefficient=self.damage_table[level][1],
             multiplier=self.multiplier,
             head=self.head,
             back=self.back,

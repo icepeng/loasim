@@ -2,8 +2,9 @@ from loasim.core import SkillSpecification, Stat, Tripod
 
 RaidMissile = SkillSpecification(
     name="명령 : 레이드 미사일",
-    base=3066,
-    coefficient=19.10,
+    damage_table={
+        12: (3066, 19.10),
+    },
     tripods=[
         Tripod(
             name="오르간 미사일",
@@ -30,8 +31,9 @@ RaidMissile = SkillSpecification(
 
 BabyDrone = SkillSpecification(
     name="명령: 베이비 드론",
-    base=3200,
-    coefficient=19.71,
+    damage_table={
+        12: (3200, 19.71),
+    },
     tripods=[
         Tripod(
             name="급소 공격",
@@ -56,15 +58,40 @@ BabyDrone = SkillSpecification(
     ],
 )
 
-CometStrike = SkillSpecification(name="코멧 스트라이크", base=1809, coefficient=11.27)
-SlugShot = SkillSpecification(name="슬러그 샷", base=1841, coefficient=11.50)
+CometStrike = SkillSpecification(
+    name="코멧 스트라이크",
+    damage_table={
+        12: (1809, 11.27),
+    },
+)
+SlugShot = SkillSpecification(
+    name="슬러그 샷",
+    damage_table={
+        12: (1841, 11.50),
+    },
+)
 LaserBlade = SkillSpecification(
     name="레이저 블레이드",
-    base=3706.80,
-    coefficient=23.13,
+    damage_table={
+        12: (3707, 23.13),
+    },
 )
 AccelionBeam = SkillSpecification(
-    name="엑셀리온 빔", base=4603, coefficient=28.70, head=True
+    name="엑셀리온 빔",
+    damage_table={
+        12: (4603, 28.70),
+    },
+    head=True,
 )
-BurstBlow = SkillSpecification(name="버스트 블로우", base=3488, coefficient=21.71)
-CrimsonBreaker = SkillSpecification(name="크림슨 브레이커", base=7200, coefficient=44.94)
+BurstBlow = SkillSpecification(
+    name="버스트 블로우",
+    damage_table={
+        12: (3488, 21.71),
+    },
+)
+CrimsonBreaker = SkillSpecification(
+    name="크림슨 브레이커",
+    damage_table={
+        12: (7200, 44.94),
+    },
+)

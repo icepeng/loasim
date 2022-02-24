@@ -18,4 +18,7 @@ class CardRepository:
         self._cards[card.name] = card
 
     def get(self, card_name) -> Optional[Card]:
-        return self._cards.get(card_name)
+        card = self._cards.get(card_name)
+        if card is None:
+            raise TypeError(f"Given card name is not available. {card_name}")
+        return card

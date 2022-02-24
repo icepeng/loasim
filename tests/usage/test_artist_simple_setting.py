@@ -35,8 +35,6 @@ engraving_manager = EngravingManager(
     ("원한", 3), ("예리한 둔기", 3), ("안정된 상태", 3), ("돌격대장", 3), ("회귀", 3)
 )
 card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
-if card is None:
-    raise
 
 SunDrawBuff = Stat(crit=49.7)  # 나만의 권능 5
 SunWellBuff = Stat(patt=30)  # 나만의 우물
@@ -55,6 +53,7 @@ basis_stat = (
 logger.info(basis_stat)
 
 OneStroke = artist.OneStroke.build_skill(
+    level=11,
     gem=7,
     tripod={
         "거대한 붓": 5,
@@ -64,6 +63,7 @@ OneStroke = artist.OneStroke.build_skill(
 )
 
 Cranes = artist.Cranes.build_skill(
+    level=11,
     gem=5,
     tripod={
         "치명적인 일격": 5,
@@ -73,6 +73,7 @@ Cranes = artist.Cranes.build_skill(
 )
 
 Tiger = artist.Tiger.build_skill(
+    level=11,
     gem=6,
     tripod={
         "궤뚫는 일격": 5,
@@ -82,6 +83,7 @@ Tiger = artist.Tiger.build_skill(
 )
 
 Moon = artist.Moon.build_skill(
+    level=11,
     gem=7,
     tripod={
         "별 그리기": 4,
@@ -91,6 +93,7 @@ Moon = artist.Moon.build_skill(
 )
 
 InkRise = artist.InkRise.build_skill(
+    level=11,
     gem=5,
     tripod={
         "치명적인 일격": 1,
