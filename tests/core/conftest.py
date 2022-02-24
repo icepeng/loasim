@@ -8,8 +8,9 @@ from loasim.core.stat import Stat
 def test_skill_specification():
     return SkillSpecification(
         name="명령 : 레이드 미사일",
-        base=3066,
-        coefficient=19.10,
+        damage_table={
+            12: (3066, 19.10),
+        },
         tripods=[
             Tripod(
                 name="오르간 미사일",

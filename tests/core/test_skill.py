@@ -11,6 +11,6 @@ from loasim.core.enemy import Enemy
     ],
 )
 def test_skill_build(skill_gem, skill_tripod, test_skill_specification):
-    skill = test_skill_specification.build_skill(gem=skill_gem, tripod=skill_tripod)
+    skill = test_skill_specification.build_skill(level=12, gem=skill_gem, tripod=skill_tripod)
 
     skill.get_damage(Enemy(armor=6000, reduction=23))
