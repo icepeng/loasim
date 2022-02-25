@@ -4,7 +4,7 @@ from loasim.calculate import calculate
 from loasim.card import lostark_default_card_repository
 from loasim.core import Enemy, InternalStat, Stat
 from loasim.Engraving import EngravingManager
-from loasim.job import scouter
+from loasim.job.scouter import lostark_scouter_skill_repository
 from loasim.setitem import SetItemState, lostark_setitem_repository
 
 base_internal_stat = InternalStat(
@@ -52,7 +52,8 @@ nosync_stat = basis_stat + engraving_manager.get_dynamic_modifier(
 )
 logger.info(nosync_stat)
 
-RaidMissile = scouter.RaidMissile.build_skill(
+RaidMissile = lostark_scouter_skill_repository.build(
+    name="명령 : 레이드 미사일",
     level=12,
     gem=7,
     tripod={
@@ -62,7 +63,8 @@ RaidMissile = scouter.RaidMissile.build_skill(
     additional_stat=nosync_stat,
 )
 
-BabyDrone = scouter.BabyDrone.build_skill(
+BabyDrone = lostark_scouter_skill_repository.build(
+    name="명령 : 베이비 드론",
     level=12,
     gem=0,
     tripod={
@@ -72,19 +74,41 @@ BabyDrone = scouter.BabyDrone.build_skill(
     additional_stat=nosync_stat,
 )
 
-CometStrike = scouter.CometStrike.build_skill(
-    level=12, gem=9, additional_stat=sync_stat
+CometStrike = lostark_scouter_skill_repository.build(
+    name="코멧 스트라이크",
+    level=12,
+    gem=9,
+    additional_stat=sync_stat,
 )
-SlugShot = scouter.SlugShot.build_skill(level=12, gem=9, additional_stat=sync_stat)
-LaserBlade = scouter.LaserBlade.build_skill(
-    level=12, gem=9, additional_stat=sync_stat + Stat(pdamage_indep=20)  # Q-E 연계 20%
+SlugShot = lostark_scouter_skill_repository.build(
+    name="슬러그 샷",
+    level=12,
+    gem=9,
+    additional_stat=sync_stat,
 )
-AccelionBeam = scouter.AccelionBeam.build_skill(
-    level=12, gem=9, additional_stat=sync_stat
+LaserBlade = lostark_scouter_skill_repository.build(
+    name="레이저 블레이드",
+    level=12,
+    gem=9,
+    additional_stat=sync_stat + Stat(pdamage_indep=20),  # Q-E 연계 20%
 )
-BurstBlow = scouter.BurstBlow.build_skill(level=12, gem=9, additional_stat=sync_stat)
-CrimsonBreaker = scouter.CrimsonBreaker.build_skill(
-    level=12, gem=9, additional_stat=sync_stat
+AccelionBeam = lostark_scouter_skill_repository.build(
+    name="엑셀리온 빔",
+    level=12,
+    gem=9,
+    additional_stat=sync_stat,
+)
+BurstBlow = lostark_scouter_skill_repository.build(
+    name="버스트 블로우",
+    level=12,
+    gem=9,
+    additional_stat=sync_stat,
+)
+CrimsonBreaker = lostark_scouter_skill_repository.build(
+    name="크림슨 브레이커",
+    level=12,
+    gem=9,
+    additional_stat=sync_stat,
 )
 
 dealcycle = [  # 레미-베드-QESQRWAQEWQRWSQEWAQRW 23s
