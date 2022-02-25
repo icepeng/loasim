@@ -365,6 +365,83 @@ lostark_blade_skill_repository.add(
 
 lostark_blade_skill_repository.add(
     SkillSpecification(
+        name="윈드 컷",
+        type="Normal",
+        back=True,
+        damage_table={
+            10: (1088, 5.845),
+            11: (1089, 6.360),
+            12: (1089, 6.675),
+        },
+        tripods=[
+            Tripod(
+                name="급소 타격",
+                stat_list=[
+                    Stat(crit=30),
+                    Stat(crit=37),
+                    Stat(crit=44),
+                    Stat(crit=52),
+                    Stat(crit=60),
+                ],
+            ),
+            Tripod(
+                name="지속력 강화",
+                stat_list=[
+                    Stat(pdamage_indep=40),
+                    Stat(pdamage_indep=47),
+                    Stat(pdamage_indep=54),
+                    Stat(pdamage_indep=61),
+                    Stat(pdamage_indep=70.8),
+                ],
+            ),
+            Tripod(
+                name="검기 폭발",
+                skill_after="윈드 컷(검기 폭발)",
+            ),
+        ],
+    )
+)
+
+lostark_blade_skill_repository.add(
+    SkillSpecification(
+        name="윈드 컷(검기 폭발)",
+        type="Normal",
+        back=True,
+        damage_table={
+            10: (1088, 5.845),
+            11: (1089, 6.360),
+            12: (1089, 6.675),
+        },
+        tripods=[
+            Tripod(
+                name="급소 타격",
+                stat_list=[
+                    Stat(crit=30),
+                    Stat(crit=37),
+                    Stat(crit=44),
+                    Stat(crit=52),
+                    Stat(crit=60),
+                ],
+            ),
+            Tripod(
+                name="지속력 강화",
+            ),
+            Tripod(
+                name="검기 폭발",
+                stat_list=[
+                    Stat(pdamage_indep=50 - 100),
+                    Stat(pdamage_indep=57.5 - 100),
+                    Stat(pdamage_indep=65 - 100),
+                    Stat(pdamage_indep=72.5 - 100),
+                    Stat(pdamage_indep=80 - 100),
+                ],
+            ),
+        ],
+    )
+)
+
+lostark_blade_skill_repository.add(
+    SkillSpecification(
         name="블레이드 버스트",
         type="Normal",
         damage_table={

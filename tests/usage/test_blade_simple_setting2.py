@@ -30,8 +30,8 @@ engraving_manager = EngravingManager(
     ("원한", 3),
     ("슈퍼 차지", 3),
     ("기습의 대가", 3),
-    ("아드레날린", 3),
-    ("잔재된 기운", 3),
+    ("예리한 둔기", 3),
+    ("버스트", 3),
 )
 
 card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
@@ -54,10 +54,9 @@ logger.info(basis_stat)
 SpinCutter = lostark_blade_skill_repository.build(
     name="스핀 커터",
     level=10,
-    additional_stat=basis_stat.add_indep(
+    additional_stat=basis_stat.add_indep(blade_arts_3).add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=False,
-            burst_grade=3,
         )
     ),
 )
@@ -70,10 +69,9 @@ SoulAbsorber = lostark_blade_skill_repository.build(
         "암흑 공격": 5,
         "반 가르기": 4,
     },
-    additional_stat=basis_stat.add_indep(
+    additional_stat=basis_stat.add_indep(blade_arts_3).add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=True,
-            burst_grade=3,
         )
     ),
 )
@@ -89,7 +87,6 @@ VoidStrike = lostark_blade_skill_repository.build(
     additional_stat=basis_stat.add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=True,
-            burst_grade=3,
         )
     ),
 )
@@ -103,27 +100,39 @@ BlitzRush = lostark_blade_skill_repository.build(
         "차지 강화": 5,
         "쉐도우 러시": 5,
     },
-    additional_stat=basis_stat.add_indep(
+    additional_stat=basis_stat.add_indep(blade_arts_3).add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=True,
-            burst_grade=3,
         )
     ),
 )
 
-MoonlightSonic = lostark_blade_skill_repository.build(
-    name="문라이트 소닉",
+WindCut = lostark_blade_skill_repository.build(
+    name="윈드 컷",
     level=11,
-    gem=7,
+    gem=5,
     tripod={
-        "암흑 공격": 5,
         "지속력 강화": 4,
-        "쉐이드 소닉": 4,
     },
-    additional_stat=basis_stat.add_indep(
+    additional_stat=basis_stat.add_indep(blade_arts_3).add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=False,
-            burst_grade=3,
+        )
+    ),
+)
+
+EarthSlash = lostark_blade_skill_repository.build(
+    name="어스 슬래쉬",
+    level=10,
+    gem=5,
+    tripod={
+        "밀어내기": 4,
+        "약점 포착": 4,
+        "대지 폭발": 4,
+    },
+    additional_stat=basis_stat.add_indep(blade_arts_3).add_indep(
+        engraving_manager.get_dynamic_modifier(
+            charge=True,
         )
     ),
 )
@@ -132,25 +141,29 @@ BladeBurst = lostark_blade_skill_repository.build(
     name="블레이드 버스트",
     level=11,
     gem=7,
-    additional_stat=basis_stat.add_indep(
+    additional_stat=basis_stat.add_indep(blade_arts_3)
+    .add_indep(
         engraving_manager.get_dynamic_modifier(
             charge=False,
-            burst_grade=0,
+            burst_stack=12,
         )
-    ).add_indep(blade_arts_3 + burst_stat),
+    )
+    .add_indep(burst_stat),
 )
 
 dealcycle = [
     (SpinCutter, "back"),
     (SpinCutter, "back"),
     (SpinCutter, "back"),
+    (WindCut, "back"),
     (SoulAbsorber, "back"),
-    (VoidStrike, "back"),
+    (EarthSlash, "back"),
     (BlitzRush, "back"),
+    (WindCut, "back"),
     (BladeBurst, "back"),
-    (MoonlightSonic, "back"),
+    (VoidStrike, "back"),
 ]
-cycle_time = 10
+cycle_time = 9.375
 
 enemy = Enemy(armor=6000, reduction=23)
 

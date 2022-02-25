@@ -33,9 +33,10 @@ def get_blade_buff(engraving_grade, burst_grade):
             1: 25,
             2: 30,
             3: 36,
-        }
+        },
     }
     return buff_table.get(engraving_grade).get(burst_grade)
+
 
 engraving_list = [
     Engraving(
@@ -161,6 +162,21 @@ engraving_list = [
             lambda **kwargs: Stat(patt=get_blade_buff(1, kwargs.get("burst_grade"))),
             lambda **kwargs: Stat(patt=get_blade_buff(2, kwargs.get("burst_grade"))),
             lambda **kwargs: Stat(patt=get_blade_buff(3, kwargs.get("burst_grade"))),
+        ],
+        is_static=False,
+    ),
+    Engraving(
+        name="버스트",
+        mdf_list=[
+            lambda **kwargs: Stat(pdamage_indep=kwargs.get("burst_stack", 0) * 7.5),
+            lambda **kwargs: Stat(
+                pdamage_indep=kwargs.get("burst_stack", 0) * 7.5,
+                patt=kwargs.get("burst_stack", 0) * 0.5,
+            ),
+            lambda **kwargs: Stat(
+                pdamage_indep=kwargs.get("burst_stack", 0) * 7.5,
+                patt=kwargs.get("burst_stack", 0),
+            ),
         ],
         is_static=False,
     ),
