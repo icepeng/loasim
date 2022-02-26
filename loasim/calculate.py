@@ -21,7 +21,7 @@ class DealCycle(BaseModel):
 
 def calculate(
     internal_stat: InternalStat,
-    weapon_pdamage: int,
+    weapon_pdamage: float,
     setitem_state: List[Tuple[str, int, int]],
     engraving_state: List[Tuple[str, int]],
     card_state: List[str],
@@ -45,7 +45,7 @@ def calculate(
     buff_manager = BuffManager(engraving_buffs + deal_cycle.buff_list)
 
     total_damage = 0.0
-    damage_dict: Dict = defaultdict(float)
+    damage_dict: defaultdict[str, float] = defaultdict(float)
     for skill, buff_state, backhead in deal_cycle.skill_list:
         buff_stat = buff_manager.get_stat(buff_state, skill)
         damage = skill.get_damage(enemy, backhead, basis_stat + buff_stat)

@@ -1,5 +1,3 @@
-from loguru import logger
-
 from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat
 from loasim.core.buff import OnoffBuff

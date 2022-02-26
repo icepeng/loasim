@@ -17,7 +17,7 @@ class CardRepository:
     def add(self, card: Card):
         self._cards[card.name] = card
 
-    def get_stat(self, card_state: List[str]) -> Optional[Card]:
+    def get_stat(self, card_state: List[str]) -> Stat:
         stat = Stat()
         for card_name in card_state:
             card = self._cards.get(card_name)

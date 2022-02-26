@@ -26,11 +26,11 @@ class InternalStat(BaseModel):
         return self.swift * 0.01717
 
 
-def add_pdamage_indep(a, b):
+def add_pdamage_indep(a: float, b: float) -> float:
     return a + b + (a * b) * 0.01
 
 
-def sub_pdamage_indep(a, b):
+def sub_pdamage_indep(a: float, b: float) -> float:
     return (100 + a) / (100 + b) * 100 - 100
 
 

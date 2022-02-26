@@ -30,8 +30,11 @@ class Tripod(BaseModel):
     type_override: Optional[SkillType] = None
     skill_after: Optional[str] = None
 
-    def get_modifier(self, level: int) -> Stat:
+    def get_stat(self, level: int) -> Stat:
+        if not self.stat_list:
+            raise ValueError(f"stat_list is not defined {self.name}")
         return self.stat_list[level - 1]
+
 
 
 class Skill(BaseModel):
@@ -45,18 +48,21 @@ class Skill(BaseModel):
     stat: Stat
     skill_afters: List[Skill]
 
-    def modify_stat(self, stat):
+    def modify_stat(self, stat: Stat) -> Skill:
         self.stat = self.stat + stat
         return self
 
     def get_damage(
         self,
         enemy: Enemy,
-        backhead: str = None,
+        backhead: str | None = None,
         additional_stat: Stat = Stat(),
     ) -> float:
         skill_afters_damage = sum(
-            [sk.get_damage(enemy, backhead, additional_stat) for sk in self.skill_afters]
+            [
+                sk.get_damage(enemy, backhead, additional_stat)
+                for sk in self.skill_afters
+            ]
         )
 
         stat = self.stat + additional_stat
@@ -114,12 +120,22 @@ class SkillRepository:
         gem: int = 0,
         tripod: Dict[str, int] = {},
         additional_stat: Optional[Stat] = None,
-    ):
+    ) -> Skill:
         skill = self._skills[name]
         skill_type = skill.type
-        skill_afters = skill.skill_afters
+        skill_afters = [
+            self.build(
+                name=skill_name,
+                level=level,
+                gem=gem,
+                tripod=tripod,
+                additional_stat=additional_stat,
+            )
+            for skill_name in skill.skill_afters
+        ]
+
         stat = Stat()
-        stat = stat + Stat(pdamage_indep=gem_dict.get(gem))
+        stat = stat + Stat(pdamage_indep=gem_dict.get(gem, 0))
         for name, tripod_level in tripod.items():
             given_tripod = skill.get_tripod(name)
             if given_tripod is None:
@@ -137,7 +153,7 @@ class SkillRepository:
                     )
                 ]
             if given_tripod.stat_list:
-                stat = stat + given_tripod.get_modifier(tripod_level)
+                stat = stat + given_tripod.get_stat(tripod_level)
 
         if additional_stat is not None:
             stat = stat + additional_stat
