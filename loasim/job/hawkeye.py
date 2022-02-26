@@ -203,6 +203,9 @@ lostark_hawkeye_skill_repository.add(
         },
         tripods=[
             Tripod(
+                name="전격 화살",
+            ),
+            Tripod(
                 name="화살촉 강화",
                 stat_list=[
                     Stat(crit=30),

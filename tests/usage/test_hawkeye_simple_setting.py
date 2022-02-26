@@ -53,6 +53,9 @@ def generate(internal_stat: InternalStat):
         name="아토믹 애로우",
         level=12,
         gem=5,
+        tripod={
+            "전격 화살": 4,
+        }
     )
 
     ArrowShower = lostark_hawkeye_skill_repository.build(
