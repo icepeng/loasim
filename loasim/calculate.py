@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from loasim.core import Skill, Enemy, BuffManager, InternalStat
 from loasim.core.buff import Buff
 from loasim.core.stat import Stat
-from loasim.setitem import SetItemState, lostark_setitem_repository
+from loasim.setitem import lostark_setitem_repository
 from loasim.card import lostark_default_card_repository
 from loasim.engraving import lostark_engraving_repository
 
@@ -22,9 +22,9 @@ class DealCycle(BaseModel):
 def calculate(
     internal_stat: InternalStat,
     weapon_pdamage: int,
-    setitem: List[SetItemState],
-    engraving: Dict[str, int],
-    card: str,
+    setitem_state: List[Tuple[str, int, int]],
+    engraving_state: List[Tuple[str, int]],
+    card_state: List[str],
     generator: Callable[[InternalStat], DealCycle],
     enemy: Enemy,
 ):
@@ -34,14 +34,14 @@ def calculate(
     basis_stat = (
         base_stat
         + weapon_stat
-        + lostark_setitem_repository.get_stat(setitem)
-        + lostark_default_card_repository.get_stat(card)
+        + lostark_setitem_repository.get_stat(setitem_state)
+        + lostark_default_card_repository.get_stat(card_state)
     )
 
     logger.info(base_stat)
     logger.info(basis_stat)
 
-    engraving_buffs = lostark_engraving_repository.get_buffs(engraving)
+    engraving_buffs = lostark_engraving_repository.get_buffs(engraving_state)
     buff_manager = BuffManager(engraving_buffs + deal_cycle.buff_list)
 
     total_damage = 0.0
