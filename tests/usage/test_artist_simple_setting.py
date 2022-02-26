@@ -1,116 +1,107 @@
-from loguru import logger
-
-from loasim.calculate import calculate
-from loasim.card import lostark_default_card_repository
+from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat
-from loasim.Engraving import EngravingManager
-from loasim.job import artist
-from loasim.setitem import SetItemState, lostark_setitem_repository
+from loasim.core.buff import OnoffBuff
+from loasim.job.artist import lostark_artist_skill_repository
 
-base_internal_stat = InternalStat(
-    weapon_att=28800, stat_main=119610, crit=537, special=56, swift=1691
-)
-spd = base_internal_stat.get_spd() + 10  # 갈망 +10
 
-base_stat = base_internal_stat.get_stat()
-weapon_stat = Stat(pdamage=21.86)  # 무기 품질
+def generate(internal_stat: InternalStat):
+    spd = internal_stat.get_spd()
 
-logger.info(base_stat)
-logger.info(weapon_stat)
+    SunDrawBuff = OnoffBuff(
+        name="나만의 권능",
+        stat=Stat(crit=49.7),
+    )
+    SunWellBuff = OnoffBuff(
+        name="나만의 우물",
+        stat=Stat(patt_indep=30),
+    )
 
-setitem_state = [
-    SetItemState(
-        name="악몽",
-        level_1=2,
-        level_2=0,
+    OneStroke = lostark_artist_skill_repository.build(
+        name="필법 : 한획긋기",
+        level=11,
+        gem=7,
+        tripod={
+            "거대한 붓": 5,
+            "강화된 일격": 5,
+        },
+    )
+
+    Cranes = lostark_artist_skill_repository.build(
+        name="묵법 : 두루미나래",
+        level=11,
+        gem=5,
+        tripod={
+            "치명적인 일격": 5,
+            "학익진": 5,
+        },
+    )
+
+    Tiger = lostark_artist_skill_repository.build(
+        name="묵법 : 범가르기",
+        level=11,
+        gem=6,
+        tripod={
+            "궤뚫는 일격": 5,
+            "강화된 일격": 5,
+        },
+    )
+
+    Moon = lostark_artist_skill_repository.build(
+        name="묵법 : 달그리기",
+        level=11,
+        gem=7,
+        tripod={
+            "별 그리기": 4,
+            "붉은 달": 4,
+        },
+    )
+
+    InkRise = lostark_artist_skill_repository.build(
+        name="묵법 : 먹오름",
+        level=11,
+        gem=5,
+        tripod={
+            "치명적인 일격": 1,
+            "먹물점정": 1,
+        },
+    )
+
+    state = {
+        "돌격대장": spd,
+        "나만의 권능": True,
+        "나만의 우물": True,
+    }
+
+    return DealCycle(
+        buff_list=[SunDrawBuff, SunWellBuff],
+        skill_list=[
+            (OneStroke, state, None),
+            (Cranes, state, None),
+            (Tiger, state, None),
+            (Moon, state, None),
+            (InkRise, state, None),
+        ],
+        cycle_time=12.127,
+    )
+
+
+calculate(
+    internal_stat=InternalStat(
+        weapon_att=28800, stat_main=119610, crit=537, special=56, swift=1691
     ),
-    SetItemState(
-        name="지배",
-        level_1=4,
-        level_2=0,
-    ),
-]
-
-engraving_manager = EngravingManager(
-    ("원한", 3), ("예리한 둔기", 3), ("안정된 상태", 3), ("돌격대장", 3), ("회귀", 3)
+    weapon_pdamage=21.86,
+    setitem_state=[
+        ("악몽", 2, 0),
+        ("지배", 4, 0),
+    ],
+    engraving_state=[
+        ("원한", 3),
+        ("예리한 둔기", 3),
+        ("안정된 상태", 3),
+        ("돌격대장", 3),
+        ("회귀", 3),
+    ],
+    card_state=["남겨진 바람의 절벽 (12)"],
+    generator=generate,
+    enemy=Enemy(armor=6000, reduction=23),
 )
-card = lostark_default_card_repository.get("남겨진 바람의 절벽 (12)")
-
-SunDrawBuff = Stat(crit=49.7)  # 나만의 권능 5
-SunWellBuff = Stat(patt=30)  # 나만의 우물
-
-basis_stat = (
-    base_stat
-    + weapon_stat
-    + lostark_setitem_repository.get_stat(setitem_state)
-    + engraving_manager.get_static_modifier()
-    + card.stat
-    + SunDrawBuff
-    + SunWellBuff
-    + engraving_manager.get_dynamic_modifier(spd=spd)
-)
-
-logger.info(basis_stat)
-
-OneStroke = artist.OneStroke.build_skill(
-    level=11,
-    gem=7,
-    tripod={
-        "거대한 붓": 5,
-        "강화된 일격": 5,
-    },
-    additional_stat=basis_stat,
-)
-
-Cranes = artist.Cranes.build_skill(
-    level=11,
-    gem=5,
-    tripod={
-        "치명적인 일격": 5,
-        "학익진": 5,
-    },
-    additional_stat=basis_stat,
-)
-
-Tiger = artist.Tiger.build_skill(
-    level=11,
-    gem=6,
-    tripod={
-        "궤뚫는 일격": 5,
-        "강화된 일격": 5,
-    },
-    additional_stat=basis_stat,
-)
-
-Moon = artist.Moon.build_skill(
-    level=11,
-    gem=7,
-    tripod={
-        "별 그리기": 4,
-        "붉은 달": 4,
-    },
-    additional_stat=basis_stat,
-)
-
-InkRise = artist.InkRise.build_skill(
-    level=11,
-    gem=5,
-    tripod={
-        "치명적인 일격": 1,
-        "먹물점정": 1,
-    },
-    additional_stat=basis_stat,
-)
-
-dealcycle = [
-    (OneStroke, None),
-    (Cranes, None),
-    (Tiger, None),
-    (Moon, None),
-    (InkRise, None),
-]
-cycle_time = 12.127
-
-enemy = Enemy(armor=6000, reduction=23)
-
-calculate(dealcycle, cycle_time, enemy)
