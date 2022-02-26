@@ -55,5 +55,4 @@ def calculate(
     for sk, dmg in damage_dict.items():
         print(sk, f"{dmg / total_damage *100:,.3f}%")
     print(f"total damage: {total_damage:,.0f}")
-    print(deal_cycle.cycle_time)
     print(f"dps: {total_damage / deal_cycle.cycle_time:,.0f}")
