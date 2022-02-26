@@ -235,7 +235,7 @@ lostark_engraving_repository.add(
 )
 
 
-def get_blade_buff(engraving_grade, burst_grade):
+def get_blade_buff(engraving_grade: int, burst_grade: int) -> int:
     buff_table = {
         1: {
             0: 0,
@@ -256,7 +256,7 @@ def get_blade_buff(engraving_grade, burst_grade):
             3: 36,
         },
     }
-    return buff_table.get(engraving_grade).get(burst_grade)
+    return buff_table.get(engraving_grade, {}).get(burst_grade, 0)
 
 
 lostark_engraving_repository.add(

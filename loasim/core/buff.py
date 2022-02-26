@@ -1,7 +1,8 @@
 from typing import Any, Callable, Dict, List, Literal, Union
-from pydantic import BaseModel
-from loasim.core.skill import Skill
 
+from pydantic import BaseModel
+
+from loasim.core.skill import Skill
 from loasim.core.stat import Stat
 
 
