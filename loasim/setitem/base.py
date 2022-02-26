@@ -18,12 +18,6 @@ class SetItem(BaseModel):
         return stat
 
 
-class SetItemState(BaseModel):
-    name: str
-    level_1: int
-    level_2: int
-
-
 class SetItemRepository:
     def __init__(self):
         self._set_items: Dict[str, SetItem] = {}
@@ -31,11 +25,9 @@ class SetItemRepository:
     def add(self, setitem: SetItem):
         self._set_items[setitem.name] = setitem
 
-    def get_stat(self, states: List[SetItemState]) -> Stat:
+    def get_stat(self, setitem_state: Tuple[str, int, int]) -> Stat:
         stat = Stat()
-        for set_item_state in states:
-            stat = stat + self._set_items[set_item_state.name].get_stat(
-                set_item_state.level_1, set_item_state.level_2
-            )
+        for name, level1, level2 in setitem_state:
+            stat = stat + self._set_items[name].get_stat(level1, level2)
 
         return stat

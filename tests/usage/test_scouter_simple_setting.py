@@ -1,7 +1,6 @@
 from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat, OnoffBuff
 from loasim.job.scouter import lostark_scouter_skill_repository
-from loasim.setitem import SetItemState
 
 
 def generate(internal_stat: InternalStat):
@@ -110,22 +109,18 @@ calculate(
         weapon_att=50362, stat_main=156350, crit=632, special=1776, swift=53
     ),
     weapon_pdamage=23.45,
-    card="남겨진 바람의 절벽 (12)",
-    setitem=[
-        SetItemState(
-            name="환각",
-            level_1=6,
-            level_2=6,
-        )
+    card_state=["남겨진 바람의 절벽 (12)"],
+    setitem_state=[
+        ("환각", 6, 6)
     ],
-    engraving={
-        "원한": 3,
-        "예리한 둔기": 3,
-        "바리케이드": 3,
-        "돌격대장": 3,
-        "아드레날린": 3,
-        "진화의 유산": 1,
-    },
+    engraving_state=[
+        ("원한", 3),
+        ("예리한 둔기", 3),
+        ("바리케이드", 3),
+        ("돌격대장", 3),
+        ("아드레날린", 3),
+        ("진화의 유산", 1),
+    ],
     generator=generate,
     enemy=Enemy(armor=6000, reduction=23),
 )

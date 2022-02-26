@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from pydantic import BaseModel
 
@@ -19,9 +19,9 @@ class EngravingRepository:
             buff.name = engraving.name
         self._engravings[engraving.name] = engraving
 
-    def get_buffs(self, states: Dict[str, int]) -> List[Buff]:
+    def get_buffs(self, engraving_state: List[Tuple[str, int]]) -> List[Buff]:
         buffs: List[Buff] = []
-        for name, level in states.items():
+        for name, level in engraving_state:
             engraving = self._engravings.get(name)
             if engraving is None:
                 raise Exception(f"{name} is not an engraving")
