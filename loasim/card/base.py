@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Dict, Optional
 
 from pydantic import BaseModel
 
@@ -12,13 +12,13 @@ class Card(BaseModel):
 
 class CardRepository:
     def __init__(self):
-        self._cards = {}
+        self._cards: Dict[str, Card] = {}
 
     def add(self, card: Card):
         self._cards[card.name] = card
 
-    def get(self, card_name) -> Optional[Card]:
+    def get_stat(self, card_name) -> Optional[Card]:
         card = self._cards.get(card_name)
         if card is None:
             raise TypeError(f"Given card name is not available. {card_name}")
-        return card
+        return card.stat

@@ -53,13 +53,13 @@ class Skill(BaseModel):
         self,
         enemy: Enemy,
         backhead: str = None,
-        stat: Stat = Stat(),
+        additional_stat: Stat = Stat(),
     ) -> float:
         skill_afters_damage = sum(
-            [sk.get_damage(enemy, backhead, stat) for sk in self.skill_afters]
+            [sk.get_damage(enemy, backhead, additional_stat) for sk in self.skill_afters]
         )
 
-        stat = self.stat + stat
+        stat = self.stat + additional_stat
         if self.head and backhead == "head":
             stat += Stat(pdamage_indep=20) + Stat(
                 pdamage_indep=stat.pdamage_indep_head, crit_damage=stat.crit_damage_head
@@ -69,16 +69,15 @@ class Skill(BaseModel):
                 pdamage_indep=stat.pdamage_indep_back, crit_damage=stat.crit_damage_back
             )
 
-        base_dmg = self.base + (stat.att * (1 + stat.patt / 100)) * self.coefficient
-        stat_multiplier = (1 + stat.pdamage_indep / 100) * (1 + stat.pdamage / 100)
+        base_dmg = self.base + stat.get_total_att() * self.coefficient
         enemy_reduction_rate = enemy.get_reduction_rate(stat.armor_ignore)
-        nocrit_dmg = base_dmg * stat_multiplier * enemy_reduction_rate
+        nocrit_dmg = base_dmg * stat.get_multiplier() * enemy_reduction_rate
         crit_dmg = nocrit_dmg * stat.crit_damage / 100
 
         crit = min(stat.crit, 100) / 100
         damage = (1 - crit) * nocrit_dmg + crit * crit_dmg
-        print(self.name, nocrit_dmg, crit_dmg)
-        print(stat)
+        # print(self.name, nocrit_dmg, crit_dmg)
+        # print(stat)
 
         return damage * self.multiplier + skill_afters_damage
 

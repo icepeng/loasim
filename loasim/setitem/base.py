@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from pydantic import BaseModel
 
@@ -9,7 +9,7 @@ class SetItem(BaseModel):
     name: str
     stat_list: List[Tuple[Stat, Stat]]
 
-    def get_modifier(self, level1_set, level2_set):
+    def get_stat(self, level1_set, level2_set):
         stat = Stat()
         for i in range(level2_set // 2):
             stat = stat + self.stat_list[i][1]
@@ -26,7 +26,7 @@ class SetItemState(BaseModel):
 
 class SetItemRepository:
     def __init__(self):
-        self._set_items = {}
+        self._set_items: Dict[str, SetItem] = {}
 
     def add(self, setitem: SetItem):
         self._set_items[setitem.name] = setitem
@@ -34,7 +34,7 @@ class SetItemRepository:
     def get_stat(self, states: List[SetItemState]) -> Stat:
         stat = Stat()
         for set_item_state in states:
-            stat = stat + self._set_items[set_item_state.name].get_modifier(
+            stat = stat + self._set_items[set_item_state.name].get_stat(
                 set_item_state.level_1, set_item_state.level_2
             )
 
