@@ -77,7 +77,7 @@ class Skill(BaseModel):
 
         base_dmg = self.base + stat.get_total_att() * self.coefficient
         enemy_reduction_rate = enemy.get_reduction_rate(stat.armor_ignore)
-        nocrit_dmg = base_dmg * stat.get_multiplier() * enemy_reduction_rate
+        nocrit_dmg = base_dmg * stat.get_multiplier() * enemy_reduction_rate * self.multiplier
         crit_dmg = nocrit_dmg * stat.crit_damage / 100
 
         crit = min(stat.crit, 100) / 100
@@ -85,7 +85,7 @@ class Skill(BaseModel):
         # print(self.name, nocrit_dmg, crit_dmg)
         # print(stat)
 
-        return damage * self.multiplier + skill_afters_damage
+        return damage + skill_afters_damage
 
 
 class SkillSpecification(BaseModel):
