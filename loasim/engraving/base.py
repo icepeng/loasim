@@ -2,7 +2,14 @@ from typing import Callable, Dict, List, Tuple
 
 from pydantic import BaseModel
 
-from loasim.core.buff import AbstractBuff, OnoffBuff, SkillBuff, StackBuff, StaticBuff
+from loasim.core.buff import (
+    AbstractBuff,
+    OnoffBuff,
+    SkillBuff,
+    StackBuff,
+    StatBuff,
+    StaticBuff,
+)
 from loasim.core.skill import Skill
 from loasim.core.stat import Stat
 
@@ -49,6 +56,16 @@ class SkillEngraving(AbstractEngraving):
 
     def get_buff(self, level: int) -> SkillBuff:
         return SkillBuff(
+            name=self.name,
+            stat_fn=self.stat_fn_list[level - 1],
+        )
+
+
+class StatEngraving(AbstractEngraving):
+    stat_fn_list: List[Callable[[Stat], Stat]]
+
+    def get_buff(self, level: int) -> StatBuff:
+        return StatBuff(
             name=self.name,
             stat_fn=self.stat_fn_list[level - 1],
         )

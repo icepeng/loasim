@@ -5,10 +5,13 @@ from loasim.job.scouter import lostark_scouter_skill_repository
 
 
 def generate(internal_stat: InternalStat):
-    spd = internal_stat.get_spd()
     HyperSync = OnoffBuff(
         name="하이퍼 싱크",
-        stat=Stat(patt_indep=6, pdamage_indep=internal_stat.special * 0.0886937),
+        stat=Stat(
+            patt_indep=6,
+            pdamage_indep=internal_stat.special * 0.0886937,
+            moving_speed=30,
+        ),
     )
 
     RaidMissile = lostark_scouter_skill_repository.build(
@@ -64,12 +67,10 @@ def generate(internal_stat: InternalStat):
     )
 
     sync_state = {
-        "돌격대장": BuffState(onoff=True, stack=spd + 30),
         "진화의 유산": BuffState(onoff=True, stack=3),
         "하이퍼 싱크": BuffState(onoff=True),
     }
     nosync_state = {
-        "돌격대장": BuffState(onoff=True, stack=spd),
         "진화의 유산": BuffState(onoff=False),
         "하이퍼 싱크": BuffState(onoff=False),
     }

@@ -20,10 +20,8 @@ class InternalStat(BaseModel):
             crit=self.crit * 0.03577,
             crit_damage=200,
             att=sqrt(self.weapon_att * self.stat_main / 6),
+            moving_speed=self.swift * 0.01717,
         )
-
-    def get_spd(self) -> float:
-        return self.swift * 0.01717
 
 
 def add_pdamage_indep(a: float, b: float) -> float:
@@ -51,6 +49,7 @@ class Stat(BaseModel):
     patt_job: float = 0
     patt_indep: float = 0
     att: float = 0
+    moving_speed: float = 0
 
     def __add__(self, arg: Stat) -> Stat:
         return Stat(
@@ -72,6 +71,7 @@ class Stat(BaseModel):
             patt_job=self.patt_job + arg.patt_job,
             patt_indep=add_pdamage_indep(self.patt_indep, arg.patt_indep),
             att=self.att + arg.att,
+            moving_speed=self.moving_speed + arg.moving_speed,
         )
 
     def __sub__(self, arg: Stat) -> Stat:
@@ -94,6 +94,7 @@ class Stat(BaseModel):
             patt_job=self.patt_job - arg.patt_job,
             patt_indep=sub_pdamage_indep(self.patt_indep, arg.patt_indep),
             att=self.att - arg.att,
+            moving_speed=self.moving_speed - arg.moving_speed,
         )
 
     def get_total_att(self) -> float:

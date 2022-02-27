@@ -8,13 +8,13 @@ from loasim.core.stat import Stat
 
 class BuffState(BaseModel):
     onoff: bool
-    stack: float = 0
+    stack: int = 0
 
 
 class AbstractBuff(BaseModel):
     name: str
 
-    def get_stat(self, state: Dict[str, BuffState], skill: Skill) -> Stat:
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill, stat: Stat) -> Stat:
         raise NotImplementedError()
 
 
@@ -22,7 +22,7 @@ class OnoffBuff(AbstractBuff):
     name: str
     stat: Stat
 
-    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill, stat: Stat):
         buff_state = state.get(self.name)
         if buff_state is None:
             raise ValueError(f"{self.name} is not found in state")
@@ -35,17 +35,17 @@ class StaticBuff(AbstractBuff):
     name: str
     stat: Stat
 
-    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill, stat: Stat):
         return self.stat
 
 
 class StackBuff(AbstractBuff):
     name: str
     stat_fn: Union[
-        Callable[[float], Stat], Callable[[float], Stat]
+        Callable[[int], Stat], Callable[[int], Stat]
     ]  # mypy #5485 workaround
 
-    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill, stat: Stat):
         buff_state = state.get(self.name)
         if buff_state is None:
             raise ValueError(f"{self.name} is not found in state")
@@ -60,17 +60,38 @@ class SkillBuff(AbstractBuff):
         Callable[[Skill], Stat], Callable[[Skill], Stat]
     ]  # mypy #5485 workaround
 
-    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill, stat: Stat):
         return self.stat_fn(skill)
+
+
+class StatBuff(AbstractBuff):
+    name: str
+    stat_fn: Union[
+        Callable[[Stat], Stat], Callable[[Stat], Stat]
+    ]  # mypy #5485 workaround
+
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill, stat: Stat):
+        return self.stat_fn(stat)
 
 
 class BuffManager:
     def __init__(self, buff_list: List[AbstractBuff]) -> None:
-        self._buffs: Dict[str, AbstractBuff] = {buff.name: buff for buff in buff_list}
+        self._buffs: Dict[str, AbstractBuff] = {}
+        self._stat_buffs: Dict[str, StatBuff] = {}
+        for buff in buff_list:
+            if isinstance(buff, StatBuff):
+                self._stat_buffs[buff.name] = buff
+            else:
+                self._buffs[buff.name] = buff
 
-    def get_stat(self, state: Dict[str, BuffState], skill: Skill) -> Stat:
-        stat = Stat()
+    def get_buffed_stat(
+        self, state: Dict[str, BuffState], skill: Skill, basis_stat: Stat
+    ) -> Stat:
+        stat = Stat() + basis_stat
         for buff in self._buffs.values():
-            stat = stat + buff.get_stat(state, skill)
+            stat = stat + buff.get_stat(state, skill, stat)
+
+        for buff in self._stat_buffs.values():
+            stat = stat + buff.get_stat(state, skill, stat)
 
         return stat
