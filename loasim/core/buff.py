@@ -1,4 +1,4 @@
-from typing import Callable, Dict, List
+from typing import Callable, Dict, List, Union
 
 from pydantic import BaseModel
 
@@ -41,7 +41,9 @@ class StaticBuff(AbstractBuff):
 
 class StackBuff(AbstractBuff):
     name: str
-    stat_fn: Callable[[float], Stat] | Callable[[float], Stat]  # mypy #5485 workaround
+    stat_fn: Union[
+        Callable[[float], Stat], Callable[[float], Stat]
+    ]  # mypy #5485 workaround
 
     def get_stat(self, state: Dict[str, BuffState], skill: Skill):
         buff_state = state.get(self.name)
@@ -54,7 +56,9 @@ class StackBuff(AbstractBuff):
 
 class SkillBuff(AbstractBuff):
     name: str
-    stat_fn: Callable[[Skill], Stat] | Callable[[Skill], Stat]  # mypy #5485 workaround
+    stat_fn: Union[
+        Callable[[Skill], Stat], Callable[[Skill], Stat]
+    ]  # mypy #5485 workaround
 
     def get_stat(self, state: Dict[str, BuffState], skill: Skill):
         return self.stat_fn(skill)

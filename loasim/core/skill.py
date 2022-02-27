@@ -54,7 +54,7 @@ class Skill(BaseModel):
     def get_damage(
         self,
         enemy: Enemy,
-        backhead: str | None = None,
+        backhead: Optional[str] = None,
         additional_stat: Stat = Stat(),
     ) -> float:
         skill_afters_damage = sum(

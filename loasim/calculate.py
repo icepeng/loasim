@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Any, Callable, Dict, List, Literal, Tuple
+from typing import Any, Callable, Dict, List, Literal, Tuple, Union
 
 from loguru import logger
 from pydantic import BaseModel
@@ -14,7 +14,7 @@ from loasim.setitem import lostark_setitem_repository
 
 class DealCycle(BaseModel):
     buff_list: List[AbstractBuff]
-    skill_list: List[Tuple[Skill, Dict[str, Any], Literal["back", "head"] | None]]
+    skill_list: List[Tuple[Skill, Dict[str, Any], Union[Literal["back", "head"], None]]]
     cycle_time: float
 
 
