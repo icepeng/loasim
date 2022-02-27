@@ -46,8 +46,8 @@ def calculate(
     total_damage = 0.0
     damage_dict: defaultdict[str, float] = defaultdict(float)
     for skill, buff_state, backhead in deal_cycle.skill_list:
-        buff_stat = buff_manager.get_stat(buff_state, skill)
-        damage = skill.get_damage(enemy, backhead, basis_stat + buff_stat)
+        buffed_stat = buff_manager.get_buffed_stat(buff_state, skill, basis_stat)
+        damage = skill.get_damage(enemy, backhead, buffed_stat)
         total_damage += damage
         damage_dict[skill.name] += damage
 

@@ -3,6 +3,7 @@ from loasim.engraving.base import (
     EngravingRepository,
     SkillEngraving,
     StackEngraving,
+    StatEngraving,
     StaticEngraving,
 )
 
@@ -85,6 +86,17 @@ lostark_engraving_repository.add(
     )
 )
 
+lostark_engraving_repository.add(
+    StaticEngraving(
+        name="정기 흡수",
+        stat_list=[
+            Stat(moving_speed=3),
+            Stat(moving_speed=8),
+            Stat(moving_speed=15),
+        ],
+    )
+)
+
 
 def is_hit_master(skill: Skill):
     return not (skill.head or skill.back)
@@ -113,12 +125,12 @@ lostark_engraving_repository.add(
 )
 
 lostark_engraving_repository.add(
-    StackEngraving(
+    StatEngraving(
         name="돌격대장",
         stat_fn_list=[
-            lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.1),
-            lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.22),
-            lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.45),
+            lambda stat: Stat(pdamage_indep=min(stat.moving_speed, 40) * 0.1),
+            lambda stat: Stat(pdamage_indep=min(stat.moving_speed, 40) * 0.22),
+            lambda stat: Stat(pdamage_indep=min(stat.moving_speed, 40) * 0.45),
         ],
     )
 )

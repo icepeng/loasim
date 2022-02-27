@@ -5,8 +5,6 @@ from loasim.job.artist import lostark_artist_skill_repository
 
 
 def generate(internal_stat: InternalStat):
-    spd = internal_stat.get_spd()
-
     SunDrawBuff = OnoffBuff(
         name="나만의 권능",
         stat=Stat(crit=49.7),
@@ -67,7 +65,6 @@ def generate(internal_stat: InternalStat):
     )
 
     state = {
-        "돌격대장": BuffState(onoff=True, stack=spd),
         "나만의 권능": BuffState(onoff=True),
         "나만의 우물": BuffState(onoff=True),
     }
