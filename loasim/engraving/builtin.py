@@ -1,123 +1,86 @@
-from loasim.core import StaticBuff, StackBuff, SkillBuff, Stat, Skill
-from loasim.engraving.base import Engraving, EngravingRepository
+from loasim.core import Stat, Skill
+from loasim.engraving.base import (
+    EngravingRepository,
+    SkillEngraving,
+    StackEngraving,
+    StaticEngraving,
+)
 
 lostark_engraving_repository = EngravingRepository()
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="원한",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(pdamage_indep=4),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=10),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=20),
-            ),
+        stat_list=[
+            Stat(pdamage_indep=4),
+            Stat(pdamage_indep=10),
+            Stat(pdamage_indep=20),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="예리한 둔기",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(pdamage_indep=-2, crit_damage=10),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=-2, crit_damage=25),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=-2, crit_damage=50),
-            ),
+        stat_list=[
+            Stat(pdamage_indep=-2, crit_damage=10),
+            Stat(pdamage_indep=-2, crit_damage=25),
+            Stat(pdamage_indep=-2, crit_damage=50),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="저주받은 인형",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(patt_common=3),
-            ),
-            StaticBuff(
-                stat=Stat(patt_common=8),
-            ),
-            StaticBuff(
-                stat=Stat(patt_common=16),
-            ),
+        stat_list=[
+            Stat(patt_common=3),
+            Stat(patt_common=8),
+            Stat(patt_common=16),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="정밀 단도",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(crit=4, crit_damage=-12),
-            ),
-            StaticBuff(
-                stat=Stat(crit=10, crit_damage=-12),
-            ),
-            StaticBuff(
-                stat=Stat(crit=20, crit_damage=-12),
-            ),
+        stat_list=[
+            Stat(crit=4, crit_damage=-12),
+            Stat(crit=10, crit_damage=-12),
+            Stat(crit=20, crit_damage=-12),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="바리케이드",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(pdamage_indep=3),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=8),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=16),
-            ),
+        stat_list=[
+            Stat(pdamage_indep=3),
+            Stat(pdamage_indep=8),
+            Stat(pdamage_indep=16),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="안정된 상태",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(pdamage_indep=3),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=8),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep=16),
-            ),
+        stat_list=[
+            Stat(pdamage_indep=3),
+            Stat(pdamage_indep=8),
+            Stat(pdamage_indep=16),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="아드레날린",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(patt_common=1.8, crit=5),
-            ),
-            StaticBuff(
-                stat=Stat(patt_common=3.6, crit=10),
-            ),
-            StaticBuff(
-                stat=Stat(patt_common=6, crit=15),
-            ),
+        stat_list=[
+            Stat(patt_common=1.8, crit=5),
+            Stat(patt_common=3.6, crit=10),
+            Stat(patt_common=6, crit=15),
         ],
     )
 )
@@ -128,52 +91,34 @@ def is_hit_master(skill: Skill):
 
 
 lostark_engraving_repository.add(
-    Engraving(
+    SkillEngraving(
         name="타격의 대가",
-        buff_list=[
-            SkillBuff(
-                get_stat=lambda skill: Stat(pdamage_indep=is_hit_master(skill) * 3),
-            ),
-            SkillBuff(
-                get_stat=lambda skill: Stat(pdamage_indep=is_hit_master(skill) * 8),
-            ),
-            SkillBuff(
-                get_stat=lambda skill: Stat(pdamage_indep=is_hit_master(skill) * 16),
-            ),
+        stat_fn_list=[
+            lambda skill: Stat(pdamage_indep=is_hit_master(skill) * 3),
+            lambda skill: Stat(pdamage_indep=is_hit_master(skill) * 8),
+            lambda skill: Stat(pdamage_indep=is_hit_master(skill) * 16),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="기습의 대가",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(pdamage_indep_back=5),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep_back=12),
-            ),
-            StaticBuff(
-                stat=Stat(pdamage_indep_back=25),
-            ),
+        stat_list=[
+            Stat(pdamage_indep_back=5),
+            Stat(pdamage_indep_back=12),
+            Stat(pdamage_indep_back=25),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StackEngraving(
         name="돌격대장",
-        buff_list=[
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.1),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.22),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.45),
-            ),
+        stat_fn_list=[
+            lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.1),
+            lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.22),
+            lambda stack: Stat(pdamage_indep=min(stack, 40) * 0.45),
         ],
     )
 )
@@ -184,52 +129,34 @@ def is_super_charge(skill: Skill):
 
 
 lostark_engraving_repository.add(
-    Engraving(
+    SkillEngraving(
         name="슈퍼 차지",
-        buff_list=[
-            SkillBuff(
-                get_stat=lambda skill: Stat(pdamage_indep=is_super_charge(skill) * 4),
-            ),
-            SkillBuff(
-                get_stat=lambda skill: Stat(pdamage_indep=is_super_charge(skill) * 10),
-            ),
-            SkillBuff(
-                get_stat=lambda skill: Stat(pdamage_indep=is_super_charge(skill) * 20),
-            ),
+        stat_fn_list=[
+            lambda skill: Stat(pdamage_indep=is_super_charge(skill) * 4),
+            lambda skill: Stat(pdamage_indep=is_super_charge(skill) * 10),
+            lambda skill: Stat(pdamage_indep=is_super_charge(skill) * 20),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StackEngraving(
         name="진화의 유산",
-        buff_list=[
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=stack * 2),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=stack * 4),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=stack * 6),
-            ),
+        stat_fn_list=[
+            lambda stack: Stat(pdamage_indep=stack * 2),
+            lambda stack: Stat(pdamage_indep=stack * 4),
+            lambda stack: Stat(pdamage_indep=stack * 6),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StaticEngraving(
         name="회귀",
-        buff_list=[
-            StaticBuff(
-                stat=Stat(crit=6, crit_damage=20),
-            ),
-            StaticBuff(
-                stat=Stat(crit=9, crit_damage=30),
-            ),
-            StaticBuff(
-                stat=Stat(crit=12, crit_damage=40),
-            ),
+        stat_list=[
+            Stat(crit=6, crit_damage=20),
+            Stat(crit=9, crit_damage=30),
+            Stat(crit=12, crit_damage=40),
         ],
     )
 )
@@ -260,39 +187,25 @@ def get_blade_buff(engraving_grade: int, burst_grade: int) -> int:
 
 
 lostark_engraving_repository.add(
-    Engraving(
+    StackEngraving(
         name="잔재된 기운",
-        buff_list=[
-            StackBuff(
-                get_stat=lambda stack: Stat(patt_job=get_blade_buff(1, stack)),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(patt_job=get_blade_buff(2, stack)),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(patt_job=get_blade_buff(3, stack)),
-            ),
+        stat_fn_list=[
+            lambda stack: Stat(patt_job=get_blade_buff(1, stack)),
+            lambda stack: Stat(patt_job=get_blade_buff(2, stack)),
+            lambda stack: Stat(patt_job=get_blade_buff(3, stack)),
         ],
     )
 )
 
 lostark_engraving_repository.add(
-    Engraving(
+    StackEngraving(
         name="버스트",
-        buff_list=[
-            StackBuff(
-                get_stat=lambda stack: Stat(pdamage_indep=stack * 7.5),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(
-                    pdamage_indep=stack * 7.5, patt_job=stack * 0.5
-                ),
-            ),
-            StackBuff(
-                get_stat=lambda stack: Stat(
-                    pdamage_indep=stack * 7.5,
-                    patt_job=stack * 1,
-                ),
+        stat_fn_list=[
+            lambda stack: Stat(pdamage_indep=stack * 7.5),
+            lambda stack: Stat(pdamage_indep=stack * 7.5, patt_job=stack * 0.5),
+            lambda stack: Stat(
+                pdamage_indep=stack * 7.5,
+                patt_job=stack * 1,
             ),
         ],
     )

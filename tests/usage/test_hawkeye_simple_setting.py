@@ -1,6 +1,6 @@
 from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat
-from loasim.core.buff import OnoffBuff
+from loasim.core.buff import BuffState, OnoffBuff
 from loasim.job.hawkeye import lostark_hawkeye_skill_repository
 
 
@@ -69,7 +69,7 @@ def generate(internal_stat: InternalStat):
     )
 
     state = {
-        "피해 증폭": True,
+        "피해 증폭": BuffState(onoff=True),
     }
 
     return DealCycle(

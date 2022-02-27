@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Literal, Union
+from typing import Callable, Dict, List
 
 from pydantic import BaseModel
 
@@ -6,55 +6,67 @@ from loasim.core.skill import Skill
 from loasim.core.stat import Stat
 
 
-class OnoffBuff(BaseModel):
-    name: str = None
-    stat: Stat
-    type: Literal["onoff"] = "onoff"
+class BuffState(BaseModel):
+    onoff: bool
+    stack: float = 0
 
-    def get_stat(self, onoff: bool):
-        if onoff:
+
+class AbstractBuff(BaseModel):
+    name: str
+
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill) -> Stat:
+        raise NotImplementedError()
+
+
+class OnoffBuff(AbstractBuff):
+    name: str
+    stat: Stat
+
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+        buff_state = state.get(self.name)
+        if buff_state is None:
+            raise ValueError(f"{self.name} is not found in state")
+        if buff_state.onoff:
             return self.stat
         return Stat()
 
 
-class StaticBuff(BaseModel):
-    name: str = None
+class StaticBuff(AbstractBuff):
+    name: str
     stat: Stat
-    type: Literal["static"] = "static"
 
-    def get_stat(self):
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
         return self.stat
 
 
-class StackBuff(BaseModel):
-    name: str = None
-    get_stat: Callable[[int], Stat]
-    type: Literal["stack"] = "stack"
+class StackBuff(AbstractBuff):
+    name: str
+    stat_fn: Callable[[float], Stat] | Callable[[float], Stat]  # mypy #5485 workaround
+
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+        buff_state = state.get(self.name)
+        if buff_state is None:
+            raise ValueError(f"{self.name} is not found in state")
+        if buff_state.onoff:
+            return self.stat_fn(buff_state.stack)
+        return Stat()
 
 
-class SkillBuff(BaseModel):
-    name: str = None
-    get_stat: Callable[[Skill], Stat]
-    type: Literal["skill"] = "skill"
+class SkillBuff(AbstractBuff):
+    name: str
+    stat_fn: Callable[[Skill], Stat] | Callable[[Skill], Stat]  # mypy #5485 workaround
 
-
-Buff = Union[OnoffBuff, SkillBuff, StaticBuff, StackBuff]
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill):
+        return self.stat_fn(skill)
 
 
 class BuffManager:
-    def __init__(self, buff_list: List[Buff]) -> None:
-        self._buffs: Dict[str, Buff] = {buff.name: buff for buff in buff_list}
+    def __init__(self, buff_list: List[AbstractBuff]) -> None:
+        self._buffs: Dict[str, AbstractBuff] = {buff.name: buff for buff in buff_list}
 
-    def get_stat(self, state: Dict[str, Any], skill: Skill) -> Stat:
+    def get_stat(self, state: Dict[str, BuffState], skill: Skill) -> Stat:
         stat = Stat()
         for buff in self._buffs.values():
-            if buff.type == "onoff":
-                stat = stat + buff.get_stat(state[buff.name])
-            elif buff.type == "static":
-                stat = stat + buff.get_stat()
-            elif buff.type == "stack":
-                stat = stat + buff.get_stat(state[buff.name])
-            elif buff.type == "skill":
-                stat = stat + buff.get_stat(skill)
+            stat = stat + buff.get_stat(state, skill)
 
         return stat
