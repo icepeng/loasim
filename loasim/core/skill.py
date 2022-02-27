@@ -36,7 +36,6 @@ class Tripod(BaseModel):
         return self.stat_list[level - 1]
 
 
-
 class Skill(BaseModel):
     name: str
     base: float
@@ -77,7 +76,9 @@ class Skill(BaseModel):
 
         base_dmg = self.base + stat.get_total_att() * self.coefficient
         enemy_reduction_rate = enemy.get_reduction_rate(stat.armor_ignore)
-        nocrit_dmg = base_dmg * stat.get_multiplier() * enemy_reduction_rate * self.multiplier
+        nocrit_dmg = (
+            base_dmg * stat.get_multiplier() * enemy_reduction_rate * self.multiplier
+        )
         crit_dmg = nocrit_dmg * stat.crit_damage / 100
 
         crit = min(stat.crit, 100) / 100
@@ -118,7 +119,7 @@ class SkillRepository:
         name: str,
         level: int,
         gem: int = 0,
-        tripod: Dict[str, int] = {},
+        tripod: Optional[Dict[str, int]] = None,
         additional_stat: Optional[Stat] = None,
     ) -> Skill:
         skill = self._skills[name]
@@ -136,24 +137,27 @@ class SkillRepository:
 
         stat = Stat()
         stat = stat + Stat(pdamage_indep=gem_dict.get(gem, 0))
-        for name, tripod_level in tripod.items():
-            given_tripod = skill.get_tripod(name)
-            if given_tripod is None:
-                raise TypeError(f"Given tripod not available in this spec. {name}")
-            if given_tripod.type_override:
-                skill_type = given_tripod.type_override
-            if given_tripod.skill_after:
-                skill_afters = skill_afters + [
-                    self.build(
-                        name=given_tripod.skill_after,
-                        level=level,
-                        gem=gem,
-                        tripod=tripod,
-                        additional_stat=additional_stat,
+        if tripod is not None:
+            for tripod_name, tripod_level in tripod.items():
+                given_tripod = skill.get_tripod(tripod_name)
+                if given_tripod is None:
+                    raise TypeError(
+                        f"Given tripod not available in this spec. {tripod_name}"
                     )
-                ]
-            if given_tripod.stat_list:
-                stat = stat + given_tripod.get_stat(tripod_level)
+                if given_tripod.type_override:
+                    skill_type = given_tripod.type_override
+                if given_tripod.skill_after:
+                    skill_afters = skill_afters + [
+                        self.build(
+                            name=given_tripod.skill_after,
+                            level=level,
+                            gem=gem,
+                            tripod=tripod,
+                            additional_stat=additional_stat,
+                        )
+                    ]
+                if given_tripod.stat_list:
+                    stat = stat + given_tripod.get_stat(tripod_level)
 
         if additional_stat is not None:
             stat = stat + additional_stat
