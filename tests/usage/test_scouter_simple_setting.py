@@ -101,7 +101,7 @@ def generate(internal_stat: InternalStat):
             (AccelionBeam, sync_state, None),
             (SlugShot, sync_state, None),
         ],
-        cycle_time=23
+        cycle_time=23,
     )
 
 
@@ -111,9 +111,7 @@ calculate(
     ),
     weapon_pdamage=23.45,
     card_state=["남겨진 바람의 절벽 (12)"],
-    setitem_state=[
-        ("환각", 6, 6)
-    ],
+    setitem_state=[("환각", 6, 6)],
     engraving_state=[
         ("원한", 3),
         ("예리한 둔기", 3),
