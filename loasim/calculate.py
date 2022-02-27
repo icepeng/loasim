@@ -1,20 +1,19 @@
-from loguru import logger
-
 from collections import defaultdict
-from typing import Any, Callable, List, Dict, Literal, Tuple
+from typing import Any, Callable, Dict, List, Literal, Tuple
 
+from loguru import logger
 from pydantic import BaseModel
 
-from loasim.core import Skill, Enemy, BuffManager, InternalStat
-from loasim.core.buff import Buff
-from loasim.core.stat import Stat
-from loasim.setitem import lostark_setitem_repository
 from loasim.card import lostark_default_card_repository
+from loasim.core import BuffManager, Enemy, InternalStat, Skill
+from loasim.core.buff import AbstractBuff
+from loasim.core.stat import Stat
 from loasim.engraving import lostark_engraving_repository
+from loasim.setitem import lostark_setitem_repository
 
 
 class DealCycle(BaseModel):
-    buff_list: List[Buff]
+    buff_list: List[AbstractBuff]
     skill_list: List[Tuple[Skill, Dict[str, Any], Literal["back", "head"] | None]]
     cycle_time: float
 

@@ -1,5 +1,6 @@
 from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat, OnoffBuff
+from loasim.core.buff import BuffState
 from loasim.job.scouter import lostark_scouter_skill_repository
 
 
@@ -63,14 +64,14 @@ def generate(internal_stat: InternalStat):
     )
 
     sync_state = {
-        "돌격대장": spd + 30,
-        "진화의 유산": 3,
-        "하이퍼 싱크": True,
+        "돌격대장": BuffState(onoff=True, stack=spd + 30),
+        "진화의 유산": BuffState(onoff=True, stack=3),
+        "하이퍼 싱크": BuffState(onoff=True),
     }
     nosync_state = {
-        "돌격대장": spd,
-        "진화의 유산": 0,
-        "하이퍼 싱크": False,
+        "돌격대장": BuffState(onoff=True, stack=spd),
+        "진화의 유산": BuffState(onoff=False),
+        "하이퍼 싱크": BuffState(onoff=False),
     }
 
     return DealCycle(

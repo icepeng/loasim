@@ -1,6 +1,6 @@
 from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat
-from loasim.core.buff import OnoffBuff
+from loasim.core.buff import BuffState, OnoffBuff
 from loasim.core.stat import sub_pdamage_indep
 from loasim.job.blade import lostark_blade_skill_repository
 
@@ -79,19 +79,19 @@ def generate(internal_stat: InternalStat):
     )
 
     burst_state = {
-        "약점 노출": True,
-        "블레이드 아츠": True,
-        "버스트": 12,
+        "약점 노출": BuffState(onoff=True),
+        "블레이드 아츠": BuffState(onoff=True),
+        "버스트": BuffState(onoff=True, stack=12),
     }
     blade_arts_state = {
-        "약점 노출": True,
-        "블레이드 아츠": True,
-        "버스트": 0,
+        "약점 노출": BuffState(onoff=True),
+        "블레이드 아츠": BuffState(onoff=True),
+        "버스트": BuffState(onoff=False),
     }
     no_blade_arts_state = {
-        "약점 노출": True,
-        "블레이드 아츠": False,
-        "버스트": 0,
+        "약점 노출": BuffState(onoff=True),
+        "블레이드 아츠": BuffState(onoff=False),
+        "버스트": BuffState(onoff=False),
     }
 
     return DealCycle(

@@ -1,6 +1,6 @@
 from loasim.calculate import DealCycle, calculate
 from loasim.core import Enemy, InternalStat, Stat
-from loasim.core.buff import OnoffBuff
+from loasim.core.buff import BuffState, OnoffBuff
 from loasim.job.artist import lostark_artist_skill_repository
 
 
@@ -67,9 +67,9 @@ def generate(internal_stat: InternalStat):
     )
 
     state = {
-        "돌격대장": spd,
-        "나만의 권능": True,
-        "나만의 우물": True,
+        "돌격대장": BuffState(onoff=True, stack=spd),
+        "나만의 권능": BuffState(onoff=True),
+        "나만의 우물": BuffState(onoff=True),
     }
 
     return DealCycle(
