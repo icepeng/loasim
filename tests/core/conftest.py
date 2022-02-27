@@ -8,6 +8,7 @@ from loasim.core.stat import Stat
 def test_skill_specification():
     return SkillSpecification(
         name="명령 : 레이드 미사일",
+        type="Normal",
         damage_table={
             12: (3066, 19.10),
         },
