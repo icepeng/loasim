@@ -1,4 +1,4 @@
-from loasim.core import Stat, Skill
+from loasim.core import Skill, Stat
 from loasim.engraving.base import (
     EngravingRepository,
     SkillEngraving,

@@ -1,8 +1,9 @@
 from typing import Dict
+
 import pytest
 
 from loasim.core.enemy import Enemy
-from loasim.core.skill import SkillSpecification, SkillRepository
+from loasim.core.skill import SkillRepository, SkillSpecification
 
 
 @pytest.mark.parametrize(

@@ -1,5 +1,5 @@
 from loasim.calculate import DealCycle, calculate
-from loasim.core import Enemy, InternalStat, Stat, OnoffBuff
+from loasim.core import Enemy, InternalStat, OnoffBuff, Stat
 from loasim.core.buff import BuffState
 from loasim.job.scouter import lostark_scouter_skill_repository
 

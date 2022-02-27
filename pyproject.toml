@@ -25,6 +25,7 @@ test = ["coverage", "typetest", "lint", "formatting-check"]
 profile = "black"
 multi_line_output = 3
 skip = "third_party"
+skip_gitignore = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
