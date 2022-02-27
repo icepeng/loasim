@@ -1,8 +1,8 @@
 from typing import Callable, Dict, List, Tuple
 
 from pydantic import BaseModel
-from loasim.core.buff import AbstractBuff, OnoffBuff, SkillBuff, StackBuff, StaticBuff
 
+from loasim.core.buff import AbstractBuff, OnoffBuff, SkillBuff, StackBuff, StaticBuff
 from loasim.core.skill import Skill
 from loasim.core.stat import Stat
 
