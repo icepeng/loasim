@@ -8,7 +8,9 @@ lostark_hawkeye_skill_repository.add(
         name="스나이프",
         type="Holding",
         damage_table={
-            12: (5037, 31.22),
+            10: (5033, 27.33895),
+            11: (5035, 29.74807),
+            12: (5037, 31.22183),
         },
         tripods=[
             Tripod(
@@ -40,7 +42,9 @@ lostark_hawkeye_skill_repository.add(
         name="샤프 슈터",
         type="Normal",
         damage_table={
-            12: (888, 5.53),
+            10: (887, 4.84482),
+            11: (887, 5.27079),
+            12: (888, 5.53278),
         },
         multiplier=3,
         tripods=[
@@ -83,7 +87,9 @@ lostark_hawkeye_skill_repository.add(
         name="차징 샷",
         type="Charge",
         damage_table={
-            12: (3386, 20.98),
+            10: (3384, 18.37030),
+            11: (3385, 19.98427),
+            12: (3386, 20.97922),
         },
         tripods=[
             Tripod(
@@ -125,7 +131,9 @@ lostark_hawkeye_skill_repository.add(
         name="애로우 해일",
         type="Normal",
         damage_table={
-            12: (378, 2.33),
+            10: (378, 2.03892),
+            11: (378, 2.21791),
+            12: (378, 2.32789),
         },
         multiplier=4,
         tripods=[
@@ -186,7 +194,9 @@ lostark_hawkeye_skill_repository.add(
             Tripod(
                 name="전격 화살",
                 skill_after="아토믹 애로우(전격)",
-            )
+            ),
+            Tripod(name="화살촉 강화"),
+            Tripod(name="긴 도화선"),
         ],
         skill_afters=["아토믹 애로우(폭발)"],
     )
@@ -259,7 +269,9 @@ lostark_hawkeye_skill_repository.add(
         name="애로우 샤워",
         type="Area",
         damage_table={
-            10: (413, 2.244),
+            10: (413, 2.24392),
+            11: (413, 2.44091),
+            12: (414, 2.56289),
         },
         multiplier=5,
         tripods=[
