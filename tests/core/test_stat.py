@@ -1,6 +1,6 @@
 import pytest
 
-from loasim.core.stat import Stat
+from loasim.core import Stat
 
 eps = 1e-8
 
