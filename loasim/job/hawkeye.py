@@ -1,9 +1,9 @@
-from loasim.core import SkillSpecification, Stat, Tripod
-from loasim.core.skill import SkillRepository
+from loasim.core import Stat
+from loasim.job.base import Job, SkillSpecification, Tripod
 
-lostark_hawkeye_skill_repository = SkillRepository()
+lostark_job_hawkeye = Job()
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="스나이프",
         type="Holding",
@@ -37,7 +37,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="샤프 슈터",
         type="Normal",
@@ -82,7 +82,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="차징 샷",
         type="Charge",
@@ -126,7 +126,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="애로우 해일",
         type="Normal",
@@ -181,7 +181,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="아토믹 애로우",
         type="Normal",
@@ -191,6 +191,10 @@ lostark_hawkeye_skill_repository.add(
             12: (142, 0.88700),
         },
         tripods=[
+            Tripod(
+                name="피해 증폭",
+                buff_stat_list=[Stat(pdamage_indep=6)],
+            ),
             Tripod(
                 name="전격 화살",
                 skill_after="아토믹 애로우(전격)",
@@ -202,7 +206,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="아토믹 애로우(폭발)",
         type="Normal",
@@ -212,9 +216,8 @@ lostark_hawkeye_skill_repository.add(
             12: (1053, 6.52875),
         },
         tripods=[
-            Tripod(
-                name="전격 화살",
-            ),
+            Tripod(name="피해 증폭"),
+            Tripod(name="전격 화살"),
             Tripod(
                 name="화살촉 강화",
                 stat_list=[
@@ -239,7 +242,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="아토믹 애로우(전격)",
         type="Normal",
@@ -250,6 +253,7 @@ lostark_hawkeye_skill_repository.add(
         },
         multiplier=3,
         tripods=[
+            Tripod(name="피해 증폭"),
             Tripod(
                 name="전격 화살",
                 stat_list=[
@@ -264,7 +268,7 @@ lostark_hawkeye_skill_repository.add(
     )
 )
 
-lostark_hawkeye_skill_repository.add(
+lostark_job_hawkeye.add_skill(
     SkillSpecification(
         name="애로우 샤워",
         type="Area",

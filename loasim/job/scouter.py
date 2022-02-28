@@ -1,9 +1,21 @@
-from loasim.core import SkillSpecification, Stat, Tripod
-from loasim.core.skill import SkillRepository
+from loasim.core import InternalStatOnoffBuff, Stat
+from loasim.job.base import Job, SkillSpecification, Tripod
 
-lostark_scouter_skill_repository = SkillRepository()
+lostark_job_scouter = Job()
 
-lostark_scouter_skill_repository.add(
+
+lostark_job_scouter.add_buff(
+    InternalStatOnoffBuff(
+        name="하이퍼 싱크",
+        stat_fn=lambda internal_stat: Stat(
+            patt_indep=6,
+            pdamage_indep=internal_stat.special * 0.0886937,
+            moving_speed=30,
+        ),
+    )
+)
+
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="명령 : 레이드 미사일",
         type="Normal",
@@ -35,7 +47,7 @@ lostark_scouter_skill_repository.add(
     )
 )
 
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="명령 : 베이비 드론",
         type="Area",
@@ -67,7 +79,7 @@ lostark_scouter_skill_repository.add(
     )
 )
 
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="코멧 스트라이크",
         type="Area",
@@ -76,7 +88,7 @@ lostark_scouter_skill_repository.add(
         },
     )
 )
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="슬러그 샷",
         type="Area",
@@ -85,7 +97,7 @@ lostark_scouter_skill_repository.add(
         },
     )
 )
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="레이저 블레이드",
         type="Area",
@@ -94,7 +106,7 @@ lostark_scouter_skill_repository.add(
         },
     )
 )
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="엑셀리온 빔",
         type="Area",
@@ -104,7 +116,7 @@ lostark_scouter_skill_repository.add(
         head=True,
     )
 )
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="버스트 블로우",
         type="Area",
@@ -113,7 +125,7 @@ lostark_scouter_skill_repository.add(
         },
     )
 )
-lostark_scouter_skill_repository.add(
+lostark_job_scouter.add_skill(
     SkillSpecification(
         name="크림슨 브레이커",
         type="Area",

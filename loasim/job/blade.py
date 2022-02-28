@@ -1,9 +1,18 @@
-from loasim.core import SkillSpecification, Stat, Tripod
-from loasim.core.skill import SkillRepository
+from loasim.core import Stat
+from loasim.core.buff import OnoffBuff
+from loasim.core.stat import sub_pdamage_indep
+from loasim.job.base import Job, SkillSpecification, Tripod
 
-lostark_blade_skill_repository = SkillRepository()
+lostark_job_blade = Job()
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_buff(
+    OnoffBuff(
+        name="블레이드 아츠",
+        stat=Stat(patt_job=30),
+    )
+)
+
+lostark_job_blade.add_skill(
     SkillSpecification(  # TODO: 횟수 조절은 어떻게?
         name="스핀 커터",
         type="Combo",
@@ -11,11 +20,21 @@ lostark_blade_skill_repository.add(
             10: (641, 3.450),
         },
         back=True,
-        tripods=[],
+        tripods=[
+            Tripod(
+                name="약점 노출",
+                buff_stat_list=[
+                    Stat(
+                        pdamage_indep=3,
+                        pdamage_indep_back=sub_pdamage_indep(12, 3),
+                    ),
+                ],
+            )
+        ],
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="다크 악셀",
         type="Normal",
@@ -27,7 +46,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="소울 앱소버",
         type="Charge",
@@ -82,7 +101,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="어스 슬래쉬",
         type="Normal",
@@ -108,7 +127,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="어스 슬래쉬(밀어내기)",
         type="Normal",
@@ -145,7 +164,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="어스 슬래쉬(대지 폭발)",
         type="Normal",
@@ -182,7 +201,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="문라이트 소닉",
         type="Normal",
@@ -237,7 +256,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="마엘스톰",
         type="Normal",
@@ -248,7 +267,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="블리츠 러시",
         type="Charge",
@@ -303,7 +322,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="보이드 스트라이크",
         type="Charge",
@@ -329,7 +348,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="보이드 스트라이크(블랙 익스플로젼)",
         type="Charge",
@@ -363,7 +382,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="윈드 컷",
         type="Normal",
@@ -402,7 +421,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="윈드 컷(검기 폭발)",
         type="Normal",
@@ -440,7 +459,7 @@ lostark_blade_skill_repository.add(
     )
 )
 
-lostark_blade_skill_repository.add(
+lostark_job_blade.add_skill(
     SkillSpecification(
         name="블레이드 버스트",
         type="Normal",
@@ -449,5 +468,6 @@ lostark_blade_skill_repository.add(
         },
         back=True,
         tripods=[],
+        stat_from_special=lambda special: Stat(pdamage_indep=special * 0.11444),
     )
 )
