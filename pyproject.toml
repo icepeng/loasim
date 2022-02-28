@@ -10,11 +10,11 @@ format = ["_black", "_isort"]
 _pylint = "pylint loasim tests"
 lint = ["_pylint"]
 
-coverage = "pytest --cov=loasim"
-coverage-unittest = "pytest --cov=loasim"
-coverage-report = "pytest --cov=loasim --cov-report=xml"
+coverage = "pytest --cov=loasim tests"
+coverage-report = "pytest --cov=loasim --cov-report=xml tests"
 
-unittest = "pytest -vv -x"
+unittest = "pytest -vv -x tests"
+e2etest = "pytest -vv -x e2e"
 typetest = "mypy loasim tests"
 
 test = ["coverage", "typetest", "lint", "formatting-check"]
@@ -26,9 +26,6 @@ profile = "black"
 multi_line_output = 3
 skip = "third_party"
 skip_gitignore = true
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
 
 [tool.coverage.run]
 branch = true
