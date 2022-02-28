@@ -2,7 +2,7 @@ from typing import Dict, List
 
 from pydantic import BaseModel
 
-from loasim.core.stat import Stat
+from loasim.core import Stat
 
 
 class Card(BaseModel):

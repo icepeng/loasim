@@ -2,16 +2,16 @@ from typing import Callable, Dict, List, Tuple
 
 from pydantic import BaseModel
 
-from loasim.core.buff import (
+from loasim.core import (
     AbstractBuff,
     OnoffBuff,
+    Skill,
     SkillBuff,
     StackBuff,
+    Stat,
     StatBuff,
     StaticBuff,
 )
-from loasim.core.skill import Skill
-from loasim.core.stat import Stat
 
 
 class AbstractEngraving(BaseModel):

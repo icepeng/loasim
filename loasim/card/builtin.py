@@ -1,5 +1,5 @@
 from loasim.card.base import Card, CardRepository
-from loasim.core.stat import Stat
+from loasim.core import Stat
 
 lostark_default_card_repository = CardRepository()
 
