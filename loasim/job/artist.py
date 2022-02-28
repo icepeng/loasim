@@ -1,9 +1,18 @@
-from loasim.core import SkillSpecification, Stat, Tripod
-from loasim.core.skill import SkillRepository
+from loasim.core import InternalStatOnoffBuff, Stat
+from loasim.job.base import Job, SkillSpecification, Tripod
 
-lostark_artist_skill_repository = SkillRepository()
+lostark_job_artist = Job()
 
-lostark_artist_skill_repository.add(
+lostark_job_artist.add_buff(
+    InternalStatOnoffBuff(
+        name="저무는 달",
+        stat_fn=lambda internal_stat: Stat(
+            pdamage_indep=10 * (1 + internal_stat.special * 0.000543611)
+        ),
+    )
+)
+
+lostark_job_artist.add_skill(
     SkillSpecification(
         name="필법 : 한획긋기",
         type="Normal",
@@ -57,7 +66,7 @@ lostark_artist_skill_repository.add(
     )
 )
 
-lostark_artist_skill_repository.add(
+lostark_job_artist.add_skill(
     SkillSpecification(
         name="묵법 : 두루미나래",
         type="Normal",
@@ -100,7 +109,7 @@ lostark_artist_skill_repository.add(
     )
 )
 
-lostark_artist_skill_repository.add(
+lostark_job_artist.add_skill(
     SkillSpecification(
         name="묵법 : 범가르기",
         type="Normal",
@@ -163,7 +172,7 @@ lostark_artist_skill_repository.add(
     )
 )
 
-lostark_artist_skill_repository.add(
+lostark_job_artist.add_skill(
     SkillSpecification(
         name="묵법 : 달그리기",
         type="Casting",
@@ -217,7 +226,7 @@ lostark_artist_skill_repository.add(
     )
 )
 
-lostark_artist_skill_repository.add(
+lostark_job_artist.add_skill(
     SkillSpecification(
         name="묵법 : 먹오름",
         type="Area",
@@ -254,6 +263,67 @@ lostark_artist_skill_repository.add(
                     Stat(pdamage_indep=99.2),
                     Stat(pdamage_indep=109.6),
                     Stat(pdamage_indep=120),
+                ],
+            ),
+        ],
+    )
+)
+
+lostark_job_artist.add_skill(
+    SkillSpecification(
+        name="묵법 : 해그리기",
+        type="Normal",
+        damage_table={
+            10: (0, 0),
+        },
+        tripods=[
+            Tripod(
+                name="음의 기운 발산",
+                stat_list=[
+                    Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=111),
+                    Stat(pdamage_indep=122),
+                    Stat(pdamage_indep=133),
+                    Stat(pdamage_indep=145),
+                ],
+            ),
+            Tripod(
+                name="나만의 권능",
+                buff_stat_list=[
+                    Stat(crit=35.0),
+                    Stat(crit=38.5),
+                    Stat(crit=42.0),
+                    Stat(crit=45.9),
+                    Stat(crit=49.7),
+                ],
+            ),
+        ],
+    )
+)
+
+lostark_job_artist.add_skill(
+    SkillSpecification(
+        name="묵법 : 해우물",
+        type="Normal",
+        damage_table={
+            10: (0, 0),
+        },
+        tripods=[
+            Tripod(
+                name="나만의 우물",
+                stat_list=[
+                    Stat(pdamage_indep=20),
+                    Stat(pdamage_indep=26),
+                    Stat(pdamage_indep=32),
+                    Stat(pdamage_indep=38),
+                    Stat(pdamage_indep=45),
+                ],
+                buff_stat_list=[
+                    Stat(patt_indep=30),
+                    Stat(patt_indep=30),
+                    Stat(patt_indep=30),
+                    Stat(patt_indep=30),
+                    Stat(patt_indep=30),
                 ],
             ),
         ],
