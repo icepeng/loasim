@@ -4,6 +4,7 @@ from loasim.job import SkillState
 
 state = {
     "저무는 달": BuffState(onoff=False),
+    "내면의 각성": BuffState(onoff=True),
     "나만의 권능": BuffState(onoff=True),
     "나만의 우물": BuffState(onoff=True),
 }

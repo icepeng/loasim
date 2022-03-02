@@ -135,13 +135,13 @@ class InternalStatOnoffBuff(AbstractBuff):
 
 class BuffManager:
     def __init__(self, buff_list: List[AbstractBuff]) -> None:
-        self._buffs: Dict[str, AbstractBuff] = {}
-        self._stat_buffs: Dict[str, StatBuff] = {}
+        self._buffs: List[AbstractBuff] = []
+        self._stat_buffs: List[StatBuff] = []
         for buff in buff_list:
             if isinstance(buff, StatBuff):
-                self._stat_buffs[buff.name] = buff
+                self._stat_buffs.append(buff)
             else:
-                self._buffs[buff.name] = buff
+                self._buffs.append(buff)
 
     def get_stat(
         self,
@@ -151,10 +151,10 @@ class BuffManager:
         internal_stat: InternalStat,
     ) -> Stat:
         stat = Stat()
-        for buff in self._buffs.values():
-            stat = stat + buff.get_stat(state, skill, stat, internal_stat)
+        for buff in self._buffs:
+            stat = stat + buff.get_stat(state, skill, basis_stat, internal_stat)
 
-        for buff in self._stat_buffs.values():
+        for buff in self._stat_buffs:
             stat = stat + buff.get_stat(state, skill, stat + basis_stat, internal_stat)
 
         return stat

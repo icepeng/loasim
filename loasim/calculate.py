@@ -23,12 +23,14 @@ def calculate(
     enemy: Enemy,
     deal_cycle: DealCycle,
     cycle_time: float,
+    additional_stat: Stat = Stat(),
 ):
     base_stat = internal_stat.get_stat()
     weapon_stat = Stat(pdamage=weapon_pdamage)  # 무기 품질
     basis_stat = (
         base_stat
         + weapon_stat
+        + additional_stat
         + lostark_setitem_repository.get_stat(setitem_state)
         + lostark_default_card_repository.get_stat(card_state)
     )
@@ -39,7 +41,8 @@ def calculate(
     job = get_job(job_name)
     skills, buffs = job.build(skill_state, internal_stat)
     engraving_buffs = lostark_engraving_repository.get_buffs(engraving_state)
-    buff_manager = BuffManager(engraving_buffs + buffs)
+    setitem_buffs = lostark_setitem_repository.get_buffs(setitem_state)
+    buff_manager = BuffManager(engraving_buffs + setitem_buffs + buffs)
 
     total_damage = 0.0
     damage_dict: defaultdict[str, float] = defaultdict(float)

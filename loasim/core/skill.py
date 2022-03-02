@@ -19,6 +19,7 @@ class Skill(BaseModel):
     type: SkillType
     head: bool
     back: bool
+    consume_mana: bool
     stat: Stat
     skill_afters: List[Skill]
 

@@ -3,11 +3,33 @@ from loasim.core import Enemy, InternalStat, Stat
 from loasim.core.buff import BuffState
 from loasim.job.base import SkillState
 
-sync_state = {
+sync0_state = {
+    "환각": BuffState(onoff=False),
+    "실체": BuffState(onoff=True),
+    "진화의 유산": BuffState(onoff=True, stack=0),
+    "하이퍼 싱크": BuffState(onoff=True),
+}
+sync1_state = {
+    "환각": BuffState(onoff=False),
+    "실체": BuffState(onoff=True),
+    "진화의 유산": BuffState(onoff=True, stack=1),
+    "하이퍼 싱크": BuffState(onoff=True),
+}
+sync2_state = {
+    "환각": BuffState(onoff=False),
+    "실체": BuffState(onoff=True),
+    "진화의 유산": BuffState(onoff=True, stack=2),
+    "하이퍼 싱크": BuffState(onoff=True),
+}
+sync3_state = {
+    "환각": BuffState(onoff=False),
+    "실체": BuffState(onoff=True),
     "진화의 유산": BuffState(onoff=True, stack=3),
     "하이퍼 싱크": BuffState(onoff=True),
 }
 nosync_state = {
+    "환각": BuffState(onoff=False),
+    "실체": BuffState(onoff=True),
     "진화의 유산": BuffState(onoff=False),
     "하이퍼 싱크": BuffState(onoff=False),
 }
@@ -15,27 +37,27 @@ nosync_state = {
 deal_cycle: DealCycle = [  # 레미-베드-QESQRWAQEWQRWSQEWAQRW 23s
     ("명령 : 레이드 미사일", nosync_state, None),
     ("명령 : 베이비 드론", nosync_state, None),
-    ("코멧 스트라이크", sync_state, None),
-    ("레이저 블레이드", sync_state, None),
-    ("크림슨 브레이커", sync_state, None),
-    ("코멧 스트라이크", sync_state, None),
-    ("엑셀리온 빔", sync_state, None),
-    ("슬러그 샷", sync_state, None),
-    ("버스트 블로우", sync_state, None),
-    ("코멧 스트라이크", sync_state, None),
-    ("레이저 블레이드", sync_state, None),
-    ("슬러그 샷", sync_state, None),
-    ("코멧 스트라이크", sync_state, None),
-    ("엑셀리온 빔", sync_state, None),
-    ("슬러그 샷", sync_state, None),
-    ("크림슨 브레이커", sync_state, None),
-    ("코멧 스트라이크", sync_state, None),
-    ("레이저 블레이드", sync_state, None),
-    ("슬러그 샷", sync_state, None),
-    ("버스트 블로우", sync_state, None),
-    ("코멧 스트라이크", sync_state, None),
-    ("엑셀리온 빔", sync_state, None),
-    ("슬러그 샷", sync_state, None),
+    ("코멧 스트라이크", sync0_state, None),
+    ("레이저 블레이드", sync1_state, None),
+    ("크림슨 브레이커", sync2_state, None),
+    ("코멧 스트라이크", sync3_state, None),
+    ("엑셀리온 빔", sync3_state, None),
+    ("슬러그 샷", sync3_state, None),
+    ("버스트 블로우", sync3_state, None),
+    ("코멧 스트라이크", sync3_state, None),
+    ("레이저 블레이드", sync3_state, None),
+    ("슬러그 샷", sync3_state, None),
+    ("코멧 스트라이크", sync3_state, None),
+    ("엑셀리온 빔", sync3_state, None),
+    ("슬러그 샷", sync3_state, None),
+    ("크림슨 브레이커", sync3_state, None),
+    ("코멧 스트라이크", sync3_state, None),
+    ("레이저 블레이드", sync3_state, None),
+    ("슬러그 샷", sync3_state, None),
+    ("버스트 블로우", sync3_state, None),
+    ("코멧 스트라이크", sync3_state, None),
+    ("엑셀리온 빔", sync3_state, None),
+    ("슬러그 샷", sync3_state, None),
 ]
 
 calculate(

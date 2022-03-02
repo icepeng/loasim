@@ -463,6 +463,7 @@ lostark_job_blade.add_skill(
     SkillSpecification(
         name="블레이드 버스트",
         type="Normal",
+        consume_mana=False,
         damage_table={
             11: (7244, 42.873),
         },

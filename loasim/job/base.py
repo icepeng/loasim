@@ -47,6 +47,7 @@ class SkillSpecification(BaseModel):
     type: SkillType
     head: bool = False
     back: bool = False
+    consume_mana: bool = True
     tripods: List[Tripod] = []
     skill_afters: List[str] = []
     stat_from_special: Optional[Callable[[float], Stat]] = None
@@ -121,6 +122,7 @@ class Job:
             type=skill_type,
             head=skill.head,
             back=skill.back,
+            consume_mana=skill.consume_mana,
             stat=stat,
             skill_afters=skill_afters,
         )
