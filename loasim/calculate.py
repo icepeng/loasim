@@ -57,3 +57,5 @@ def calculate(
         print(sk, f"{dmg / total_damage *100:,.3f}%")
     print(f"total damage: {total_damage:,.0f}")
     print(f"dps: {total_damage / cycle_time:,.0f}")
+
+    return total_damage / cycle_time
