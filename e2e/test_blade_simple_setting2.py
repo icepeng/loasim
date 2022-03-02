@@ -1,7 +1,6 @@
 from loasim.calculate import DealCycle, calculate
-from loasim.core import Enemy, InternalStat
-from loasim.core.buff import BuffState
-from loasim.job.base import SkillState
+from loasim.core import BuffState, Enemy, InternalStat
+from loasim.job import SkillState
 
 burst_state = {
     "약점 노출": BuffState(onoff=True),

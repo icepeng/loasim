@@ -1,5 +1,5 @@
 from loasim.job.artist import lostark_job_artist
-from loasim.job.base import Job, SkillState
+from loasim.job.base import Job, SkillSpecification, SkillState, Tripod
 from loasim.job.blade import lostark_job_blade
 from loasim.job.hawkeye import lostark_job_hawkeye
 from loasim.job.scouter import lostark_job_scouter

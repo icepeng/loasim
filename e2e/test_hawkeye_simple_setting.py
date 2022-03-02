@@ -1,6 +1,5 @@
 from loasim.calculate import DealCycle, calculate
-from loasim.core import Enemy, InternalStat
-from loasim.core.buff import BuffState
+from loasim.core import BuffState, Enemy, InternalStat
 from loasim.job import SkillState
 
 state = {

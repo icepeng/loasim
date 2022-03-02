@@ -1,7 +1,6 @@
 from loasim.calculate import DealCycle, calculate
-from loasim.core import Enemy, InternalStat, Stat
-from loasim.core.buff import BuffState
-from loasim.job.base import SkillState
+from loasim.core import BuffState, Enemy, InternalStat, Stat
+from loasim.job import SkillState
 
 sync0_state = {
     "환각": BuffState(onoff=False),
