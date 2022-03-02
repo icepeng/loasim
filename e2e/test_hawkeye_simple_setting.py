@@ -5,6 +5,7 @@ from loasim.job import SkillState
 
 state = {
     "피해 증폭": BuffState(onoff=True),
+    "내면의 각성": BuffState(onoff=True),
 }
 
 deal_cycle: DealCycle = [

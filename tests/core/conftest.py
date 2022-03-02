@@ -14,6 +14,7 @@ def test_skill():
         multiplier=1,
         head=False,
         back=False,
+        consume_mana=True,
         stat=Stat(),
         skill_afters=[],
     )
