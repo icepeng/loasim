@@ -228,6 +228,58 @@ lostark_job_artist.add_skill(
 
 lostark_job_artist.add_skill(
     SkillSpecification(
+        name="묵법 : 옹달샘",
+        type="Normal",
+        damage_table={
+            11: (5155, 14.30352),
+        },
+        tripods=[
+            Tripod(
+                name="급소타격",
+                stat_list=[
+                    Stat(crit=20),
+                    Stat(crit=26),
+                    Stat(crit=32),
+                    Stat(crit=38),
+                    Stat(crit=45),
+                ],
+            ),
+            Tripod(
+                name="강화된 일격",
+                stat_list=[
+                    Stat(pdamage_indep=30),
+                    Stat(pdamage_indep=37),
+                    Stat(pdamage_indep=44),
+                    Stat(pdamage_indep=52),
+                    Stat(pdamage_indep=60),
+                ],
+            ),
+            Tripod(
+                name="잉어 봉인해제!",
+                stat_list=[
+                    Stat(pdamage_indep=15),
+                    Stat(pdamage_indep=21),
+                    Stat(pdamage_indep=27),
+                    Stat(pdamage_indep=33),
+                    Stat(pdamage_indep=40),
+                ],
+            ),
+            Tripod(
+                name="(잉)어왕출현",
+                stat_list=[
+                    Stat(pdamage_indep=80),
+                    Stat(pdamage_indep=90),
+                    Stat(pdamage_indep=100),
+                    Stat(pdamage_indep=110),
+                    Stat(pdamage_indep=120),
+                ],
+            ),
+        ],
+    )
+)
+
+lostark_job_artist.add_skill(
+    SkillSpecification(
         name="묵법 : 먹오름",
         type="Area",
         damage_table={

@@ -80,6 +80,15 @@ calculate(
                 "붉은 달": 4,
             },
         ),
+        "묵법 : 옹달샘": SkillState(
+            level=11,
+            gem=7,
+            tripod={
+                "급소타격": 4,
+                "강화된 일격": 4,
+                "잉어 봉인해제!": 4,
+            },
+        ),
         "묵법 : 먹오름": SkillState(
             level=11,
             gem=5,
