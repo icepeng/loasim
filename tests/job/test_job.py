@@ -1,5 +1,40 @@
+import pytest
+
 from loasim.core import InternalStat
-from loasim.job import SkillState, get_job
+from loasim.job import Job, SkillSpecification, SkillState, get_job
+
+
+@pytest.mark.parametrize(
+    "level, base, coefficient",
+    [
+        (10, 100, 10),
+        (11, 110, 11),
+        (12, 120, 12),
+    ],
+)
+def test_job_build_skill(level: int, base: float, coefficient: float):
+    test_job = Job()
+    test_job.add_skill(
+        SkillSpecification(
+            name="테스트 스킬",
+            damage_table={
+                10: (100, 10),
+                11: (110, 11),
+                12: (120, 12),
+            },
+            type="Normal",
+        )
+    )
+
+    skills, _ = test_job.build(
+        {
+            "테스트 스킬": SkillState(level=level),
+        },
+        InternalStat(),
+    )
+
+    assert skills["테스트 스킬"].base == base
+    assert skills["테스트 스킬"].coefficient == coefficient
 
 
 def test_job_artist():
