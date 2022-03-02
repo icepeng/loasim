@@ -14,10 +14,10 @@ coverage = "pytest --cov=loasim tests"
 coverage-report = "pytest --cov=loasim --cov-report=xml tests"
 
 unittest = "pytest -vv -x tests"
-e2etest = "pytest -vv -x e2e"
+e2e = "pytest -vv -x e2e"
 typetest = "mypy loasim tests"
 
-test = ["coverage", "typetest", "lint", "formatting-check"]
+test = ["coverage", "e2e", "typetest", "lint", "formatting-check"]
 
 [tool.black]
 
@@ -68,6 +68,7 @@ mypy = "^0.910"
 black = "^21.9b0"
 pytest-cov = "^3.0.0"
 requests = "^2.26.0"
+syrupy = "^1.7.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
