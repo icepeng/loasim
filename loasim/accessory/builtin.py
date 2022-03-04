@@ -1,92 +1,19 @@
+import os
+
+import yaml
+
 from loasim.accessory.base import Accessory, AccessoryRepository
 from loasim.core.stat import InternalStat
 
 lostark_accessory_repository = AccessoryRepository()
 
-lostark_accessory_repository.add(
-    Accessory(
-        grade="epic",
-        type="necklace",
-        internal_stat=InternalStat(stat_main=6554),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="epic",
-        type="ear",
-        internal_stat=InternalStat(stat_main=5097),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="epic",
-        type="ring",
-        internal_stat=InternalStat(stat_main=4733),
-    )
-)
-
-lostark_accessory_repository.add(
-    Accessory(
-        grade="legendary",
-        type="necklace",
-        internal_stat=InternalStat(stat_main=7171),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="legendary",
-        type="ear",
-        internal_stat=InternalStat(stat_main=5578),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="legendary",
-        type="ring",
-        internal_stat=InternalStat(stat_main=5179),
-    )
-)
-
-lostark_accessory_repository.add(
-    Accessory(
-        grade="relic",
-        type="necklace",
-        internal_stat=InternalStat(stat_main=9872),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="relic",
-        type="ear",
-        internal_stat=InternalStat(stat_main=7678),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="relic",
-        type="ring",
-        internal_stat=InternalStat(stat_main=7130),
-    )
-)
-
-lostark_accessory_repository.add(
-    Accessory(
-        grade="ancient",
-        type="necklace",
-        internal_stat=InternalStat(stat_main=12546),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="ancient",
-        type="ear",
-        internal_stat=InternalStat(stat_main=9758),
-    )
-)
-lostark_accessory_repository.add(
-    Accessory(
-        grade="ancient",
-        type="ring",
-        internal_stat=InternalStat(stat_main=9061),
-    )
-)
+with open(os.path.join(os.path.dirname(__file__), "data.yml"), encoding="utf8") as f:
+    obj = yaml.safe_load(f)
+    for grade, categories in obj.items():
+        for category, internal_stat in categories.items():
+            accessory = Accessory(
+                grade=grade,
+                category=category,
+                internal_stat=InternalStat.parse_obj(internal_stat),
+            )
+            lostark_accessory_repository.add(accessory)

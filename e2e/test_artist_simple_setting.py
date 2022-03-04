@@ -1,5 +1,6 @@
 from loasim.calculate import DealCycle, calculate
-from loasim.core import BuffState, Enemy, InternalStat
+from loasim.character import AccessoryState, AvatarState, Character, GearState
+from loasim.core import BuffState, Enemy
 from loasim.job import SkillState
 
 
@@ -19,11 +20,38 @@ def calcuate_artist():
         ("묵법 : 먹오름", state, None),
     ]
 
+    character = Character(
+        combat_level=59,
+        expedition_stat=637,
+        crit=537,
+        special=56,
+        swift=1691,
+        gear_state=GearState(
+            head=(1340, "relic", 19),
+            shoulder=(1340, "relic", 19),
+            top=(1340, "relic", 18),
+            bottom=(1340, "relic", 18),
+            glove=(1340, "relic", 19),
+            weapon=(1340, "relic", 19),
+        ),
+        accessory_state=AccessoryState(
+            necklace="relic",
+            ear1="relic",
+            ear2="relic",
+            ring1="relic",
+            ring2="relic",
+        ),
+        avatar_state=AvatarState(
+            head="epic",
+            top="epic",
+            bottom="epic",
+            weapon="epic",
+        ),
+    )
+
     return calculate(
         job_name="artist",
-        internal_stat=InternalStat(
-            weapon_att=28800, stat_main=119610, crit=537, special=56, swift=1691
-        ),
+        internal_stat=character.get_internal_stat(),
         weapon_pdamage=21.86,
         setitem_state=[
             ("악몽", 2, 0),

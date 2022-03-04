@@ -16,6 +16,7 @@ class AvatarState(BaseModel):
     bottom: str
     weapon: str
 
+
 class AvatarRepository:
     def __init__(self):
         self._avatars: Dict[str, Avatar] = {}
