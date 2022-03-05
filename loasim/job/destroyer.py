@@ -42,13 +42,6 @@ class GravityCoreBuff(AbstractBuff):
 
 lostark_job_destroyer.add_buff(GravityCoreBuff(name="중력 코어"))
 
-lostark_job_destroyer.add_buff(
-    OnoffBuff(
-        name="분노의 망치",
-        stat=Stat(crit=15, crit_damage=45),
-    )
-)
-
 lostark_job_destroyer.add_skill(
     SkillSpecification(
         name="헤비 크러쉬",
