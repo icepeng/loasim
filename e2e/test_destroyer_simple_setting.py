@@ -1,5 +1,6 @@
 from loasim.calculate import DealCycle, calculate
 from loasim.core import BuffState, Enemy, InternalStat
+from loasim.core.stat import Stat
 from loasim.job import SkillState
 
 
@@ -11,7 +12,7 @@ def calculate_destroyer():
     }
     core_no_indure_state = {
         "고통의 흔적": BuffState(onoff=False),
-        "분노의 망치": BuffState(onoff=True),
+        "분노의 망치": BuffState(onoff=False),
         "중력 코어": BuffState(onoff=False),
     }
     release_indure_state = {
@@ -106,10 +107,22 @@ def calculate_destroyer():
                 tripod={},
             ),
             "퍼펙트 스윙": SkillState(
-                level=12, gem=9, tripod={"약점포착": 5, "날카로운 해머": 5, "무절제": 5}
+                level=12,
+                gem=9,
+                tripod={
+                    "약점포착": 5,
+                    "날카로운 해머": 5,
+                    "무절제": 5,
+                },
             ),
             "사이즈믹 해머": SkillState(
-                level=12, gem=9, tripod={"절대적인 힘": 5, "날카로운 벽": 5, "굶주린 힘": 5}
+                level=12,
+                gem=9,
+                tripod={
+                    "절대적인 힘": 5,
+                    "날카로운 벽": 5,
+                    "굶주린 힘": 5,
+                },
             ),
             "풀 스윙": SkillState(
                 level=12, gem=9, tripod={"빠른 준비": 5, "무서운 해머": 5, "야수의 눈": 5}
@@ -118,6 +131,9 @@ def calculate_destroyer():
         enemy=Enemy(armor=6000, reduction=23),
         deal_cycle=deal_cycle,
         cycle_time=68,
+        additional_stat=Stat(
+            pdamage_indep=3 / 3, crit=5 / 3, crit_damage=8 / 3
+        ),  # 순환 팔찌
     )
 
 

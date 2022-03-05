@@ -1,6 +1,7 @@
 from loasim.core import Skill, Stat
 from loasim.engraving.base import (
     EngravingRepository,
+    OnoffEngraving,
     SkillEngraving,
     StackEngraving,
     StatEngraving,
@@ -173,7 +174,7 @@ lostark_engraving_repository.add(
     )
 )
 lostark_engraving_repository.add(
-    StaticEngraving(
+    OnoffEngraving(
         name="분노의 망치",
         stat_list=[
             Stat(crit=9, crit_damage=15),
