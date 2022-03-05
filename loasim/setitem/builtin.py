@@ -191,7 +191,7 @@ lostark_setitem_repository.add(
                 ),
                 Stat(
                     pdamage_indep=8,
-                    pdamage_indep_head=sub_pdamage_indep(21, 7),
+                    pdamage_indep_head=sub_pdamage_indep(24, 8),
                     pdamage_indep_back=sub_pdamage_indep(24, 8),
                 ),
             ),
