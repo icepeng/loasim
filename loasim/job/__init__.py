@@ -3,12 +3,14 @@ from loasim.job.base import Job, SkillSpecification, SkillState, Tripod
 from loasim.job.blade import lostark_job_blade
 from loasim.job.hawkeye import lostark_job_hawkeye
 from loasim.job.scouter import lostark_job_scouter
+from loasim.job.destroyer import lostark_job_destroyer
 
 job_dict = {
     "artist": lostark_job_artist,
     "blade": lostark_job_blade,
     "hawkeye": lostark_job_hawkeye,
     "scouter": lostark_job_scouter,
+    "destroyer": lostark_job_destroyer,
 }
 
 
