@@ -125,7 +125,13 @@ def calculate_destroyer():
                 },
             ),
             "풀 스윙": SkillState(
-                level=12, gem=9, tripod={"빠른 준비": 5, "무서운 해머": 5, "야수의 눈": 5}
+                level=12,
+                gem=9,
+                tripod={
+                    "빠른 준비": 5,
+                    "무서운 해머": 5,
+                    "야수의 눈": 5,
+                },
             ),
         },
         enemy=Enemy(armor=6000, reduction=23),

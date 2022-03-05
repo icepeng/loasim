@@ -1,6 +1,6 @@
 from typing import Dict
 
-from loasim.core.buff import AbstractBuff, BuffState, OnoffBuff
+from loasim.core.buff import AbstractBuff, BuffState
 from loasim.core.skill import Skill
 from loasim.core.stat import InternalStat, Stat
 from loasim.job.base import Job, SkillSpecification, Tripod
@@ -48,7 +48,7 @@ lostark_job_destroyer.add_skill(
         type="Normal",
         head=True,
         damage_table={
-            12: (840, 4.47),
+            12: (840, 5.19),
         },
         tripods=[
             Tripod(
@@ -70,7 +70,7 @@ lostark_job_destroyer.add_skill(
         head=True,
         back=True,
         damage_table={
-            10: (1939, 9.05),
+            10: (1939, 10.50),
         },
         tripods=[
             Tripod(
@@ -94,7 +94,7 @@ lostark_job_destroyer.add_skill(
         name="그라비티 임팩트",
         type="Normal",
         damage_table={
-            10: (1224, 5.97),
+            10: (1224, 6.93),
         },
         tripods=[
             Tripod(
@@ -118,7 +118,7 @@ lostark_job_destroyer.add_skill(
         type="Normal",
         head=True,
         damage_table={
-            11: (492, 5.69),
+            11: (492, 6.60),
         },
         tripods=[
             Tripod(
@@ -142,7 +142,7 @@ lostark_job_destroyer.add_skill(
         type="Holding",
         head=True,
         damage_table={
-            7: (1847, 9.56),
+            7: (1847, 11.09),
         },
         tripods=[
             Tripod(
@@ -163,7 +163,7 @@ lostark_job_destroyer.add_skill(
         head=True,
         back=True,
         damage_table={
-            12: (3849, 20.54),
+            12: (3849, 23.83),
         },
         tripods=[
             Tripod(
@@ -188,7 +188,7 @@ lostark_job_destroyer.add_skill(
         head=True,
         back=True,
         damage_table={
-            12: (3573, 19.07),
+            12: (3573, 22.12),
         },
         tripods=[
             Tripod(
@@ -212,7 +212,7 @@ lostark_job_destroyer.add_skill(
         type="Charge",
         head=True,
         damage_table={
-            12: (3803, 15.02),
+            12: (3803, 17.42),
         },
         tripods=[
             Tripod(
