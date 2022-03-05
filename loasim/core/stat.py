@@ -11,6 +11,7 @@ class InternalStat(BaseModel):
 
     weapon_att: float = 0
     stat_main: float = 0
+    pstat_main: float = 0
     crit: float = 0
     special: float = 0
     swift: float = 0
@@ -19,8 +20,20 @@ class InternalStat(BaseModel):
         return Stat(
             crit=self.crit * 0.03577,
             crit_damage=200,
-            att=sqrt(self.weapon_att * self.stat_main / 6),
+            att=sqrt(
+                self.weapon_att * (self.stat_main * (100 + self.pstat_main) / 100) / 6
+            ),
             moving_speed=self.swift * 0.01717,
+        )
+
+    def __add__(self, arg: InternalStat) -> InternalStat:
+        return InternalStat(
+            weapon_att=self.weapon_att + arg.weapon_att,
+            stat_main=self.stat_main + arg.stat_main,
+            pstat_main=self.pstat_main + arg.pstat_main,
+            crit=self.crit + arg.crit,
+            special=self.special + arg.special,
+            swift=self.swift + arg.swift,
         )
 
 

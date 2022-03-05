@@ -1,0 +1,31 @@
+epic:
+  necklace:
+    stat_main: 6554
+  ear:
+    stat_main: 5097
+  ring:
+    stat_main: 4733
+
+legendary:
+  necklace:
+    stat_main: 7171
+  ear:
+    stat_main: 5578
+  ring:
+    stat_main: 5179
+
+relic:
+  necklace:
+    stat_main: 9872
+  ear:
+    stat_main: 7678
+  ring:
+    stat_main: 7130
+
+ancient:
+  necklace:
+    stat_main: 12546
+  ear:
+    stat_main: 9758
+  ring:
+    stat_main: 9061
