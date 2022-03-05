@@ -21,6 +21,9 @@ class GravityCoreBuff(AbstractBuff):
         buff_state = state.get(self.name)
         if buff_state is None:
             raise ValueError(f"{self.name} is not found in state")
+        if not buff_state.onoff:
+            return Stat()
+
         core = buff_state.stack
         if core == 3:
             core_bonus = 45

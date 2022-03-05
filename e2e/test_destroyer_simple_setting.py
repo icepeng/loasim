@@ -4,62 +4,64 @@ from loasim.job import SkillState
 
 
 def calculate_destroyer():
-    release_indure_state = {
-        "고통의 흔적": BuffState(onoff=True),
-        "분노의 망치": BuffState(onoff=True),
-        "중력 코어": BuffState(onoff=True),
-    }
     core_indure_state = {
         "고통의 흔적": BuffState(onoff=True),
         "분노의 망치": BuffState(onoff=False),
+        "중력 코어": BuffState(onoff=False),
     }
-    core_noIndure_state = {
+    core_no_indure_state = {
         "고통의 흔적": BuffState(onoff=False),
         "분노의 망치": BuffState(onoff=True),
+        "중력 코어": BuffState(onoff=False),
     }
-    release_noIndure_state = {
+    release_indure_state = {
+        "고통의 흔적": BuffState(onoff=True),
+        "분노의 망치": BuffState(onoff=True),
+        "중력 코어": BuffState(onoff=True, stack=3),
+    }
+    release_no_indure_state = {
         "고통의 흔적": BuffState(onoff=False),
         "분노의 망치": BuffState(onoff=True),
-        "중력 코어": BuffState(onoff=True),
+        "중력 코어": BuffState(onoff=True, stack=3),
     }
 
     deal_cycle: DealCycle = [
         ("사이즈믹 해머", release_indure_state, "head"),
-        ("인듀어 페인", core_noIndure_state, "head"),
-        ("그라비티 임팩트", core_indure_state, None),
+        ("인듀어 페인", core_no_indure_state, "head"),
+        ("그라비티 임팩트", core_indure_state, "head"),
         ("풀 스윙", release_indure_state, "head"),
         ("헤비 크러쉬", core_indure_state, "head"),
-        ("러닝 크래쉬", core_noIndure_state, "head"),
-        ("퍼펙트 스윙", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("그라비티 임팩트", core_noIndure_state, None),
-        ("풀 스윙", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("드레드노트", core_noIndure_state, "head"),
-        ("사이즈믹 해머", release_noIndure_state, "head"),
-        ("그라비티 임팩트", core_noIndure_state, None),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("풀 스윙", release_noIndure_state, "head"),
-        ("러닝 크래쉬", core_noIndure_state, "head"),
-        ("인듀어 페인", core_noIndure_state, "head"),
+        ("러닝 크래쉬", core_no_indure_state, "head"),
+        ("퍼펙트 스윙", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("그라비티 임팩트", core_no_indure_state, "head"),
+        ("풀 스윙", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("드레드노트", core_no_indure_state, "head"),
+        ("사이즈믹 해머", release_no_indure_state, "head"),
+        ("그라비티 임팩트", core_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("풀 스윙", release_no_indure_state, "head"),
+        ("러닝 크래쉬", core_no_indure_state, "head"),
+        ("인듀어 페인", core_no_indure_state, "head"),
         ("퍼펙트 스윙", release_indure_state, "head"),
         ("헤비 크러쉬", core_indure_state, "head"),
-        ("그라비티 임팩트", core_noIndure_state, None),
-        ("풀 스윙", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("드레드노트", core_noIndure_state, "head"),
-        ("사이즈믹 해머", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("그라비티 임팩트", core_noIndure_state, None),
-        ("풀 스윙", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("러닝 크래쉬", core_noIndure_state, "head"),
-        ("퍼펙트 스윙", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("그라비티 임팩트", core_noIndure_state, None),
-        ("풀 스윙", release_noIndure_state, "head"),
-        ("헤비 크러쉬", core_noIndure_state, "head"),
-        ("드레드노트", core_noIndure_state, "head"),
+        ("그라비티 임팩트", core_no_indure_state, "head"),
+        ("풀 스윙", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("드레드노트", core_no_indure_state, "head"),
+        ("사이즈믹 해머", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("그라비티 임팩트", core_no_indure_state, "head"),
+        ("풀 스윙", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("러닝 크래쉬", core_no_indure_state, "head"),
+        ("퍼펙트 스윙", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("그라비티 임팩트", core_no_indure_state, "head"),
+        ("풀 스윙", release_no_indure_state, "head"),
+        ("헤비 크러쉬", core_no_indure_state, "head"),
+        ("드레드노트", core_no_indure_state, "head"),
     ]
 
     return calculate(
