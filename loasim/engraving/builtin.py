@@ -172,6 +172,16 @@ lostark_engraving_repository.add(
         ],
     )
 )
+lostark_engraving_repository.add(
+    StaticEngraving(
+        name="분노의 망치",
+        stat_list=[
+            Stat(crit=9, crit_damage=15),
+            Stat(crit=12, crit_damage=30),
+            Stat(crit=15, crit_damage=45),
+        ],
+    )
+)
 
 
 def get_blade_buff(engraving_grade: int, burst_grade: int) -> int:
