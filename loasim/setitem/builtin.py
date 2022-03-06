@@ -168,8 +168,16 @@ lostark_setitem_repository.add(
         name="사멸",
         stat_list=[
             (
-                Stat(crit_damage=17, crit_damage_back=55 - 17),
-                Stat(crit_damage=20, crit_damage_back=60 - 20),
+                Stat(
+                    crit_damage=17,
+                    crit_damage_head=55 - 17,
+                    crit_damage_back=55 - 17,
+                ),
+                Stat(
+                    crit_damage=20,
+                    crit_damage_head=60 - 20,
+                    crit_damage_back=60 - 20,
+                ),
             ),
             (
                 Stat(crit=17),
@@ -178,10 +186,12 @@ lostark_setitem_repository.add(
             (
                 Stat(
                     pdamage_indep=7,
+                    pdamage_indep_head=sub_pdamage_indep(21, 7),
                     pdamage_indep_back=sub_pdamage_indep(21, 7),
                 ),
                 Stat(
                     pdamage_indep=8,
+                    pdamage_indep_head=sub_pdamage_indep(24, 8),
                     pdamage_indep_back=sub_pdamage_indep(24, 8),
                 ),
             ),
