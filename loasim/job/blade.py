@@ -375,7 +375,7 @@ lostark_job_blade.add_skill(
                     Stat(pdamage_indep=78.4 - 100),
                     Stat(pdamage_indep=86.8 - 100),
                     Stat(pdamage_indep=95.9 - 100),
-                    Stat(pdamage_indep=105.0 - 199),
+                    Stat(pdamage_indep=105.0 - 100),
                 ],
             ),
         ],
