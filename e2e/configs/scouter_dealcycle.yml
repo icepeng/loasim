@@ -1,0 +1,115 @@
+cycle_time: 23
+skill_actions:
+  - name: "명령 : 레이드 미사일"
+    status: &nosync_status
+      환각:
+        onoff: False
+      실체:
+        onoff: True
+      진화의 유산:
+        onoff: False
+      하이퍼 싱크:
+        onoff: False
+    position: null
+  - name: "명령 : 베이비 드론"
+    status: *nosync_status
+    position: null
+  - name: 코멧 스트라이크
+    status:
+      환각:
+        onoff: False
+      실체:
+        onoff: True
+      진화의 유산:
+        onoff: True
+      하이퍼 싱크:
+        onoff: True
+        stack: 0
+    position: null
+  - name: 레이저 블레이드
+    status:
+      환각:
+        onoff: False
+      실체:
+        onoff: True
+      진화의 유산:
+        onoff: True
+      하이퍼 싱크:
+        onoff: True
+        stack: 1
+    position: null
+  - name: 크림슨 브레이커
+    status:
+      환각:
+        onoff: False
+      실체:
+        onoff: True
+      진화의 유산:
+        onoff: True
+      하이퍼 싱크:
+        onoff: True
+        stack: 2
+    position: null
+  - name: 코멧 스트라이크
+    status: &sync3_status
+      환각:
+        onoff: False
+      실체:
+        onoff: True
+      진화의 유산:
+        onoff: True
+      하이퍼 싱크:
+        onoff: True
+        stack: 3
+    position: null
+  - name: 엑셀리온 빔
+    status: *sync3_status
+    position: null
+  - name: 슬러그 샷
+    status: *sync3_status
+    position: null
+  - name: 버스트 블로우
+    status: *sync3_status
+    position: null
+  - name: 코멧 스트라이크
+    status: *sync3_status
+    position: null
+  - name: 레이저 블레이드
+    status: *sync3_status
+    position: null
+  - name: 슬러그 샷
+    status: *sync3_status
+    position: null
+  - name: 코멧 스트라이크
+    status: *sync3_status
+    position: null
+  - name: 엑셀리온 빔
+    status: *sync3_status
+    position: null
+  - name: 슬러그 샷
+    status: *sync3_status
+    position: null
+  - name: 크림슨 브레이커
+    status: *sync3_status
+    position: null
+  - name: 코멧 스트라이크
+    status: *sync3_status
+    position: null
+  - name: 레이저 블레이드
+    status: *sync3_status
+    position: null
+  - name: 슬러그 샷
+    status: *sync3_status
+    position: null
+  - name: 버스트 블로우
+    status: *sync3_status
+    position: null
+  - name: 코멧 스트라이크
+    status: *sync3_status
+    position: null
+  - name: 엑셀리온 빔
+    status: *sync3_status
+    position: null
+  - name: 슬러그 샷
+    status: *sync3_status
+    position: null

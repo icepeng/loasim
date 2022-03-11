@@ -1,0 +1,25 @@
+cycle_time: 12.127
+skill_actions:
+  - name: "필법 : 한획긋기"
+    status: &buff_status
+      저무는 달:
+        onoff: False
+      내면의 각성:
+        onoff: True
+      나만의 권능:
+        onoff: True
+      나만의 우물:
+        onoff: True
+    position: null
+  - name: "묵법 : 두루미나래"
+    status: *buff_status
+    position: null
+  - name: "묵법 : 범가르기"
+    status: *buff_status
+    position: null
+  - name: "묵법 : 달그리기"
+    status: *buff_status
+    position: null
+  - name: "묵법 : 먹오름"
+    status: *buff_status
+    position: null

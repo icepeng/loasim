@@ -1,0 +1,51 @@
+cycle_time: 9.375
+skill_actions:
+  - name: 스핀 커터
+    status: &blade_arts_status
+      블레이드 아츠:
+        onoff: True
+      약점 노출:
+        onoff: True
+      버스트:
+        onoff: False
+    position: back
+  - name: 스핀 커터
+    status: *blade_arts_status
+    position: back
+  - name: 스핀 커터
+    status: *blade_arts_status
+    position: back
+  - name: 윈드 컷
+    status: *blade_arts_status
+    position: back
+  - name: 소울 앱소버
+    status: *blade_arts_status
+    position: back
+  - name: 어스 슬래쉬
+    status: *blade_arts_status
+    position: back
+  - name: 블리츠 러시
+    status: *blade_arts_status
+    position: back
+  - name: 윈드 컷
+    status: *blade_arts_status
+    position: back
+  - name: 블레이드 버스트
+    status:
+      블레이드 아츠:
+        onoff: True
+      약점 노출:
+        onoff: True
+      버스트:
+        onoff: True
+        stack: 12
+    position: back
+  - name: 보이드 스트라이크
+    status:
+      블레이드 아츠:
+        onoff: False
+      약점 노출:
+        onoff: True
+      버스트:
+        onoff: False
+    position: back

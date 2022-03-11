@@ -1,0 +1,89 @@
+job_name: blade
+combat_level: 58
+expedition_stat: 400
+crit: 580
+special: 1739
+swift: 38
+weapon_pdamage: 30
+gear_status:
+  head:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+  shoulder:
+    base_item_level: 1390
+    grade: relic
+    upgrade: 15
+  top:
+    base_item_level: 1390
+    grade: relic
+    upgrade: 15
+  bottom:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+  glove:
+    base_item_level: 1390
+    grade: relic
+    upgrade: 16
+  weapon:
+    base_item_level: 1390
+    grade: relic
+    upgrade: 17
+accessory_status:
+  necklace: relic
+  ear1: relic
+  ear2: relic
+  ring1: relic
+  ring2: relic
+avatar_status:
+  head: epic
+  top: epic
+  bottom: epic
+  weapon: epic
+setitem_status:
+  사멸:
+    level1: 6
+    level2: 6
+engraving_status:
+  원한: 3
+  슈퍼 차지: 3
+  기습의 대가: 3
+  아드레날린: 3
+  잔재된 기운: 3
+card_status:
+  - 남겨진 바람의 절벽 (12)
+skill_status:
+  스핀 커터:
+    level: 10
+    tripod:
+      약점 노출: 1
+  소울 앱소버:
+    level: 11
+    gem: 7
+    tripod:
+      암흑 공격: 5
+      반 가르기: 4
+  보이드 스트라이크:
+    level: 11
+    gem: 7
+    tripod:
+      암흑 공격: 4
+      블랙 익스플로젼: 4
+  블리츠 러시:
+    level: 11
+    gem: 7
+    tripod:
+      급소 타격: 4
+      차지 강화: 5
+      쉐도우 러시: 5
+  문라이트 소닉:
+    level: 11
+    gem: 7
+    tripod:
+      암흑 공격: 5
+      지속력 강화: 4
+      쉐이드 소닉: 4
+  블레이드 버스트:
+    level: 11
+    gem: 7

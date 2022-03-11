@@ -36,6 +36,11 @@ class SetItem(BaseModel):
         return buffs
 
 
+class SetItemState(BaseModel):
+    level1: int
+    level2: int
+
+
 class SetItemRepository:
     def __init__(self):
         self._set_items: Dict[str, SetItem] = {}
@@ -43,18 +48,16 @@ class SetItemRepository:
     def add(self, setitem: SetItem):
         self._set_items[setitem.name] = setitem
 
-    def get_stat(self, setitem_state: List[Tuple[str, int, int]]) -> Stat:
+    def get_stat(self, setitem_status: Dict[str, SetItemState]) -> Stat:
         stat = Stat()
-        for name, level1, level2 in setitem_state:
-            stat = stat + self._set_items[name].get_stat(level1, level2)
+        for name, state in setitem_status.items():
+            stat = stat + self._set_items[name].get_stat(state.level1, state.level2)
 
         return stat
 
-    def get_buffs(
-        self, setitem_state: List[Tuple[str, int, int]]
-    ) -> List[AbstractBuff]:
+    def get_buffs(self, setitem_status: Dict[str, SetItemState]) -> List[AbstractBuff]:
         buffs: List[AbstractBuff] = []
-        for name, level1, level2 in setitem_state:
-            buffs += self._set_items[name].get_buffs(level1, level2)
+        for name, state in setitem_status.items():
+            buffs += self._set_items[name].get_buffs(state.level1, state.level2)
 
         return buffs
