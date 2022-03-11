@@ -19,7 +19,7 @@ class Accessory(BaseModel):
     internal_stat: InternalStat
 
 
-class AccessoryState(BaseModel):
+class AccessoryStatus(BaseModel):
     necklace: str
     ear1: str
     ear2: str
@@ -34,9 +34,9 @@ class AccessoryRepository:
     def add(self, accessory: Accessory):
         self._accessories[(accessory.category, accessory.grade)] = accessory
 
-    def get_internal_stat(self, accessory_state: AccessoryState) -> InternalStat:
+    def get_internal_stat(self, accessory_status: AccessoryStatus) -> InternalStat:
         internal_stat = InternalStat()
-        for slot, grade in accessory_state.dict().items():
+        for slot, grade in accessory_status:
             if grade is not None:
                 accessory = self._accessories.get((slot_category_map[slot], grade))
                 if accessory is None:

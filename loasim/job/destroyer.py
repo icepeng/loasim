@@ -13,14 +13,14 @@ class GravityCoreBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
     ):
-        buff_state = state.get(self.name)
+        buff_state = status.get(self.name)
         if buff_state is None:
-            raise ValueError(f"{self.name} is not found in state")
+            raise ValueError(f"{self.name} is not found in status")
         if not buff_state.onoff:
             return Stat()
 

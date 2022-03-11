@@ -1,0 +1,144 @@
+cycle_time: 62
+skill_actions:
+  - name: 아토믹 애로우
+    status: &buff_status
+      피해 증폭:
+        onoff: True
+      내면의 각성:
+        onoff: True
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 애로우 샤워
+    status: *buff_status
+    position: null
+  - name: 애로우 해일
+    status: *buff_status
+    position: null
+  - name: 아토믹 애로우
+    status: *buff_status
+    position: null
+  - name: 스나이프
+    status: *buff_status
+    position: null
+  - name: 샤프 슈터
+    status: *buff_status
+    position: null
+  - name: 차징 샷
+    status: *buff_status
+    position: null

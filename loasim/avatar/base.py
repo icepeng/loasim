@@ -10,7 +10,7 @@ class Avatar(BaseModel):
     internal_stat: InternalStat
 
 
-class AvatarState(BaseModel):
+class AvatarStatus(BaseModel):
     head: str
     top: str
     bottom: str
@@ -24,9 +24,9 @@ class AvatarRepository:
     def add(self, avatar: Avatar):
         self._avatars[avatar.grade] = avatar
 
-    def get_internal_stat(self, avatar_state: AvatarState) -> InternalStat:
+    def get_internal_stat(self, avatar_status: AvatarStatus) -> InternalStat:
         internal_stat = InternalStat()
-        for grade in avatar_state.dict().values():
+        for _, grade in avatar_status:
             if grade is not None:
                 avatar = self._avatars.get(grade)
                 if avatar is None:

@@ -1,6 +1,6 @@
 import pytest
 
-from loasim.setitem import lostark_setitem_repository
+from loasim.setitem import SetItemState, lostark_setitem_repository
 
 
 @pytest.mark.parametrize(
@@ -19,5 +19,9 @@ from loasim.setitem import lostark_setitem_repository
     ],
 )
 def test_setitem_repository(setitem_name: str, setitem_lv1: int, setitem_lv2: int):
-    lostark_setitem_repository.get_stat([(setitem_name, setitem_lv1, setitem_lv2)])
-    lostark_setitem_repository.get_buffs([(setitem_name, setitem_lv1, setitem_lv2)])
+    lostark_setitem_repository.get_stat(
+        {setitem_name: SetItemState(level1=setitem_lv1, level2=setitem_lv2)}
+    )
+    lostark_setitem_repository.get_buffs(
+        {setitem_name: SetItemState(level1=setitem_lv1, level2=setitem_lv2)}
+    )

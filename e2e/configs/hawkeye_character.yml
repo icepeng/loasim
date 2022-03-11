@@ -1,0 +1,98 @@
+job_name: hawkeye
+combat_level: 60
+expedition_stat: 637
+crit: 607
+special: 56
+swift: 1756
+weapon_pdamage: 23.45
+gear_status:
+  head:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+  shoulder:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+  top:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+  bottom:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+  glove:
+    base_item_level: 1390
+    grade: relic
+    upgrade: 15
+  weapon:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 20
+accessory_status:
+  necklace: relic
+  ear1: relic
+  ear2: relic
+  ring1: relic
+  ring2: relic
+avatar_status:
+  head: epic
+  top: epic
+  bottom: epic
+  weapon: epic
+
+setitem_status:
+  악몽:
+    level1: 2
+    level2: 2
+  지배:
+    level1: 4
+    level2: 4
+engraving_status:
+  원한: 3
+  예리한 둔기: 3
+  타격의 대가: 3
+  아드레날린: 3
+  정밀 단도: 3
+card_status:
+  - 남겨진 바람의 절벽 (12)
+skill_status:
+  스나이프:
+    level: 12
+    gem: 7
+    tripod:
+      약점 포착: 5
+      손쉬운 먹잇감: 5
+  샤프 슈터:
+    level: 12
+    gem: 7
+    tripod:
+      급소 타격: 5
+      약점 포착: 5
+      집중 사격: 5
+  차징 샷:
+    level: 12
+    gem: 5
+    tripod:
+      더블 샷: 4
+      즉발: 4
+  애로우 해일:
+    level: 12
+    gem: 7
+    tripod:
+      강화된 화살: 4
+      저속 탄환: 5
+      웨이브 해일: 5
+  아토믹 애로우:
+    level: 12
+    gem: 5
+    tripod:
+      피해 증폭: 1
+      전격 화살: 4
+  애로우 샤워:
+    level: 10
+    gem: 5
+    tripod:
+      지속력 강화: 4
+      장대비: 4

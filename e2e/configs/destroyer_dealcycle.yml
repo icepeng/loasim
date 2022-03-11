@@ -1,0 +1,136 @@
+cycle_time: 68
+skill_actions:
+  - name: 사이즈믹 해머
+    status: &release_indure_status
+      고통의 흔적:
+        onoff: True
+      분노의 망치:
+        onoff: True
+      중력 코어:
+        onoff: True
+        stack: 3
+    position: head
+  - name: 인듀어 페인
+    status: &core_no_indure_status
+      고통의 흔적:
+        onoff: False
+      분노의 망치:
+        onoff: False
+      중력 코어:
+        onoff: False
+    position: head
+  - name: 그라비티 임팩트
+    status: &core_indure_status
+      고통의 흔적:
+        onoff: True
+      분노의 망치:
+        onoff: False
+      중력 코어:
+        onoff: False
+    position: head
+  - name: 풀 스윙
+    status: *release_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_indure_status
+    position: head
+  - name: 러닝 크래쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 퍼펙트 스윙
+    status: &release_no_indure_status
+      고통의 흔적:
+        onoff: False
+      분노의 망치:
+        onoff: True
+      중력 코어:
+        onoff: True
+        stack: 3
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 그라비티 임팩트
+    status: *core_no_indure_status
+    position: head
+  - name: 풀 스윙
+    status: *release_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 드레드노트
+    status: *core_no_indure_status
+    position: head
+  - name: 사이즈믹 해머
+    status: *release_no_indure_status
+    position: head
+  - name: 그라비티 임팩트
+    status: *core_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 풀 스윙
+    status: *release_no_indure_status
+    position: head
+  - name: 러닝 크래쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 인듀어 페인
+    status: *core_no_indure_status
+    position: head
+  - name: 퍼펙트 스윙
+    status: *release_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_indure_status
+    position: head
+  - name: 그라비티 임팩트
+    status: *core_no_indure_status
+    position: head
+  - name: 풀 스윙
+    status: *release_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 드레드노트
+    status: *core_no_indure_status
+    position: head
+  - name: 사이즈믹 해머
+    status: *release_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 그라비티 임팩트
+    status: *core_no_indure_status
+    position: head
+  - name: 풀 스윙
+    status: *release_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 러닝 크래쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 퍼펙트 스윙
+    status: *release_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 그라비티 임팩트
+    status: *core_no_indure_status
+    position: head
+  - name: 풀 스윙
+    status: *release_no_indure_status
+    position: head
+  - name: 헤비 크러쉬
+    status: *core_no_indure_status
+    position: head
+  - name: 드레드노트
+    status: *core_no_indure_status
+    position: head

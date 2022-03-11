@@ -1,4 +1,4 @@
-from typing import Callable, Dict, List, Tuple
+from typing import Callable, Dict, List
 
 from pydantic import BaseModel
 
@@ -78,9 +78,9 @@ class EngravingRepository:
     def add(self, engraving: AbstractEngraving):
         self._engravings[engraving.name] = engraving
 
-    def get_buffs(self, engraving_state: List[Tuple[str, int]]) -> List[AbstractBuff]:
+    def get_buffs(self, engraving_status: Dict[str, int]) -> List[AbstractBuff]:
         buffs: List[AbstractBuff] = []
-        for name, level in engraving_state:
+        for name, level in engraving_status.items():
             engraving = self._engravings.get(name)
             if engraving is None:
                 raise Exception(f"{name} is not an engraving")

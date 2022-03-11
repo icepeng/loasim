@@ -1,0 +1,104 @@
+job_name: artist
+combat_level: 59
+expedition_stat: 637
+crit: 537
+special: 56
+swift: 1691
+weapon_pdamage: 21.86
+gear_status:
+  head:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 19
+  shoulder:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 19
+  top:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 18
+  bottom:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 18
+  glove:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 19
+  weapon:
+    base_item_level: 1340
+    grade: relic
+    upgrade: 19
+accessory_status:
+  necklace: relic
+  ear1: relic
+  ear2: relic
+  ring1: relic
+  ring2: relic
+avatar_status:
+  head: epic
+  top: epic
+  bottom: epic
+  weapon: epic
+setitem_status:
+  악몽:
+    level1: 2
+    level2: 0
+  지배:
+    level1: 4
+    level2: 0
+engraving_status:
+  원한: 3
+  예리한 둔기: 3
+  안정된 상태: 3
+  돌격대장: 3
+  회귀: 3
+card_status:
+  - 남겨진 바람의 절벽 (12)
+skill_status:
+  "묵법 : 해그리기":
+    level: 10
+    tripod:
+      나만의 권능: 5
+  "묵법 : 해우물":
+    level: 10
+    tripod:
+      나만의 우물: 1
+  "필법 : 한획긋기":
+    level: 11
+    gem: 7
+    tripod:
+      거대한 붓: 5
+      강화된 일격: 5
+  "묵법 : 두루미나래":
+    level: 11
+    gem: 5
+    tripod:
+      치명적인 일격: 5
+      학익진: 5
+  "묵법 : 범가르기":
+    level: 11
+    gem: 6
+    tripod:
+      궤뚫는 일격: 5
+      강화된 일격: 5
+  "묵법 : 달그리기":
+    level: 11
+    gem: 7
+    tripod:
+      별 그리기: 4
+      붉은 달: 4
+  "묵법 : 옹달샘":
+    level: 11
+    gem: 7
+    tripod:
+      급소타격: 4
+      강화된 일격: 4
+      잉어 봉인해제!: 4
+  "묵법 : 먹오름":
+    level: 11
+    gem: 5
+    tripod:
+      치명적인 일격: 1
+      먹물점정: 1

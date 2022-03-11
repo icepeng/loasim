@@ -1,0 +1,103 @@
+job_name: destroyer
+combat_level: 60
+expedition_stat: 1135
+crit: 1471
+special: 449
+swift: 544
+weapon_pdamage: 28.44
+gear_status:
+  head:
+    base_item_level: 1390
+    grade: ancient
+    upgrade: 19
+  shoulder:
+    base_item_level: 1390
+    grade: ancient
+    upgrade: 19
+  top:
+    base_item_level: 1390
+    grade: ancient
+    upgrade: 19
+  bottom:
+    base_item_level: 1390
+    grade: ancient
+    upgrade: 19
+  glove:
+    base_item_level: 1390
+    grade: ancient
+    upgrade: 19
+  weapon:
+    base_item_level: 1390
+    grade: ancient
+    upgrade: 21
+accessory_status:
+  necklace: ancient
+  ear1: ancient
+  ear2: ancient
+  ring1: ancient
+  ring2: ancient
+avatar_status:
+  head: epic
+  top: epic
+  bottom: epic
+  weapon: epic
+bracelet_internal_stat:
+  stat_main: 2550
+bracelet_stat:
+  pdamage_indep: 1
+  crit: 1.66666
+  crit_damage: 2.66666
+
+setitem_status:
+  사멸:
+    level1: 6
+    level2: 6
+engraving_status:
+  원한: 3
+  슈퍼 차지: 3
+  바리케이드: 3
+  저주받은 인형: 3
+  분노의 망치: 3
+card_status:
+  - 세상을 구하는 빛 (18)
+skill_status:
+  헤비 크러쉬:
+    level: 12
+    gem: 0
+  인듀어 페인:
+    level: 10
+    gem: 0
+    tripod:
+      고통의 흔적: 1
+  그라비티 임팩트:
+    level: 10
+    gem: 0
+  드레드노트:
+    level: 11
+    gem: 0
+    tripod:
+      몰아치는 해머: 5
+  러닝 크래쉬:
+    level: 7
+    gem: 0
+  퍼펙트 스윙:
+    level: 12
+    gem: 9
+    tripod:
+      약점포착: 5
+      날카로운 해머: 5
+      무절제: 5
+  사이즈믹 해머:
+    level: 12
+    gem: 9
+    tripod:
+      절대적인 힘: 5
+      날카로운 벽: 5
+      굶주린 힘: 5
+  풀 스윙:
+    level: 12
+    gem: 9
+    tripod:
+      빠른 준비: 5
+      무서운 해머: 5
+      야수의 눈: 5

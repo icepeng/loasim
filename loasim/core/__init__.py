@@ -10,5 +10,5 @@ from loasim.core.buff import (
     StaticBuff,
 )
 from loasim.core.enemy import Enemy
-from loasim.core.skill import AttackType, Skill, SkillType
+from loasim.core.skill import AttackPosition, Skill, SkillType
 from loasim.core.stat import InternalStat, Stat

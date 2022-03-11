@@ -18,7 +18,7 @@ from loasim.engraving import lostark_engraving_repository
 def test_engraving_repository_static(
     engraving_name: str, level: int, expected_stat: Stat
 ):
-    buff = lostark_engraving_repository.get_buffs([(engraving_name, level)])[0]
+    buff = lostark_engraving_repository.get_buffs({engraving_name: level})[0]
     assert isinstance(buff, StaticBuff)
     assert buff.stat == expected_stat
 
@@ -34,7 +34,7 @@ def test_engraving_repository_static(
 def test_engraving_repository_stack(
     engraving_name: str, level: int, expected_stat: Stat, test_skill: Skill
 ):
-    buff = lostark_engraving_repository.get_buffs([(engraving_name, level)])[0]
+    buff = lostark_engraving_repository.get_buffs({engraving_name: level})[0]
     assert isinstance(buff, StackBuff)
     assert (
         buff.get_stat(

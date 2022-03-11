@@ -18,7 +18,7 @@ class AbstractBuff(BaseModel):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
@@ -32,12 +32,12 @@ class OnoffBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
     ):
-        buff_state = state.get(self.name)
+        buff_state = status.get(self.name)
         if buff_state is None:
             raise ValueError(f"{self.name} is not found in state")
         if buff_state.onoff:
@@ -51,7 +51,7 @@ class StaticBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
@@ -67,14 +67,14 @@ class StackBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
     ):
-        buff_state = state.get(self.name)
+        buff_state = status.get(self.name)
         if buff_state is None:
-            raise ValueError(f"{self.name} is not found in state")
+            raise ValueError(f"{self.name} is not found in status")
         if buff_state.onoff:
             return self.stat_fn(buff_state.stack)
         return Stat()
@@ -88,7 +88,7 @@ class SkillBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
@@ -104,7 +104,7 @@ class StatBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
@@ -120,12 +120,12 @@ class InternalStatOnoffBuff(AbstractBuff):
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         stat: Stat,
         internal_stat: InternalStat,
     ):
-        buff_state = state.get(self.name)
+        buff_state = status.get(self.name)
         if buff_state is None:
             raise ValueError(f"{self.name} is not found in state")
         if buff_state.onoff:
@@ -145,16 +145,16 @@ class BuffManager:
 
     def get_stat(
         self,
-        state: Dict[str, BuffState],
+        status: Dict[str, BuffState],
         skill: Skill,
         basis_stat: Stat,
         internal_stat: InternalStat,
     ) -> Stat:
         stat = Stat()
         for buff in self._buffs:
-            stat = stat + buff.get_stat(state, skill, basis_stat, internal_stat)
+            stat = stat + buff.get_stat(status, skill, basis_stat, internal_stat)
 
         for buff in self._stat_buffs:
-            stat = stat + buff.get_stat(state, skill, stat + basis_stat, internal_stat)
+            stat = stat + buff.get_stat(status, skill, stat + basis_stat, internal_stat)
 
         return stat

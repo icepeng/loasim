@@ -1,0 +1,39 @@
+cycle_time: 10
+skill_actions:
+  - name: 스핀 커터
+    status: &no_blade_arts_status
+      블레이드 아츠:
+        onoff: False
+      약점 노출:
+        onoff: True
+      잔재된 기운:
+        onoff: True
+        stack: 3
+    position: back
+  - name: 스핀 커터
+    status: *no_blade_arts_status
+    position: back
+  - name: 스핀 커터
+    status: *no_blade_arts_status
+    position: back
+  - name: 소울 앱소버
+    status: *no_blade_arts_status
+    position: back
+  - name: 보이드 스트라이크
+    status: *no_blade_arts_status
+    position: back
+  - name: 블리츠 러시
+    status: *no_blade_arts_status
+    position: back
+  - name: 블레이드 버스트
+    status:
+      블레이드 아츠:
+        onoff: True
+      약점 노출:
+        onoff: True
+      잔재된 기운:
+        onoff: False
+    position: back
+  - name: 문라이트 소닉
+    status: *no_blade_arts_status
+    position: back

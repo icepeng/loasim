@@ -145,11 +145,11 @@ class Job:
         return buff_list
 
     def build(
-        self, skill_states: Dict[str, SkillState], internal_stat: InternalStat
+        self, skill_status: Dict[str, SkillState], internal_stat: InternalStat
     ) -> Tuple[Dict[str, Skill], List[AbstractBuff]]:
         skills: Dict[str, Skill] = {}
         buffs: List[AbstractBuff] = self._buffs.copy()
-        for skill_name, skill_state in skill_states.items():
+        for skill_name, skill_state in skill_status.items():
             skills[skill_name] = self.build_skill(
                 skill_name, skill_state, internal_stat
             )

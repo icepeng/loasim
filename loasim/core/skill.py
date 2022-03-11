@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Literal
+from typing import List, Literal, Union
 
 from pydantic import BaseModel
 
@@ -8,7 +8,7 @@ from loasim.core.enemy import Enemy
 from loasim.core.stat import Stat
 
 SkillType = Literal["Normal", "Chain", "Combo", "Charge", "Holding", "Casting", "Area"]
-AttackType = Literal["head", "back", None]
+AttackPosition = Union[Literal["head", "back"], None]
 
 
 class Skill(BaseModel):
@@ -26,19 +26,19 @@ class Skill(BaseModel):
     def get_damage(
         self,
         enemy: Enemy,
-        attack_type: AttackType = None,
+        position: AttackPosition = None,
         stat: Stat = Stat(),
     ) -> float:
         skill_afters_damage = sum(
-            [sk.get_damage(enemy, attack_type, stat) for sk in self.skill_afters]
+            [sk.get_damage(enemy, position, stat) for sk in self.skill_afters]
         )
 
         stat = self.stat + stat
-        if self.head and attack_type == "head":
+        if self.head and position == "head":
             stat += Stat(pdamage_indep=20) + Stat(
                 pdamage_indep=stat.pdamage_indep_head, crit_damage=stat.crit_damage_head
             )
-        if self.back and attack_type == "back":
+        if self.back and position == "back":
             stat += Stat(pdamage_indep=5, crit=10) + Stat(
                 pdamage_indep=stat.pdamage_indep_back, crit_damage=stat.crit_damage_back
             )
